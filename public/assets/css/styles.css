@@ -452,7 +452,7 @@ main .container .content #pgn a.disabled {
   margin: 0 5px;
   font-size: 1.2rem;
 }
-.manage .content form label {
+.manage .content form label,.manage .content #containerAdd form .radio div span {
   font-size: 1.4rem;
 }
 .manage .content form select {
@@ -553,14 +553,17 @@ main .container .content #pgn a.disabled {
   margin: 0 10px;
   transform: scale(1.5);
 }
-.manage .content #containerAdd form .row .typepc {
+.manage .content #containerAdd form .radio div span {
+  text-align: center;
+}
+.manage .content #containerAdd form .radio div div {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.manage .content #containerAdd form .row .typepc input {
+.manage .content #containerAdd form .radio div input {
   width: 30px;
   height: 20px;
 }
