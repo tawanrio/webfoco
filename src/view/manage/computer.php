@@ -63,16 +63,17 @@
                <th>Nº</th>
                <th>ID</th>
                <!-- <th>Tipo</th> -->
-               <th>Usuário</th>
-               <th>Propriedade</th>
-               <th>Processador</th>
-               <th>Memória</th>
-               <th>HD</th>
                <th>Marca</th>
                <th>Modelo</th>
+               <th>Processador</th>
+               <th>Memória</th>
+               <th>Usuário</th>
+               <th>Propriedade</th>
+               <th>Limpeza</th>
+               <!-- <th>HD</th> -->
                <!--<th>N/S</th>-->
-               <th>Mac</th>
-               <th id="edit">Editar</th>
+               <!-- <th>Mac</th> -->
+               <th id="edit">Ver</th>
                <th id="delet">Deletar</th>
 
             </tr>
@@ -90,24 +91,30 @@
                   }
                   $info = rtrim($info, ', ');
                   $info .= '}';
-                  // print_r($value);
+
+
+                  // Formata a Data
+                  $dateFormated = empty(!$value['ultlimpeza']) ?  date_format(date_create($value['ultlimpeza']), 'd/m/y') : 'Sem Dados';
+            
+                  
             ?>
-                  <tr>
+                  <tr >
                      <th><?= $list ?></th>
                      <td><?php echo $value['id_pc'] ? $value['id_pc'] : '0' ?></td>
                      <!--<td><?= $value['type'] ?></td> -->
-                     <td><?php echo ucfirst($value['name'] ? $value['name'] : 'Sem usuário') ?></td>
-                     <td><?php echo ucfirst($value['propriedade'] ? $value['propriedade'] : 'Sem Dados') ?></td>
-                     <td><?php echo $value['processador'] ? $value['processador'] : 'Sem Dados' ?></td>
-                     <td><?php echo $value['memoria'] ? $value['memoria'] : 'Sem Dados' ?></td>
-                     <td><?php echo $value['hd'] ? $value['hd'] : 'Sem Dados' ?></td>
                      <td><?php echo ucfirst($value['marca'] ? $value['marca'] : 'Sem Dados') ?></td>
                      <td><?php echo $value['modelo'] ? $value['modelo'] : 'Sem Dados' ?></td>
+                     <td><?php echo $value['processador'] ? $value['processador'] : 'Sem Dados' ?></td>
+                     <td><?php echo $value['memoria'] ? $value['memoria'] : 'Sem Dados' ?></td>
+                     <td><?php echo ucfirst($value['name'] ? $value['name'] : 'Sem usuário') ?></td>
+                     <td><?php echo ucfirst($value['propriedade'] ? $value['propriedade'] : 'Sem Dados') ?></td>
+                     <td><?php echo $dateFormated ?></td>
+                     <!-- <td><?php echo $value['hd'] ? $value['hd'] : 'Sem Dados' ?></td> -->
                      <!--<td><?php echo $value['numserie'] ? $value['numserie'] : 'Sem Dados' ?></td>-->
-                     <td><?php echo $value['mac'] ? $value['mac'] : 'Sem Dados' ?></td>
+                     <!-- <td><?php echo $value['mac'] ? $value['mac'] : 'Sem Dados' ?></td> -->
                      <td id="edit">
-                        <a href="#" onclick="editPc(`<?php echo $info ?>`)" class="attention btnEdit circle" title="Editar">
-                           <i class="fa-solid fa-pen"></i>
+                        <a href="#" onclick="editPc(`<?php echo $info ?>`)" class="attention btnEdit circle" title="Ver">
+                        <i class="fa-solid fa-eye"></i>
                         </a>
                      </td>
                      <td id="delet">

@@ -51,6 +51,9 @@ ul {
 .btn.btn-primary {
   background-color: rgba(8, 90, 255, 0.8156862745);
 }
+.btn.btn-green {
+  background-color: #1a8918;
+}
 .btn.btn-secondary {
   background-color: rgba(78, 87, 104, 0.8156862745);
 }
@@ -396,6 +399,9 @@ main .container .content .table table tr {
   display: flex;
   padding: 5px 30px 5px 30px;
 }
+main .container .content .table table tbody tr:hover {
+  background: silver;
+}
 main .container .content .table table th, main .container .content .table table td {
   display: flex;
   justify-content: center;
@@ -411,7 +417,7 @@ main .container .content .table table th#delet, main .container .content .table 
   width: 25%;
 }
 main .container .content .table table th#email, main .container .content .table table td#email {
-  width: 200%;
+  width: 220%;
 }
 main .container .content .table table th:nth-child(1), main .container .content .table table td:nth-child(1) {
   width: 30%;
@@ -452,7 +458,7 @@ main .container .content #pgn a.disabled {
   margin: 0 5px;
   font-size: 1.2rem;
 }
-.manage .content form label,.manage .content #containerAdd form .radio div span {
+.manage .content form label {
   font-size: 1.4rem;
 }
 .manage .content form select {
@@ -553,8 +559,9 @@ main .container .content #pgn a.disabled {
   margin: 0 10px;
   transform: scale(1.5);
 }
-.manage .content #containerAdd form .radio div span {
-  text-align: center;
+.manage .content #containerAdd form .row .incorrect-pass {
+  border-color: red;
+  background-color: #ffe9e9;
 }
 .manage .content #containerAdd form .radio div div {
   width: 100%;
@@ -567,9 +574,24 @@ main .container .content #pgn a.disabled {
   width: 30px;
   height: 20px;
 }
-.manage .content #containerAdd form .row .incorrect-pass {
-  border-color: red;
-  background-color: #ffe9e9;
+.manage .content #containerAdd form .radio div span {
+  font-size: 1.4rem;
+  text-align: center;
+}
+.manage .content #containerAdd form .checkbox #tipolimpeza {
+  width: 50%;
+}
+.manage .content #containerAdd form .checkbox #tipolimpeza div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.manage .content #containerAdd form .checkbox #tipolimpeza div label {
+  font-size: 1rem;
+  flex-wrap: nowrap;
+}
+.manage .content #containerAdd form .checkbox #tipolimpeza div input {
+  width: 25px;
 }
 .manage .content #containerAdd form .row-button {
   margin: 20px 0 10px 0;
