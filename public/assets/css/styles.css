@@ -483,7 +483,7 @@ main .container .content #pgn a.disabled {
   color: white;
   font-size: 1rem;
 }
-.manage .content #containerBackground {
+.manage .content .containerBackground {
   width: 100vw;
   height: 140vh;
   background-color: rgba(51, 51, 51, 0.2549019608);
@@ -491,7 +491,7 @@ main .container .content #pgn a.disabled {
   backdrop-filter: blur(3px);
   top: 0;
 }
-.manage .content #containerAdd {
+.manage .content .containerAdd {
   position: absolute;
   border: solid #999 1px;
   width: 80%;
@@ -501,100 +501,139 @@ main .container .content #pgn a.disabled {
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.4784313725);
   border-radius: 10px;
 }
-.manage .content #containerAdd form {
+.manage .content .containerAdd form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.manage .content #containerAdd form select {
+.manage .content .containerAdd form select {
   width: 50%;
 }
-.manage .content #containerAdd form .row {
+.manage .content .containerAdd form .row {
   display: flex;
   justify-content: center;
   width: 100%;
 }
-.manage .content #containerAdd form .row .time {
+.manage .content .containerAdd form .row .time {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.manage .content #containerAdd form .row .time select {
+.manage .content .containerAdd form .row .time select {
   width: 30%;
   text-align: center;
 }
-.manage .content #containerAdd form .row .time span {
+.manage .content .containerAdd form .row .time span {
   font-size: 1.4rem;
 }
-.manage .content #containerAdd form .row div {
+.manage .content .containerAdd form .row div {
   width: 50%;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
-.manage .content #containerAdd form .row div input, .manage .content #containerAdd form .row div select {
+.manage .content .containerAdd form .row div input, .manage .content .containerAdd form .row div select {
   width: 95%;
   border: solid #aaa 1px;
   border-radius: 10px;
 }
-.manage .content #containerAdd form .row div .pass-error {
+.manage .content .containerAdd form .row div .pass-error {
   color: rgba(182, 33, 53, 0.6156862745);
   margin-left: 1%;
 }
-.manage .content #containerAdd form .row div .hiden {
+.manage .content .containerAdd form .row div .hiden {
   display: none;
 }
-.manage .content #containerAdd form .row #radio {
+.manage .content .containerAdd form .row #radio {
   justify-content: center;
 }
-.manage .content #containerAdd form .row #radio div {
+.manage .content .containerAdd form .row #radio div {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 30%;
   margin-top: 20px;
 }
-.manage .content #containerAdd form .row #radio div input {
+.manage .content .containerAdd form .row #radio div input {
   width: 30px;
   margin: 0 10px;
   transform: scale(1.5);
 }
-.manage .content #containerAdd form .row .incorrect-pass {
+.manage .content .containerAdd form .row .incorrect-pass {
   border-color: red;
   background-color: #ffe9e9;
 }
-.manage .content #containerAdd form .radio div div {
+.manage .content .containerAdd form .radio div div {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.manage .content #containerAdd form .radio div input {
+.manage .content .containerAdd form .radio div input {
   width: 30px;
   height: 20px;
 }
-.manage .content #containerAdd form .radio div span {
+.manage .content .containerAdd form .radio div span {
   font-size: 1.4rem;
   text-align: center;
 }
-.manage .content #containerAdd form .checkbox #tipolimpeza {
+.manage .content .containerAdd form .checkbox #tipolimpeza {
   width: 50%;
 }
-.manage .content #containerAdd form .checkbox #tipolimpeza div {
+.manage .content .containerAdd form .checkbox #tipolimpeza div {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.manage .content #containerAdd form .checkbox #tipolimpeza div label {
+.manage .content .containerAdd form .checkbox #tipolimpeza div label {
   font-size: 1rem;
   flex-wrap: nowrap;
 }
-.manage .content #containerAdd form .checkbox #tipolimpeza div input {
+.manage .content .containerAdd form .checkbox #tipolimpeza div input {
   width: 25px;
 }
-.manage .content #containerAdd form .row-button {
+.manage .content .containerAdd form .row-button {
   margin: 20px 0 10px 0;
+}
+
+table {
+  margin: 15px 20px;
+  padding: 5px;
+  border-collapse: collapse;
+  flex-grow: 1;
+  font-weight: 300;
+}
+table tr {
+  border: solid rgba(221, 221, 221, 0.5764705882) 1px;
+  display: flex;
+  padding: 5px 30px 5px 30px;
+}
+table tbody tr:hover {
+  background: silver;
+}
+table th, table td {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+table tr:nth-child(even) {
+  background-color: #eee;
+}
+table th#edit, table td#edit {
+  width: 35%;
+}
+table th#delet, table td#delet {
+  width: 25%;
+}
+table th#email, table td#email {
+  width: 220%;
+}
+table th:nth-child(1), table td:nth-child(1) {
+  width: 30%;
+}
+table th:nth-child(2), table td:nth-child(2) {
+  width: 50%;
 }
 
 /*# sourceMappingURL=styles.css.map */

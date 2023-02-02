@@ -83,7 +83,7 @@
             <?php
             $list = ($arr['info']['np'] - 1) * $arr['info']['limit'];
             foreach ($arr as $computer => $value) :
-               if ($computer !== 'info' && $value['id_pc'] != '999') :
+               if ($computer !== 'info') :
                   $list = $list + 1;
                   $info = '{';
                   foreach ($value as $key => $data) {
@@ -92,11 +92,13 @@
                   $info = rtrim($info, ', ');
                   $info .= '}';
 
+                  
+                  $testado = HistoricoLimp::getLastDateClean($value['historico']);
+
+                  
 
                   // Formata a Data
-                  $dateFormated = empty(!$value['ultlimpeza']) ?  date_format(date_create($value['ultlimpeza']), 'd/m/y') : 'Sem Dados';
-            
-                  
+                  $dateFormated = empty(!$testado) ?  date_format(date_create($testado), 'd/m/y') : 'Sem Dados';
             ?>
                   <tr >
                      <th><?= $list ?></th>

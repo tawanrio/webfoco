@@ -110,7 +110,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     })
 
     function insertCheckRadio(data){
-      if(data != ''){
+      if(data != '' && data != 0){
          const inputChecked = document.querySelector('input#'+data)
          inputChecked.setAttribute('checked','')
       }
@@ -124,12 +124,29 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
             inputChecked.setAttribute('checked','')
          }
       })
+      return
    }
-   
+   function getLastDateClean(values){
+      let value = values.split(',')
+      let positionSeparator = value[0].indexOf('/');
+      let dateLastClean = value[0].substring(0,positionSeparator)
+
+      return (dateLastClean);
+
+   }
+   function getLastTypeClean(values){
+      let value = values.split(',')
+      let positionSeparator = value[0].indexOf('/');
+      let typeLastClean = value[0].substring(positionSeparator +1)
+      typeLastClean = typeLastClean.replaceAll('_', ',')
+
+      return insertCheckCheckbox(typeLastClean);
+   }
     function editPc(idpc){
     idpc = idpc.replaceAll(`'`, `"`)
     const data = JSON.parse(idpc);
-    console.log(data);
+   //  console.log(data);
+    getLastDateClean(data.historico);
       
     const contentEditForm = `
     <div class="header">
@@ -141,6 +158,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     </div>
     <form id="formeditcomputer" action="index.php?page=manage&r=computer" method="post">
        <input type="hidden" name="id" value="">
+       <input type="hidden" name="historico" value="${data.historico}">
        <div class="row radio">
          <div>
             <span>Tipo</span>
@@ -208,7 +226,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
           
           <div>
              <label for="ultlimpeza">Última Limpeza</label>
-             <input type="date" id="ultlimpeza" name="ultlimpeza" value="${data.ultlimpeza}" disabled class="input-disable">
+             <input type="date" id="ultlimpeza" name="ultlimpeza" value="${getLastDateClean(data.historico)}" disabled class="input-disable">
          </div>
          <div id="tipolimpeza">
                <label for="tipolimpeza">Tipo de Limpeza</label>
@@ -232,18 +250,66 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
                   </div>
           </div>
        </div>
+       <div class="row">
+            <label>
+               <a href="#" id="historicoLimp" style="text-decoration-line: underline;">Histórico de Limpeza</a>
+            </label>
+       </div>
        <div class="row row-button">
           <a class="btn btn-green" id="editBtn">Editar</a>
           <a class="btn btn-secondary" id="formCancel">Cancelar</a>
        </div>
     </form>
     `;
-    
+    const historicoLimp = `
+    <div class="header">
+       <i class="fa-solid fa-computer"></i>
+       <div>
+          <div class="title">Histórico de Limpeza</div>
+          <div class="subtitle">Visualize o histórico de Limpeza dos computadores</div>
+       </div>
+    </div>
+    <form id="formeditcomputer" action="index.php?page=manage&r=computer" method="post">
+       <input type="hidden" name="id" value="">
+        <div class="row">
+            <table>
+               <thead>
+                  <tr>
+                     <th>Data</th>
+                     <th>Tipo</th>
+                  </tr>
+               </thead>
+               <tbody>
+               <tr>
+                  <td>01/01/2023</td>
+                  <td>Pasta Térmica, Culer, Memória, Carcaça</td>
+               </tr>
+               <tr>
+                  <td>01/01/2023</td>
+                  <td>Pasta Térmica, Culer, Memória, Carcaça</td>
+               </tr>
+               <tr>
+                  <td>01/01/2022</td>
+                  <td>Pasta Térmica, Culer, Memória, Carcaça</td>
+               </tr>
+               </tbody>
+            </table>
+        </div>
+       <div class="row row-button">
+          <a class="btn btn-secondary" id="historicoLimpCancel">Cancelar</a>
+       </div>
+    </form>
+    `;
     createContainer(contentEditForm);
+
+    document.querySelector('a#historicoLimp').addEventListener('click', ()=> {
+      createContainer(historicoLimp,'historicoLimpBack', 'historicoLimpContainer');
+    });
 
     insertCheckRadio(data.propriedade)
     insertCheckRadio(data.type)
-    insertCheckCheckbox(data.tipolimpeza);
+   //  insertCheckCheckbox(data.tipolimpeza);
+   getLastTypeClean(data.historico);
 
     const editBtn = document.querySelector('#editBtn')
     editBtn.addEventListener('click', () =>{
@@ -270,6 +336,8 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
       })
 
     });
+
+    
 
     }
     function deletePc(idpc){

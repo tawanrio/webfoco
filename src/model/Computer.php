@@ -36,17 +36,25 @@ class Computer{
          'carcaca' => isset($arr['carcaca']) ? 'carcaca' : 0
       ];
 
-      $tipolimpeza = implode(',', $tipolimpeza);
-
-
       
+      
+      $tipolimpeza = implode('_', $tipolimpeza);
+      
+      $ultLimpeza = trim(isset($arr['ultlimpeza']) ? $arr['ultlimpeza'] : '');
+      
+      
+      $historico = $arr['historico'];
+      if(HistoricoLimp::checkExistDate($arr['historico'],$ultLimpeza)){
+         $historico = $ultLimpeza. '/' . $tipolimpeza . ',' . $arr['historico'];
+      }
+
+
       $marca = trim($arr['marca']);
       $modelo = trim($arr['modelo']);
       $processador = trim($arr['processador']);
       $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : '');
       $hd = trim($arr['hd']);
-      $ultLimpeza = trim(isset($arr['ultlimpeza']) ? $arr['ultlimpeza'] : '');
-      $tipolimpeza = trim($tipolimpeza);
+      // $tipolimpeza = trim($tipolimpeza);
       $mac = trim($arr['mac']);
       $numserie = trim($arr['numserie']);
       $memoria = trim($arr['memoria']);
@@ -55,13 +63,13 @@ class Computer{
       // $id = $arr['id'];
 
       
-      $query = "INSERT INTO computer (`marca`,`propriedade`,`ultlimpeza`,`tipolimpeza`,`modelo`,`numserie`,`memoria`,`type`, `hd`,`processador`, `mac` ) VALUES ('$marca','$propriedade','$ultLimpeza','$tipolimpeza','$modelo','$numserie','$memoria', '$typepc', '$hd', '$processador', '$mac')";
+      $query = "INSERT INTO computer (`marca`,`propriedade`,`historico`,`modelo`,`numserie`,`memoria`,`type`, `hd`,`processador`, `mac` ) VALUES ('$marca','$propriedade','$historico','$modelo','$numserie','$memoria', '$typepc', '$hd', '$processador', '$mac')";
       $class = 'success';
 
       $text = 'Computador Cadastrado!';
 
       if(self::checkExistComputer($numserie, $mac)){
-         $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`ultlimpeza` = '$ultLimpeza',`tipolimpeza` = '$tipolimpeza',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `mac` = '$mac' AND `numserie` = '$numserie'";
+         $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`historico` = '$historico',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `mac` = '$mac' AND `numserie` = '$numserie'";
          $class = 'danger';
          $text = 'Computador Editado!';
 

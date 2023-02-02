@@ -35,7 +35,7 @@
                color: white
                font-size: 1rem
          
-      #containerBackground
+      .containerBackground
          width: 100vw
          height: 140vh
          background-color: #33333341
@@ -43,7 +43,7 @@
          backdrop-filter: blur(3px)
          top: 0
 
-      #containerAdd
+      .containerAdd
          position: absolute
          border: solid #999 1px
          width: 80%
@@ -149,3 +149,39 @@
             .row-button
                margin: 20px 0 10px 0
                   
+
+table
+   margin: 15px 20px
+   padding: 5px
+   border-collapse: collapse
+   // border: solid #dddddd93 1px
+   flex-grow: 1
+   font-weight: 300
+   
+   tr
+      border: solid #dddddd93 1px
+      display: flex
+      padding: 5px 30px 5px 30px
+
+   tbody tr
+         &:hover
+            background: silver
+
+   th,td
+      display: flex
+      justify-content: center
+      width: 100%
+
+   tr:nth-child(even) 
+      background-color: #eee
+
+   th#edit, td#edit
+      width: 35%
+   th#delet, td#delet
+      width: 25%
+   th#email, td#email
+      width: 220%
+   th:nth-child(1),td:nth-child(1)
+      width: 30%
+   th:nth-child(2),td:nth-child(2)
+      width: 50%
