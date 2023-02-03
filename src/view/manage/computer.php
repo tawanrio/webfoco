@@ -93,14 +93,20 @@
                   $info .= '}';
 
                   
-                  $testado = HistoricoLimp::getLastDateClean($value['historico']);
-
+                  $lastDateClean = HistoricoLimp::getLastDateClean($value['historico']);
                   
+                  // Captura intervalo de dias da ultima limpeza
+                  $dateLastClean = new DateTime($lastDateClean);
+                  $dateNow = new DateTime();
+                  $dateInterval = $dateLastClean->diff($dateNow)->days;
+
+
+               
 
                   // Formata a Data
-                  $dateFormated = empty(!$testado) ?  date_format(date_create($testado), 'd/m/y') : 'Sem Dados';
+                  $dateFormated = empty(!$lastDateClean) ?  date_format(date_create($lastDateClean), 'd/m/y') : 'Sem Dados';
             ?>
-                  <tr >
+                  <tr <?php if($dateInterval > 180){echo "style='background-color:pink'";} ?>>
                      <th><?= $list ?></th>
                      <td><?php echo $value['id_pc'] ? $value['id_pc'] : '0' ?></td>
                      <!--<td><?= $value['type'] ?></td> -->
@@ -116,7 +122,7 @@
                      <!-- <td><?php echo $value['mac'] ? $value['mac'] : 'Sem Dados' ?></td> -->
                      <td id="edit">
                         <a href="#" onclick="editPc(`<?php echo $info ?>`)" class="attention btnEdit circle" title="Ver">
-                        <i class="fa-solid fa-eye"></i>
+                           <i class="fa-solid fa-eye"></i>
                         </a>
                      </td>
                      <td id="delet">

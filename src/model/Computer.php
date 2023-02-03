@@ -28,7 +28,7 @@ class Computer{
 
    public static function newComputer($arr){
 
-      
+      $historico = '';
       $tipolimpeza = [
          'pastater' => isset($arr['pastater']) ? 'pastater' : 0,
          "culer" => isset($arr['culer']) ? 'culer' : 0,
@@ -36,17 +36,18 @@ class Computer{
          'carcaca' => isset($arr['carcaca']) ? 'carcaca' : 0
       ];
 
-      
-      
       $tipolimpeza = implode('_', $tipolimpeza);
       
       $ultLimpeza = trim(isset($arr['ultlimpeza']) ? $arr['ultlimpeza'] : '');
       
-      
-      $historico = $arr['historico'];
       if(HistoricoLimp::checkExistDate($arr['historico'],$ultLimpeza)){
-         $historico = $ultLimpeza. '/' . $tipolimpeza . ',' . $arr['historico'];
+         $historico = $ultLimpeza. '/' . $tipolimpeza;
+
+         if($arr['historico'] != null){
+            $historico .= ','.$arr['historico'];
+         }
       }
+   
 
 
       $marca = trim($arr['marca']);
@@ -150,6 +151,7 @@ class Computer{
       $offset = ($offset * $this->limit) - $this->limit;
       $query = 'SELECT *, user.name FROM `computer` LEFT OUTER JOIN `user` ON user.id_user = computer.id_userp ';
       $query .= "WHERE $filter LIKE '$search%' AND NOT id_pc = '0' ";
+      $query .= "ORDER BY id_pc DESC ";
       $query .= "LIMIT " . $this->limit;
       $query .= " OFFSET " . $offset;
 

@@ -1,3 +1,77 @@
+
+function insertCheckRadio(data){
+   if(data != '' && data != 0){
+      const inputChecked = document.querySelector('input#'+data)
+      inputChecked.setAttribute('checked','')
+   }
+}
+
+function insertCheckCheckbox(datas){
+   datas = datas.split(',')
+   datas.forEach(data =>{
+      if(data != 0){
+         const inputChecked = document.querySelector('input#'+data)
+         inputChecked.setAttribute('checked','')
+      }
+   })
+   return
+}
+function getLastDateClean(values){
+   const value = values.split(',')
+   
+   return (getDate(value[0]));
+}
+function getLastTypeClean(values){
+   const value = values.split(',')
+   
+   return insertCheckCheckbox(getType(value[0]));
+}
+
+
+function getAllDateClean(values){
+   const arr = values.split(',')
+   if(arr == '') return
+   arr.forEach(value => {
+      const date = new Date(getDate(value))
+      data = `
+      <tr>
+         <td>${date.toLocaleDateString('pt-BR', {timeZone: 'UTC'})}</td>
+         <td>${FormatTypeClean(value)}</td>
+      </tr>
+      `
+      document.querySelector('#tbodyHisotrico').innerHTML += data
+   })
+}
+function FormatTypeClean(type){
+   const arr = getType(type).split(',')
+   let tipo = ''
+   arr.forEach(value =>{
+      if(value == 0) return
+
+      switch (value) {
+         case 'pastater':
+            tipo += 'Pasta Termica, '
+            break;
+         case 'culer':
+            tipo += 'Culer, '
+            break
+         case 'memorialimp':
+            tipo += 'Memória, '
+            break
+         case 'carcaca':
+            tipo += 'Carcaça, '
+            break
+      }
+   })
+   tipo = tipo.trim();
+   tipo = tipo.substring(0, tipo.length -1)
+   if (tipo == '') {
+      tipo = 'Sem Dados'
+   }
+   
+   return tipo
+}
+
 document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     const contentCreateForm = `
     <div class="header">
@@ -109,39 +183,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     createContainer(contentCreateForm);
     })
 
-    function insertCheckRadio(data){
-      if(data != '' && data != 0){
-         const inputChecked = document.querySelector('input#'+data)
-         inputChecked.setAttribute('checked','')
-      }
-   }
-
-   function insertCheckCheckbox(datas){
-      datas = datas.split(',')
-      datas.forEach(data =>{
-         if(data != 0){
-            const inputChecked = document.querySelector('input#'+data)
-            inputChecked.setAttribute('checked','')
-         }
-      })
-      return
-   }
-   function getLastDateClean(values){
-      let value = values.split(',')
-      let positionSeparator = value[0].indexOf('/');
-      let dateLastClean = value[0].substring(0,positionSeparator)
-
-      return (dateLastClean);
-
-   }
-   function getLastTypeClean(values){
-      let value = values.split(',')
-      let positionSeparator = value[0].indexOf('/');
-      let typeLastClean = value[0].substring(positionSeparator +1)
-      typeLastClean = typeLastClean.replaceAll('_', ',')
-
-      return insertCheckCheckbox(typeLastClean);
-   }
+    
     function editPc(idpc){
     idpc = idpc.replaceAll(`'`, `"`)
     const data = JSON.parse(idpc);
@@ -261,12 +303,16 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
        </div>
     </form>
     `;
-    const historicoLimp = `
+    
+    createContainer(contentEditForm);
+
+    document.querySelector('a#historicoLimp').addEventListener('click', ()=> {
+      const historicoLimp = `
     <div class="header">
        <i class="fa-solid fa-computer"></i>
        <div>
           <div class="title">Histórico de Limpeza</div>
-          <div class="subtitle">Visualize o histórico de Limpeza dos computadores</div>
+          <div class="subtitle">Visualize o histórico de limpeza dos computadores</div>
        </div>
     </div>
     <form id="formeditcomputer" action="index.php?page=manage&r=computer" method="post">
@@ -279,19 +325,8 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
                      <th>Tipo</th>
                   </tr>
                </thead>
-               <tbody>
-               <tr>
-                  <td>01/01/2023</td>
-                  <td>Pasta Térmica, Culer, Memória, Carcaça</td>
-               </tr>
-               <tr>
-                  <td>01/01/2023</td>
-                  <td>Pasta Térmica, Culer, Memória, Carcaça</td>
-               </tr>
-               <tr>
-                  <td>01/01/2022</td>
-                  <td>Pasta Térmica, Culer, Memória, Carcaça</td>
-               </tr>
+               <tbody id="tbodyHisotrico">
+               
                </tbody>
             </table>
         </div>
@@ -300,19 +335,17 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
        </div>
     </form>
     `;
-    createContainer(contentEditForm);
-
-    document.querySelector('a#historicoLimp').addEventListener('click', ()=> {
       createContainer(historicoLimp,'historicoLimpBack', 'historicoLimpContainer');
+      getAllDateClean(data.historico);
     });
 
     insertCheckRadio(data.propriedade)
     insertCheckRadio(data.type)
-   //  insertCheckCheckbox(data.tipolimpeza);
+
    getLastTypeClean(data.historico);
 
     const editBtn = document.querySelector('#editBtn')
-    editBtn.addEventListener('click', () =>{
+      editBtn.addEventListener('click', () =>{
       const rowBtn = document.querySelector('.row-button')
       rowBtn.removeChild(editBtn)
       

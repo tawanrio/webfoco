@@ -514,18 +514,6 @@ main .container .content #pgn a.disabled {
   justify-content: center;
   width: 100%;
 }
-.manage .content .containerAdd form .row .time {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.manage .content .containerAdd form .row .time select {
-  width: 30%;
-  text-align: center;
-}
-.manage .content .containerAdd form .row .time span {
-  font-size: 1.4rem;
-}
 .manage .content .containerAdd form .row div {
   width: 50%;
   display: flex;
@@ -545,16 +533,11 @@ main .container .content #pgn a.disabled {
   display: none;
 }
 .manage .content .containerAdd form .row #radio {
-  justify-content: center;
-}
-.manage .content .containerAdd form .row #radio div {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 30%;
-  margin-top: 20px;
 }
-.manage .content .containerAdd form .row #radio div input {
+.manage .content .containerAdd form .row #radio input {
   width: 30px;
   margin: 0 10px;
   transform: scale(1.5);
@@ -610,7 +593,7 @@ table tr {
   padding: 5px 30px 5px 30px;
 }
 table tbody tr:hover {
-  background: silver;
+  background: silver !important;
 }
 table th, table td {
   display: flex;
@@ -620,19 +603,20 @@ table th, table td {
 table tr:nth-child(even) {
   background-color: #eee;
 }
-table th#edit, table td#edit {
+
+#tablePc table th#edit, #tablePc table td#edit {
   width: 35%;
 }
-table th#delet, table td#delet {
+#tablePc table th#delet, #tablePc table td#delet {
   width: 25%;
 }
-table th#email, table td#email {
+#tablePc table th#email, #tablePc table td#email {
   width: 220%;
 }
-table th:nth-child(1), table td:nth-child(1) {
+#tablePc table th:nth-child(1), #tablePc table td:nth-child(1) {
   width: 30%;
 }
-table th:nth-child(2), table td:nth-child(2) {
+#tablePc table th:nth-child(2), #tablePc table td:nth-child(2) {
   width: 50%;
 }
 
