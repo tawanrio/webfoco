@@ -2,7 +2,7 @@
    <i class="fa-solid fa-users"></i>
    <div>
       <div class="title">Colaboradores</div>
-      <div class="subtitle">Consulte, adicione, altere ou exclua um Colaborador</div>
+      <div class="subtitle">Consulte, adicione, altere ou exclua um colaborador</div>
    </div>
 </div>
 <div class="content" >

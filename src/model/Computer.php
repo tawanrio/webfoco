@@ -73,7 +73,7 @@ class Computer{
          $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`historico` = '$historico',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `mac` = '$mac' AND `numserie` = '$numserie'";
          $class = 'danger';
          $text = 'Computador Editado!';
-
+         // echo $query;
        }
 
       $qtdPc = Database::getResultFromQuery($query);
@@ -113,7 +113,7 @@ class Computer{
 
    public static function getQtdPc($filter, $search){
       $query = 'SELECT COUNT(*) FROM `computer` LEFT OUTER JOIN `user` ON user.id_user = computer.id_userp ';
-      $query .= "WHERE $filter LIKE '$search%' AND NOT id_pc = '0' AND NOT id_pc = '999' ";
+      $query .= "WHERE $filter LIKE '$search%'  ";
       $qtdPc = Database::getResultFromQuery($query);
       $qtdPc = $qtdPc->fetch(PDO::FETCH_ASSOC);
       
@@ -122,7 +122,6 @@ class Computer{
 
    public static function getAllQtdPc(){
       $query = 'SELECT COUNT(*) FROM `computer`';
-      $query .= "WHERE NOT id_pc = '0' AND NOT id_pc = '999'";
       $qtdPc = Database::getResultFromQuery($query);
       $qtdPc = $qtdPc->fetch(PDO::FETCH_ASSOC);
 
@@ -130,7 +129,7 @@ class Computer{
    }
 
    public static function checkInUse(){
-      $query = "SELECT COUNT(*) FROM `computer` WHERE id_userp IS NOT NULL AND NOT id_pc = '999'";
+      $query = "SELECT COUNT(*) FROM `computer` WHERE id_userp IS NOT NULL ";
       $using = Database::getResultFromQuery($query);
       $using = $using->fetch(PDO::FETCH_ASSOC);    
 
@@ -139,7 +138,7 @@ class Computer{
    }
 
    public static function checkAvailable(){
-      $query = "SELECT COUNT(*) FROM `computer` WHERE id_userp IS NULL AND NOT id_pc = '0' AND NOT id_pc = '999'";
+      $query = "SELECT COUNT(*) FROM `computer` WHERE id_userp IS NULL";
       $Available = Database::getResultFromQuery($query);
       $Available = $Available->fetch(PDO::FETCH_ASSOC);
 
@@ -150,7 +149,7 @@ class Computer{
       $offset = $this->offset;
       $offset = ($offset * $this->limit) - $this->limit;
       $query = 'SELECT *, user.name FROM `computer` LEFT OUTER JOIN `user` ON user.id_user = computer.id_userp ';
-      $query .= "WHERE $filter LIKE '$search%' AND NOT id_pc = '0' ";
+      $query .= "WHERE $filter LIKE '$search%' ";
       $query .= "ORDER BY id_pc DESC ";
       $query .= "LIMIT " . $this->limit;
       $query .= " OFFSET " . $offset;
