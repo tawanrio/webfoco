@@ -42,6 +42,7 @@ function getAllDateClean(values){
       document.querySelector('#tbodyHisotrico').innerHTML += data
    })
 }
+
 function FormatTypeClean(type){
    const arr = getType(type).split(',')
    let tipo = ''
@@ -72,6 +73,8 @@ function FormatTypeClean(type){
    return tipo
 }
 
+
+
 document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     const contentCreateForm = `
     <div class="header">
@@ -82,7 +85,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
        </div>
     </div>
     <form id="formnewcomputer" action="index.php?page=manage&r=computer" method="post">
-       <input type="hidden" name="id" value="">
+       <input type="hidden" name="form" value="create">
        <div class="row radio">
          <div>
             <span>Tipo</span>
@@ -182,12 +185,12 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     `;
     createContainer(contentCreateForm);
     })
-
+   
     
     function editPc(idpc){
     idpc = idpc.replaceAll(`'`, `"`)
     const data = JSON.parse(idpc);
-   //  console.log(data);
+    console.log(data);
     getLastDateClean(data.historico);
       
     const contentEditForm = `
@@ -199,8 +202,8 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
        </div>
     </div>
     <form id="formeditcomputer" action="index.php?page=manage&r=computer" method="post">
-       <input type="hidden" name="id" value="">
        <input type="hidden" name="historico" value="${data.historico}">
+       <input type="hidden" name="form" value="edit">
        <div class="row radio">
          <div>
             <span>Tipo</span>
@@ -224,7 +227,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
        <div class="row">
           <div>
              <label for="idpc">Identificação</label>
-             <input required type="text" id="idpc" name="idpc"  value="wbp${data.id_pc}" readonly class="input-disable" >
+             <input required type="text" id="idpc" name="idpc"  value="${data.id_pc}" readonly class="input-disable" >
           </div>
           <div >
              <label for="marca">Marca</label>
@@ -360,12 +363,15 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
       const elementsDisabled = document.querySelectorAll('[disabled]')
 
       elementsDisabled.forEach(element =>{
+         
          element.removeAttribute('disabled')
          element.classList.toggle('input-disable')
       })
       elementsReadonly.forEach(element =>{
-         element.removeAttribute('readonly')
-         element.classList.toggle('input-disable')
+         if(element.name != 'mac' && element.name != 'numserie' && element.name != 'idpc'){
+            element.removeAttribute('readonly')
+            element.classList.toggle('input-disable')
+         }
       })
 
     });
@@ -395,7 +401,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
        <div class="row">
           <div>
              <label for="idpc">Identificação</label>
-             <input required type="text" id="idpc" name="idpc"  value="wbp${data.id_pc}" readonly class="input-disable" >
+             <input required type="text" id="idpc" name="idpc"  value="${data.id_pc}" readonly class="input-disable" >
           </div>
           <div >
              <label for="marca">Marca</label>
@@ -436,7 +442,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
           </div>
        </div>
        <div class="row row-button">
-          <a href="index.php?page=manage&r=computer&id=${data.id_pc}&mac=${data.mac}"  class="btn btn-danger"> Apagar </a>
+          <a href="index.php?page=manage&r=computer&id=${data.id_pc}"  class="btn btn-danger"> Apagar </a>
           <a class="btn btn-secondary" id="formCancel">Cancelar</a>
        </div>
     </form>

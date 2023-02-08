@@ -27,14 +27,9 @@
          <h3>Suporte Notebook</h3>
          <h2><?= isset($arr['info']['qtdTotalPc']) ? $arr['info']['qtdTotalPc'] : 'Erro'; ?></h2>
       </div>
-      <div class="card orange">
-         <i class="fa-solid fa-laptop-code"></i>
-         <h3>Cadeira</h3>
-         <h2><?= isset($arr['info']['using']) ? $arr['info']['using'] : 'Erro'; ?></h2>
-      </div>
       <div class="card green">
          <i class="fa-solid fa-check"></i>
-         <h3>Outros...</h3>
+         <h3>Outros</h3>
          <h2><?= isset($arr['info']['available']) ? $arr['info']['available'] : 'Erro'; ?></h2>
       </div>
 
@@ -47,7 +42,7 @@
 
    <br>
    <h2 for="filter">Filtrar Busca</h2>
-   <form action="index.php?page=manage&r=computer" method="post">
+   <form action="index.php?page=manage&r=components" method="post">
       <select name="filter" id="filter">
          <option value="name">Nome do Colaborador</option>
          <option value="id_pc">Nº do Pc</option>
@@ -62,10 +57,10 @@
 
       <div class="header">
          <div class="desc">
-            <div class="title">Lista de computadores</div>
-            <div class="subtitle">Lista dos computadores da empresa</div>
+            <div class="title">Lista de componentes</div>
+            <div class="subtitle">Lista dos componentes da empresa</div>
          </div>
-         <a href="#" class="btnaddnew" id="addnewcomputer">Novo Computador</a>
+         <a href="#" class="btnaddnew" id="addnewcomponents">Novo Componente</a>
       </div>
       <table>
          <thead>
@@ -74,17 +69,17 @@
                <th>ID</th>
                <th>Tipo</th>
                <th>Marca</th>
-               <th>Nome</th>
+               <th>N/S</th>
+               <th>Codigo</th>
+               <th id="edit">Ver</th>
+               <th id="delet">Deletar</th>
+               <!-- <th>Nome</th> -->
                <!-- <th>Processador</th> -->
                <!-- <th>Memória</th> -->
                <!-- <th>Usuário</th> -->
                <!-- <th>Propriedade</th> -->
                <!-- <th>Limpeza</th> -->
                <!-- <th>HD</th> -->
-               <th>N/S</th>
-               <th>Codigo</th>
-               <th id="edit">Ver</th>
-               <th id="delet">Deletar</th>
 
             </tr>
 
@@ -120,18 +115,17 @@
                   <tr >
                      <th><?= $list ?></th>
                      <td><?php echo $value['id_cpnt'] ? $value['id_cpnt'] : '0' ?></td>
-                     <td><?= $value['tipo'] ?></td>
+                     <td><?php echo ucfirst($value['tipo'] ? $value['tipo'] : 'Sem Dados') ?></td>
                      <td><?php echo ucfirst($value['marca'] ? $value['marca'] : 'Sem Dados') ?></td>
-                     <td><?php echo ucfirst($value['nome'] ? $value['nome'] : 'Sem usuário') ?></td>
                      <td><?php echo $value['numserie'] ? $value['numserie'] : 'Sem Dados' ?></td>
                      <td><?php echo $value['codigo'] ? $value['codigo'] : 'Sem Dados' ?></td>
                      <td id="edit">
-                        <a href="#" onclick="editPc(`<?php echo $info ?>`)" class="attention btnEdit circle" title="Ver">
+                        <a href="#" onclick="editCpnt(`<?php echo $info ?>`)" class="attention btnEdit circle" title="Ver">
                            <i class="fa-solid fa-eye"></i>
                         </a>
                      </td>
                      <td id="delet">
-                        <a href="#" onclick="deletePc(`<?php echo $info ?>`)" class="danger btnEdit circle" title="Deletar">
+                        <a href="#" onclick="deleteCpnt(`<?php echo $info ?>`)" class="danger btnEdit circle" title="Deletar">
                            <i class="fa-solid fa-trash"></i>
                         </a>
                      </td>
@@ -159,3 +153,4 @@
             <?php endif; ?>
    </div>
 </div>
+<script src="./assets/js/service/Components.js"></script>

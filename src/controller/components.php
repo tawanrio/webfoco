@@ -16,10 +16,10 @@ if(isset($_POST) && count($_POST) > 1 && !isset($_POST['filter'])){
 }
 
 // deleta o computador
-$iddelete = isset($_GET['id']) ? $_GET['id'] : false;
-$macdelete = isset($_GET['mac']) ? $_GET['mac'] : false;
-if($iddelete && $macdelete){
-   Components::deleteComponents($iddelete, $macdelete);
+$codigodelete = isset($_GET['codigo']) ? $_GET['codigo'] : false;
+$idcpntdelete = isset($_GET['id']) ? $_GET['id'] : false;
+if($codigodelete && $idcpntdelete ){
+   Components::deleteComponents($codigodelete, $idcpntdelete);
 }
 
 // paginação

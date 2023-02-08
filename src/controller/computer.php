@@ -12,14 +12,21 @@ if($search == '1' || $search == ''){
 
 // Cria ou edita o computador
 if(isset($_POST) && count($_POST) > 1 && !isset($_POST['filter'])){
-   Computer::newComputer($_POST);
+   // Cria o computador
+   if($_POST['form'] == 'create'){
+      Computer::newComputer($_POST);
+   }
+   // Edita o computador
+   elseif($_POST['form'] == 'edit'){
+      Computer::editComputer($_POST);
+   }
 }
 
 // deleta o computador
 $iddelete = isset($_GET['id']) ? $_GET['id'] : false;
-$macdelete = isset($_GET['mac']) ? $_GET['mac'] : false;
-if($iddelete && $macdelete){
-   Computer::deleteComputer($iddelete, $macdelete);
+// $macdelete = isset($_GET['mac']) ? $_GET['mac'] : false;
+if($iddelete){
+   Computer::deleteComputer($iddelete);
 }
 
 // paginação

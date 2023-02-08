@@ -5,17 +5,34 @@ class HistoricoLimp{
 
     }
 
-    public static function checkExistDate($valuesDb, $newDate){
-        $arr =  explode(',' , $valuesDb);
+    public static function checkExistDate($valuesDb){
+        
+        if(empty($valuesDb['ultlimpeza'])) return;
 
+        
+        $arr =  explode(',' , $valuesDb['historico']);
+       
         foreach($arr as $value){
             $positionSeparator = strripos($value, '/');
             $dateLastClean = substr($value, 0 ,$positionSeparator);
-
-
-            if($dateLastClean == $newDate) return false;
+            // Se existir já existir uma data igual ele retorna ultima string do historico
+            if($dateLastClean == $valuesDb['ultlimpeza']) return $valuesDb['historico'];
         }
-        return true;
+
+        // se não existir ele cria uma nova string de historico
+        return HistoricoLimp::createNewStringHistoric($valuesDb);
+    }
+
+    public static function createNewStringHistoric($valuesDb){
+
+        $typeClean = HistoricoLimp::formatTypeClean($valuesDb);
+
+        $historic = $valuesDb['ultlimpeza']. '/' . $typeClean;
+        if($valuesDb['historico'] != null){
+            $historic .= ','.$valuesDb['historico'];
+        }
+        
+        return $historic;
     }
 
     public static function getLastDateClean($value){
@@ -31,6 +48,18 @@ class HistoricoLimp{
         $positionSeparator = strripos($arr[0], '/');
         $typeLastClean = trim(substr($arr[0], $positionSeparator +1));
         return $typeLastClean;
+    }
+
+    public static function formatTypeClean($arr){
+        $typeClean = [
+            'pastater' => isset($arr['pastater']) ? 'pastater' : 0,
+            "culer" => isset($arr['culer']) ? 'culer' : 0,
+            'memoria' => isset($arr['memorialimp']) ? 'memorialimp' : 0,
+            'carcaca' => isset($arr['carcaca']) ? 'carcaca' : 0
+         ];
+         $typeClean = implode('_', $typeClean);
+         
+         return $typeClean;
     }
 
     public function getListHistoricClean($value){

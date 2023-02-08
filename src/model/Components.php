@@ -28,54 +28,70 @@ class Components{
 
    public static function newComponents($arr){
 
-      // $historico = '';
-      // $tipolimpeza = [
-      //    'pastater' => isset($arr['pastater']) ? 'pastater' : 0,
-      //    "culer" => isset($arr['culer']) ? 'culer' : 0,
-      //    'memoria' => isset($arr['memorialimp']) ? 'memorialimp' : 0,
-      //    'carcaca' => isset($arr['carcaca']) ? 'carcaca' : 0
-      // ];
+         // print_r($arr);
 
-      // $tipolimpeza = implode('_', $tipolimpeza);
-      
-      // $ultLimpeza = trim(isset($arr['ultlimpeza']) ? $arr['ultlimpeza'] : '');
-      
-      // if(HistoricoLimp::checkExistDate($arr['historico'],$ultLimpeza)){
-      //    $historico = $ultLimpeza. '/' . $tipolimpeza;
+         $qntCpnt = Components::getQtdCpnt('tipo',$arr['tipo']) +1;
+         $CpntLength = ceil(log10($qntCpnt));
+         
+         switch ($CpntLength) {
+            case $CpntLength == 1:
+               $codeMaq = '.000';
+               break;
+            case $CpntLength == 2:
+               $codeMaq = '.00';
+               break;
+            case $CpntLength == 3:
+               $codeMaq = '.0';
+               break;
+            case $CpntLength == 4:
+               $codeMaq = '.';
+               break;
+         }
 
-      //    if($arr['historico'] != null){
-      //       $historico .= ','.$arr['historico'];
-      //    }
-      // }
-   
+      switch ($arr['tipo']) {
+         case 'monitor':
+            $codigo = '01.02' . $codeMaq . $qntCpnt;
+            break;
+         case 'mouse':
+            $codigo = '01.03' . $codeMaq . $qntCpnt;
+            break;
+         case 'teclado':
+            $codigo = '01.04' . $codeMaq . $qntCpnt;
+            break;
+         case 'suportenot':
+            $codigo = '01.05' . $codeMaq . $qntCpnt;
+            break;
+         case 'outro':
+            $codigo = '01.06' . $codeMaq . $qntCpnt;
+            break;
 
+      }
 
-      $marca = trim($arr['marca']);
-      $nome = trim($arr['nome']);
-      // $processador = trim($arr['processador']);
-      // $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : '');
-      // $hd = trim($arr['hd']);
-      // $tipolimpeza = trim($tipolimpeza);
-      // $mac = trim($arr['mac']);
-      $numserie = trim($arr['numserie']);
-      // $memoria = trim($arr['memoria']);
-      // $idpc = $arr['id_pc'];
+      // echo $codigo ;
+
       $tipo = trim($arr['tipo']);
-      $codigo = trim($arr['tipo']);
-      // $id = $arr['id'];
+      $marca = trim($arr['marca']);
+      $modelo = trim($arr['modelo']);
+      $tamanho = trim($arr['tamanho']);
+      $numserie = trim($arr['numserie']);
+      $idcpnt = isset($arr['idcpnt']) ? trim($arr['idcpnt']) : '';
 
+      // echo $idcpnt;
       
-      $query = "INSERT INTO components (`nome`,'marca',`tipo`,`codigo`,`numserie`) VALUES ('$nome','$marca','$tipo','$codigo','$numserie')";
+      $query = "INSERT INTO components (`tipo`,`marca`,`modelo`,`tamanho`,`codigo`,`numserie`) VALUES ('$tipo','$marca','$modelo','$tamanho','$codigo','$numserie')";
       $class = 'success';
 
-      $text = 'Computador Cadastrado!';
+      $text = 'Componente Cadastrado!';
+   
+      if(self::checkExistComponents($codigo, $idcpnt)){
+         $codigo = $arr['codigo'];
 
-      if(self::checkExistComponents($numserie, $codigo)){
-         $query = "UPDATE `components` SET `marca`='$marca',`tipo`='$tipo',`numserie`='$numserie' WHERE `codigo` = '$codigo' AND `numserie` = '$numserie'";
+         $query = "UPDATE `components` SET `marca`='$marca',`modelo`='$modelo',`tamanho`='$tamanho',`numserie`='$numserie' WHERE `codigo` = '$codigo'";
          $class = 'danger';
-         $text = 'Computador Editado!';
-         // echo $query;
-       }
+         $text = 'Componente Editado!';
+      }
+      
+      // echo $query;
 
       $qtdPc = Database::getResultFromQuery($query);
       Synchronize::synchronizeDB();
@@ -89,8 +105,8 @@ class Components{
       return;
    }
 
-   public static function checkExistComponents($numserie, $codigo){
-      $query = "SELECT count(*) FROM `components` WHERE numserie LIKE '$numserie' OR codigo = '$codigo'";
+   public static function checkExistComponents($codigo, $idcpnt){
+      $query = "SELECT count(*) FROM `components` WHERE `codigo` = '$codigo' AND `id_cpnt` = '$idcpnt'";
       $result = Database::getResultFromQuery($query);
       $result = $result->fetch(PDO::FETCH_ASSOC);
 
@@ -102,9 +118,10 @@ class Components{
       return false;
    }
 
-   public static function deleteComponents($idcpnt, $codigo){
-      $query = "DELETE FROM `components` WHERE `id_cpnt` = '$idcpnt' AND `codigo`= '$codigo'";
+   public static function deleteComponents($codigo, $idcpnt){
+      $query = "DELETE FROM `components` WHERE `codigo` = '$codigo' AND `id_cpnt` = '$idcpnt'";
 
+      // echo $query;
       $delete = Database::getResultFromQuery($query);
 
       ?><script>

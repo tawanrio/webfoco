@@ -154,3 +154,4 @@
             <?php endif; ?>
    </div>
 </div>
+<script src="./assets/js/service/Computer.js"></script>

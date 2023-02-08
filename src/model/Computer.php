@@ -26,70 +26,118 @@ class Computer{
 
    }
 
+   public static function editComputer($arr){
+      
+      $historico = HistoricoLimp::checkExistDate($arr);
+      $marca = trim($arr['marca']);
+      $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : '');
+      $modelo = trim($arr['modelo']);
+      $processador = trim($arr['processador']);
+      $hd = trim($arr['hd']);
+      $mac = trim($arr['mac']);
+      $numserie = trim($arr['numserie']);
+      $memoria = trim($arr['memoria']);
+      $idpc = $arr['idpc'];
+      $typepc = trim($arr['typepc']);
+
+
+      $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`historico` = '$historico',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `id_pc` = $idpc";
+      $class = 'success';
+      $text = 'Computador Editado!';
+
+      // if(self::checkExistComputer($numserie, $mac)){
+      //    $query = '';
+      //    $class = 'danger';
+      //    $text = 'Computador Já Existe!';
+
+      //    ?><script>
+      //       msgStatus('<?=$class?>', '<?=$text?>');
+      //    </script><?php 
+
+      //    return;
+
+       
+      // }
+      
+      echo $query;
+      $qtdPc = Database::getResultFromQuery($query);
+      Synchronize::synchronizeDB();
+
+      ?><script>
+         msgStatus('<?=$class?>', '<?=$text?>');
+      </script><?php 
+
+   }
+
    public static function newComputer($arr){
 
-      $historico = '';
-      $tipolimpeza = [
-         'pastater' => isset($arr['pastater']) ? 'pastater' : 0,
-         "culer" => isset($arr['culer']) ? 'culer' : 0,
-         'memoria' => isset($arr['memorialimp']) ? 'memorialimp' : 0,
-         'carcaca' => isset($arr['carcaca']) ? 'carcaca' : 0
-      ];
+      // $historico = '';
 
-      $tipolimpeza = implode('_', $tipolimpeza);
+      // $tipolimpeza = HistoricoLimp::formatTypeClean($arr);
       
-      $ultLimpeza = trim(isset($arr['ultlimpeza']) ? $arr['ultlimpeza'] : '');
-      
-      if(HistoricoLimp::checkExistDate($arr['historico'],$ultLimpeza)){
-         $historico = $ultLimpeza. '/' . $tipolimpeza;
+      // $ultLimpeza = trim(isset($arr['ultlimpeza']) ? $arr['ultlimpeza'] : '');
 
-         if($arr['historico'] != null){
-            $historico .= ','.$arr['historico'];
-         }
-      }
+      $historico = HistoricoLimp::checkExistDate($arr);
+
+      // print_r($historico);
+      echo '<br>';
+      
+      // if(HistoricoLimp::checkExistDate($arr['historico'], $ultLimpeza, $tipolimpeza)){
+      //    $historico = $ultLimpeza. '/' . $tipolimpeza;
+
+      //    if($arr['historico'] != null){
+      //       $historico .= ','.$arr['historico'];
+      //    }
+      // }
    
-
+   
 
       $marca = trim($arr['marca']);
       $modelo = trim($arr['modelo']);
       $processador = trim($arr['processador']);
       $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : '');
       $hd = trim($arr['hd']);
-      // $tipolimpeza = trim($tipolimpeza);
       $mac = trim($arr['mac']);
       $numserie = trim($arr['numserie']);
       $memoria = trim($arr['memoria']);
-      // $idpc = $arr['id_pc'];
+      $idpc = $arr['idpc'];
       $typepc = trim($arr['typepc']);
-      // $id = $arr['id'];
 
-      
+
       $query = "INSERT INTO computer (`marca`,`propriedade`,`historico`,`modelo`,`numserie`,`memoria`,`type`, `hd`,`processador`, `mac` ) VALUES ('$marca','$propriedade','$historico','$modelo','$numserie','$memoria', '$typepc', '$hd', '$processador', '$mac')";
       $class = 'success';
 
       $text = 'Computador Cadastrado!';
 
       if(self::checkExistComputer($numserie, $mac)){
-         $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`historico` = '$historico',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `mac` = '$mac' AND `numserie` = '$numserie'";
+         $query = '';
          $class = 'danger';
-         $text = 'Computador Editado!';
-         // echo $query;
-       }
+         $text = 'Computador Já Existe!';
 
+         ?><script>
+            msgStatus('<?=$class?>', '<?=$text?>');
+         </script><?php 
+
+         return;
+
+         // $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`historico` = '$historico',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `id_pc` = $idpc";
+         // $class = 'danger';
+         // $text = 'Computador Editado!';
+      }
+      
+      // echo $query;
       $qtdPc = Database::getResultFromQuery($query);
       Synchronize::synchronizeDB();
 
       ?><script>
-
          msgStatus('<?=$class?>', '<?=$text?>');
-
       </script><?php 
 
-      return;
    }
 
+
    public static function checkExistComputer($numserie, $mac){
-      $query = "SELECT count(*) FROM `computer` WHERE numserie LIKE '$numserie' OR mac = '$mac'";
+      $query = "SELECT count(*) FROM `computer` WHERE `numserie` LIKE '$numserie' OR `mac` LIKE '$mac' ";
       $result = Database::getResultFromQuery($query);
       $result = $result->fetch(PDO::FETCH_ASSOC);
 
@@ -101,8 +149,8 @@ class Computer{
       return false;
    }
 
-   public static function deleteComputer($idpc, $mac){
-      $query = "DELETE FROM `computer` WHERE `id_pc` = '$idpc' AND `mac`= '$mac'";
+   public static function deleteComputer($idpc){
+      $query = "DELETE FROM `computer` WHERE `id_pc` = '$idpc'";
 
       $delete = Database::getResultFromQuery($query);
 
