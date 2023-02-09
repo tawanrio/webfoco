@@ -26,6 +26,71 @@ class Components{
 
    }
 
+   public static function editComponents($arr){
+      $qntCpnt = Components::getQtdCpnt('tipo',$arr['tipo']) +1;
+         $CpntLength = ceil(log10($qntCpnt));
+         
+         switch ($CpntLength) {
+            case $CpntLength == 1:
+               $codeMaq = '.000';
+               break;
+            case $CpntLength == 2:
+               $codeMaq = '.00';
+               break;
+            case $CpntLength == 3:
+               $codeMaq = '.0';
+               break;
+            case $CpntLength == 4:
+               $codeMaq = '.';
+               break;
+         }
+
+      switch ($arr['tipo']) {
+         case 'monitor':
+            $codigo = '01.02' . $codeMaq . $qntCpnt;
+            break;
+         case 'mouse':
+            $codigo = '01.03' . $codeMaq . $qntCpnt;
+            break;
+         case 'teclado':
+            $codigo = '01.04' . $codeMaq . $qntCpnt;
+            break;
+         case 'suportenot':
+            $codigo = '01.05' . $codeMaq . $qntCpnt;
+            break;
+         case 'outro':
+            $codigo = '01.06' . $codeMaq . $qntCpnt;
+            break;
+
+      }
+      $marca = trim($arr['marca']);
+      $modelo = trim($arr['modelo']);
+      $tamanho = trim($arr['tamanho']);
+      $numserie = trim($arr['numserie']);
+      $idcpnt = isset($arr['idcpnt']) ? trim($arr['idcpnt']) : throw new Exception('idcpnt não existe');
+
+      echo $idcpnt;
+      
+      $query = "UPDATE `components` SET `marca`='$marca',`modelo`='$modelo',`tamanho`='$tamanho',`numserie`='$numserie' WHERE `id_cpnt` = '$idcpnt'";
+
+      $class = 'success';
+      $text = 'Componente Cadastrado!';
+   
+      
+      // echo $query;
+
+      Database::getResultFromQuery($query);
+      Synchronize::synchronizeDB();
+
+      ?><script>
+
+         msgStatus('<?=$class?>', '<?=$text?>');
+
+      </script><?php 
+
+      return;
+
+   }
    public static function newComponents($arr){
 
          // print_r($arr);
@@ -78,22 +143,23 @@ class Components{
 
       // echo $idcpnt;
       
-      $query = "INSERT INTO components (`tipo`,`marca`,`modelo`,`tamanho`,`codigo`,`numserie`) VALUES ('$tipo','$marca','$modelo','$tamanho','$codigo','$numserie')";
-      $class = 'success';
+      $query = "INSERT INTO `components` (`tipo`,`marca`,`modelo`,`tamanho`,`codigo`,`numserie`) VALUES ('$tipo','$marca','$modelo','$tamanho','$codigo','$numserie')";
 
+      $class = 'success';
       $text = 'Componente Cadastrado!';
    
       if(self::checkExistComponents($codigo, $idcpnt)){
          $codigo = $arr['codigo'];
 
-         $query = "UPDATE `components` SET `marca`='$marca',`modelo`='$modelo',`tamanho`='$tamanho',`numserie`='$numserie' WHERE `codigo` = '$codigo'";
+         $query = "UPDATE `components` SET `marca`='$marca',`modelo`='$modelo',`tamanho`='$tamanho',`numserie`='$numserie' WHERE `id_cpnt` = '$idcpnt'";
+         
          $class = 'danger';
          $text = 'Componente Editado!';
       }
       
       // echo $query;
 
-      $qtdPc = Database::getResultFromQuery($query);
+      Database::getResultFromQuery($query);
       Synchronize::synchronizeDB();
 
       ?><script>
@@ -176,6 +242,16 @@ class Components{
 
       $result = $result->fetchAll(PDO::FETCH_ASSOC);
 
+      return $result;
+   }
+
+   public static function getTesting(){
+      $query = "SELECT `marca`,`modelo`,`id_cpnt`,`codigo` FROM `components` WHERE `numserie` LIKE '83807'";
+      $result = Database::getResultFromQuery($query);
+      $result = $result->fetch(PDO::FETCH_ASSOC);
+      if(!empty($result)) return $result;
+
+      $result = ['marca' => 'Não Encontrado', 'modelo' => 'Não Encontrado', 'id_cpnt' => 'Não Encontrado', 'codigo' => 'Não Encontrado'];
       return $result;
    }
 }

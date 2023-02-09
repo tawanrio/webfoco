@@ -32,6 +32,7 @@ class Computer{
       
 
       $historico = HistoricoLimp::checkExistDate($arr) ;
+
       $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca não existe'));
       $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] : throw new Exception('modelo não existe'));
       $processador = trim(isset($arr['processador']) ? $arr['processador'] : throw new Exception('processador não existe'));
@@ -125,6 +126,15 @@ class Computer{
 
    }
 
+   public static function getOnePc($filter = 1, $search = 1){
+      $query = 'SELECT * FROM `computer`  ';
+      $query .= "WHERE $filter LIKE '$search%'";
+
+      $result = Database::getResultFromQuery($query);
+      $result = $result->fetch(PDO::FETCH_ASSOC);
+
+      return $result;
+   }
 
    public static function checkExistComputer($numserie, $mac){
       $query = "SELECT count(*) FROM `computer` WHERE `numserie` LIKE '$numserie' OR `mac` LIKE '$mac' ";

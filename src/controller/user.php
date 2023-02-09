@@ -1,8 +1,8 @@
 <?php 
 
-loadModel('User');
-
-loadModel('Computer');
+// loadModel('User');
+// loadModel('HistoricoMaq');
+// loadModel('Computer');
 
 // filtro
 $search = isset($_POST['search']) ? $_POST['search'] : '1';
@@ -21,7 +21,22 @@ $Computer = new Computer();
 
 // Cria ou edita o colaborador
 if(isset($_POST) && count($_POST) > 1 && !isset($_POST['filter'])){
-   $User->newUser($_POST);
+   try{
+      
+      // Cria o Colaborador
+      if($_POST['form'] == 'create'){
+         User::newUser($_POST);
+      }
+      // Edita o Colaborador
+      elseif($_POST['form'] == 'edit'){
+         $User->newUser($_POST);
+      }
+
+   }catch(Exception $error){
+      ?><script>
+      msgStatus('<?='danger'?>', '<?='Desculpe algo inesperado aconteceu! - Erro: ' . $error->getMessage() ?>');
+   </script><?php 
+   }
 }
 
 // Deleta Colaborador

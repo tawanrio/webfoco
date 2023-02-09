@@ -69,6 +69,7 @@ function addNewUser(pcAvailable){
   </div>
 </div>
   <form id="formnewuser" action="index.php?page=manage&r=user" method="post">
+    <input type="hidden" name="form" value="create">
        <input type="hidden" name="id" value="">
        <div class="row">
            <div class="time">
@@ -237,6 +238,7 @@ function editUser(iduser, listAllComputer){
      </div>
    </div>
      <form id="formnewuser" action="index.php?page=manage&r=user" method="post">
+      <input type="hidden" name="form" value="edit">
           <input type="hidden" name="id" value="${data.id_user}">
           <div class="row">
               

@@ -34,11 +34,12 @@ class Database{
 
          $pdo = self::conn();
          $result = $pdo->query($query);
+
          return $result;
 
       } catch (\Exception $e) {
 
-         throw new Exception("Erro ao executar comando no banco de dados: ");
+         throw new Exception("Erro ao executar comando no banco de dados: " . $e->getMessage());
 
       }
 
