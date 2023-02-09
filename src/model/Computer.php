@@ -31,7 +31,7 @@ class Computer{
 
       
 
-      $historico = empty(!HistoricoLimp::checkExistDate($arr)) ? HistoricoLimp::checkExistDate($arr) : throw new Exception(('historico não existe')) ;
+      $historico = HistoricoLimp::checkExistDate($arr) ;
       $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca não existe'));
       $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] : throw new Exception('modelo não existe'));
       $processador = trim(isset($arr['processador']) ? $arr['processador'] : throw new Exception('processador não existe'));

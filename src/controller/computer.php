@@ -12,13 +12,22 @@ if($search == '1' || $search == ''){
 
 // Cria ou edita o computador
 if(isset($_POST) && count($_POST) > 1 && !isset($_POST['filter'])){
+   // print_r($_POST);
    // Cria o computador
    if($_POST['form'] == 'create'){
       Computer::newComputer($_POST);
    }
    // Edita o computador
    elseif($_POST['form'] == 'edit'){
-      Computer::editComputer($_POST);
+      try{
+
+         Computer::editComputer($_POST);
+      }catch(Exception $error){
+         // echo 'Desculpe algo inesperado aconteceu! - Erro: ' . $error->getMessage();
+         ?><script>
+         msgStatus('<?='danger'?>', '<?='Desculpe algo inesperado aconteceu! - Erro: ' . $error->getMessage() ?>');
+      </script><?php 
+      }
    }
 }
 
