@@ -7,7 +7,7 @@ class HistoricoLimp{
 
     public static function checkExistDate($valuesDb){
         
-        if(empty($valuesDb['ultlimpeza'])) return;
+        if(!empty($valuesDb['ultlimpeza'])) return HistoricoLimp::createNewStringHistoric($valuesDb);
 
         
         $arr =  explode(',' , $valuesDb['historico']);
@@ -28,7 +28,7 @@ class HistoricoLimp{
         $typeClean = HistoricoLimp::formatTypeClean($valuesDb);
 
         $historic = $valuesDb['ultlimpeza']. '/' . $typeClean;
-        if($valuesDb['historico'] != null){
+        if(!empty($valuesDb['historico'])){
             $historic .= ','.$valuesDb['historico'];
         }
         

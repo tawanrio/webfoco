@@ -27,40 +27,32 @@ class Computer{
    }
 
    public static function editComputer($arr){
+
+
       
-      $historico = HistoricoLimp::checkExistDate($arr);
-      $marca = trim($arr['marca']);
-      $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : '');
-      $modelo = trim($arr['modelo']);
-      $processador = trim($arr['processador']);
-      $hd = trim($arr['hd']);
-      $mac = trim($arr['mac']);
-      $numserie = trim($arr['numserie']);
-      $memoria = trim($arr['memoria']);
-      $idpc = $arr['idpc'];
-      $typepc = trim($arr['typepc']);
 
+      $historico = empty(!HistoricoLimp::checkExistDate($arr)) ? HistoricoLimp::checkExistDate($arr) : throw new Exception(('historico não existe')) ;
+      $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca não existe'));
+      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] : throw new Exception('modelo não existe'));
+      $processador = trim(isset($arr['processador']) ? $arr['processador'] : throw new Exception('processador não existe'));
+      $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : throw new Exception('propriedade não existe'));
+      $hd = trim(isset($arr['hd']) ? $arr['hd'] : throw new Exception('hd não existe'));
+      $mac = trim(isset($arr['mac']) ? $arr['mac'] : throw new Exception('mac não existe'));
+      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] : throw new Exception('numserie não existe'));
+      $memoria = trim(isset($arr['memoria']) ? $arr['memoria'] : throw new Exception('memoria não existe'));
+      $typepc = trim(isset($arr['typepc']) ? $arr['typepc'] : throw new Exception('typepc não existe'));
+      $idpc = trim(isset($arr['idpc']) ? $arr['idpc'] : throw new Exception('idpc não existe'));
+      
 
+      // print_r($arr);
+      
       $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`historico` = '$historico',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `id_pc` = $idpc";
+      
       $class = 'success';
       $text = 'Computador Editado!';
 
-      // if(self::checkExistComputer($numserie, $mac)){
-      //    $query = '';
-      //    $class = 'danger';
-      //    $text = 'Computador Já Existe!';
-
-      //    ?><script>
-      //       msgStatus('<?=$class?>', '<?=$text?>');
-      //    </script><?php 
-
-      //    return;
-
-       
-      // }
       
-      echo $query;
-      $qtdPc = Database::getResultFromQuery($query);
+      Database::getResultFromQuery($query);
       Synchronize::synchronizeDB();
 
       ?><script>
@@ -77,31 +69,29 @@ class Computer{
       
       // $ultLimpeza = trim(isset($arr['ultlimpeza']) ? $arr['ultlimpeza'] : '');
 
-      $historico = HistoricoLimp::checkExistDate($arr);
-
+      
       // print_r($historico);
       echo '<br>';
       
       // if(HistoricoLimp::checkExistDate($arr['historico'], $ultLimpeza, $tipolimpeza)){
-      //    $historico = $ultLimpeza. '/' . $tipolimpeza;
-
-      //    if($arr['historico'] != null){
-      //       $historico .= ','.$arr['historico'];
-      //    }
-      // }
-   
-   
-
-      $marca = trim($arr['marca']);
-      $modelo = trim($arr['modelo']);
-      $processador = trim($arr['processador']);
-      $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : '');
-      $hd = trim($arr['hd']);
-      $mac = trim($arr['mac']);
-      $numserie = trim($arr['numserie']);
-      $memoria = trim($arr['memoria']);
-      $idpc = $arr['idpc'];
-      $typepc = trim($arr['typepc']);
+         //    $historico = $ultLimpeza. '/' . $tipolimpeza;
+         
+         //    if($arr['historico'] != null){
+            //       $historico .= ','.$arr['historico'];
+            //    }
+            // }
+            
+            
+      $historico = HistoricoLimp::checkExistDate($arr);
+      $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca sem conteúdo'));
+      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] : throw new Exception('modelo sem conteúdo'));
+      $processador = trim(isset($arr['processador']) ? $arr['processador'] : throw new Exception('processador sem conteúdo'));
+      $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : throw new Exception('propriedade sem conteúdo'));
+      $hd = trim(isset($arr['hd']) ? $arr['hd'] : throw new Exception('hd sem conteúdo'));
+      $mac = trim(isset($arr['mac']) ? $arr['mac'] : throw new Exception('mac sem conteúdo'));
+      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] : throw new Exception('numserie sem conteúdo'));
+      $memoria = trim(isset($arr['memoria']) ? $arr['memoria'] : throw new Exception('memoria sem conteúdo'));
+      $typepc = trim(isset($arr['typepc']) ? $arr['typepc'] : throw new Exception('typepc sem conteúdo'));
 
 
       $query = "INSERT INTO computer (`marca`,`propriedade`,`historico`,`modelo`,`numserie`,`memoria`,`type`, `hd`,`processador`, `mac` ) VALUES ('$marca','$propriedade','$historico','$modelo','$numserie','$memoria', '$typepc', '$hd', '$processador', '$mac')";
@@ -118,7 +108,7 @@ class Computer{
             msgStatus('<?=$class?>', '<?=$text?>');
          </script><?php 
 
-         return;
+         return throw new Exception('Computador já existe');
 
          // $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`historico` = '$historico',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `id_pc` = $idpc";
          // $class = 'danger';
@@ -201,11 +191,21 @@ class Computer{
       $query .= "ORDER BY id_pc DESC ";
       $query .= "LIMIT " . $this->limit;
       $query .= " OFFSET " . $offset;
-
+      
       $result = Database::getResultFromQuery($query);
-
+      
       $result = $result->fetchAll(PDO::FETCH_ASSOC);
+      
+      return $result;
+   }
+   
+   public static function getTesting(){
+      $query = "SELECT `marca`,`type`,`id_pc` FROM `computer` WHERE `numserie` LIKE '459957'";
+      $result = Database::getResultFromQuery($query);
+      $result = $result->fetch(PDO::FETCH_ASSOC);
+      if(!empty($result)) return $result;
 
+      $result = ['marca' => 'Não Encontrado', 'type' => 'Não Encontrado', 'id_pc' => 'Não Encontrado'];
       return $result;
    }
 }

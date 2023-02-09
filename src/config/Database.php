@@ -30,15 +30,17 @@ class Database{
 
    public static function getResultFromQuery($query){
 
-      $pdo = self::conn();
+      try {
 
-      // echo $query;
+         $pdo = self::conn();
+         $result = $pdo->query($query);
+         return $result;
 
-      // echo '<br>';
+      } catch (\Exception $e) {
 
-      $result = $pdo->query($query);
+         throw new Exception("Erro ao executar comando no banco de dados: ");
 
-      return $result;
+      }
 
    }
 
