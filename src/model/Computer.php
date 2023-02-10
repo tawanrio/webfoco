@@ -30,16 +30,16 @@ class Computer{
 
       $historico = HistoricoLimp::checkExistDate($arr) ;
 
-      $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca não existe'));
-      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] : throw new Exception('modelo não existe'));
-      $processador = trim(isset($arr['processador']) ? $arr['processador'] : throw new Exception('processador não existe'));
-      $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : throw new Exception('propriedade não existe'));
-      $hd = trim(isset($arr['hd']) ? $arr['hd'] : throw new Exception('hd não existe'));
-      $mac = trim(isset($arr['mac']) ? $arr['mac'] : throw new Exception('mac não existe'));
-      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] : throw new Exception('numserie não existe'));
-      $memoria = trim(isset($arr['memoria']) ? $arr['memoria'] : throw new Exception('memoria não existe'));
-      $typepc = trim(isset($arr['typepc']) ? $arr['typepc'] : throw new Exception('typepc não existe'));
-      $idpc = trim(isset($arr['idpc']) ? $arr['idpc'] : throw new Exception('idpc não existe'));
+      $marca = trim(isset($arr['marca']) ? $arr['marca'] :  new Exception('marca não existe'));
+      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] :  new Exception('modelo não existe'));
+      $processador = trim(isset($arr['processador']) ? $arr['processador'] :  new Exception('processador não existe'));
+      $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] :  new Exception('propriedade não existe'));
+      $hd = trim(isset($arr['hd']) ? $arr['hd'] :  new Exception('hd não existe'));
+      $mac = trim(isset($arr['mac']) ? $arr['mac'] :  new Exception('mac não existe'));
+      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] :  new Exception('numserie não existe'));
+      $memoria = trim(isset($arr['memoria']) ? $arr['memoria'] :  new Exception('memoria não existe'));
+      $typepc = trim(isset($arr['typepc']) ? $arr['typepc'] :  new Exception('typepc não existe'));
+      $idpc = trim(isset($arr['idpc']) ? $arr['idpc'] :  new Exception('idpc não existe'));
       
 
       // print_r($arr);

@@ -28,11 +28,11 @@ class Components{
 
    public static function editComponents($arr){
 
-      $idcpnt = isset($arr['idcpnt']) ? trim($arr['idcpnt']) : throw new Exception('idcpnt não existe');
-      $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca sem conteúdo'));
-      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] : throw new Exception('modelo sem conteúdo'));
-      $tamanho = trim(isset($arr['tamanho']) ? $arr['tamanho'] : throw new Exception('tamanho sem conteúdo'));
-      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] : throw new Exception('numserie sem conteúdo'));
+      $idcpnt = isset($arr['idcpnt']) ? trim($arr['idcpnt']) :  new Exception('idcpnt não existe');
+      $marca = trim(isset($arr['marca']) ? $arr['marca'] :  new Exception('marca sem conteúdo'));
+      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] :  new Exception('modelo sem conteúdo'));
+      $tamanho = trim(isset($arr['tamanho']) ? $arr['tamanho'] :  new Exception('tamanho sem conteúdo'));
+      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] :  new Exception('numserie sem conteúdo'));
 
       // echo $idcpnt;
       
@@ -60,11 +60,11 @@ class Components{
 
       // echo $codigo ;
       
-      $tipo = trim(isset($arr['tipo']) ? $arr['tipo'] : throw new Exception('tipo sem conteúdo'));
-      $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca sem conteúdo'));
-      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] : throw new Exception('modelo sem conteúdo'));
-      $tamanho = trim(isset($arr['tamanho']) ? $arr['tamanho'] : throw new Exception('tamanho sem conteúdo'));
-      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] : throw new Exception('numserie sem conteúdo'));
+      $tipo = trim(isset($arr['tipo']) ? $arr['tipo'] :  new Exception('tipo sem conteúdo'));
+      $marca = trim(isset($arr['marca']) ? $arr['marca'] :  new Exception('marca sem conteúdo'));
+      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] :  new Exception('modelo sem conteúdo'));
+      $tamanho = trim(isset($arr['tamanho']) ? $arr['tamanho'] :  new Exception('tamanho sem conteúdo'));
+      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] :  new Exception('numserie sem conteúdo'));
       $idcpnt = isset($arr['idcpnt']) ? trim($arr['idcpnt']) : '';
 
       // echo $idcpnt;
@@ -73,7 +73,7 @@ class Components{
 
       $text = 'Componente Cadastrado!';
    
-      if(self::checkExistComponents($numserie, $idcpnt)) return throw new Exception('Componente já existe');
+      if(self::checkExistComponents($numserie, $idcpnt)) return  new Exception('Componente já existe');
       
       // echo $query;
 

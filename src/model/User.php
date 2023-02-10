@@ -29,15 +29,15 @@ class User{
 
       $historicoMaq = HistoricoMaq::checkExistHistoric($arr);
 
-      $time = trim(isset($arr['time']) ? $arr['time'] : throw new Exception('time não existe'));
-      $nome = trim(isset($arr['nome']) ? $arr['nome'] : throw new Exception('nome não existe'));
-      $sobrenome = trim(isset($arr['sobrenome']) ? $arr['sobrenome'] : throw new Exception('sobrenome não existe'));
-      $cpf = trim(isset($arr['cpf']) ? $arr['cpf'] : throw new Exception('cpf não existe'));
-      $telpessoal = trim(isset($arr['telpessoal']) ? $arr['telpessoal'] : throw new Exception('telpessoal não existe'));
-      $telempresarial = trim(isset($arr['telempresarial']) ? $arr['telempresarial'] : throw new Exception('telempresarial não existe'));
-      $email = trim(isset($arr['email']) ? $arr['email'] : throw new Exception('email não existe'));
-      $senha = trim(isset($arr['senha']) ? $arr['senha'] : throw new Exception('senha não existe'));
-      $iduser = trim(isset($arr['id']) ? $arr['id'] : throw new Exception('id não existe'));
+      $time = trim(isset($arr['time']) ? $arr['time'] :  new Exception('time não existe'));
+      $nome = trim(isset($arr['nome']) ? $arr['nome'] :  new Exception('nome não existe'));
+      $sobrenome = trim(isset($arr['sobrenome']) ? $arr['sobrenome'] :  new Exception('sobrenome não existe'));
+      $cpf = trim(isset($arr['cpf']) ? $arr['cpf'] :  new Exception('cpf não existe'));
+      $telpessoal = trim(isset($arr['telpessoal']) ? $arr['telpessoal'] :  new Exception('telpessoal não existe'));
+      $telempresarial = trim(isset($arr['telempresarial']) ? $arr['telempresarial'] :  new Exception('telempresarial não existe'));
+      $email = trim(isset($arr['email']) ? $arr['email'] :  new Exception('email não existe'));
+      $senha = trim(isset($arr['senha']) ? $arr['senha'] :  new Exception('senha não existe'));
+      $iduser = trim(isset($arr['id']) ? $arr['id'] :  new Exception('id não existe'));
       $idpcu = self::getFormateddValue($arr['idpcu']); 
       
 
@@ -59,14 +59,14 @@ class User{
       $historicoMaq = HistoricoMaq::checkExistHistoric($arr);
 
       
-      $time = trim(isset($arr['time']) ? $arr['time'] : throw new Exception('time não existe'));
-      $nome = trim(isset($arr['nome']) ? $arr['nome'] : throw new Exception('nome não existe'));
-      $sobrenome = trim(isset($arr['sobrenome']) ? $arr['sobrenome'] : throw new Exception('sobrenome não existe'));
-      $cpf = trim(isset($arr['cpf']) ? $arr['cpf'] : throw new Exception('cpf não existe'));
-      $telpessoal = trim(isset($arr['telpessoal']) ? $arr['telpessoal'] : throw new Exception('telpessoal não existe'));
-      $telempresarial = trim(isset($arr['telempresarial']) ? $arr['telempresarial'] : throw new Exception('telempresarial não existe'));
-      $email = trim(isset($arr['email']) ? $arr['email'] : throw new Exception('email não existe'));
-      $senha = trim(isset($arr['senha']) ? $arr['senha'] : throw new Exception('senha não existe'));
+      $time = trim(isset($arr['time']) ? $arr['time'] :  new Exception('time não existe'));
+      $nome = trim(isset($arr['nome']) ? $arr['nome'] :  new Exception('nome não existe'));
+      $sobrenome = trim(isset($arr['sobrenome']) ? $arr['sobrenome'] :  new Exception('sobrenome não existe'));
+      $cpf = trim(isset($arr['cpf']) ? $arr['cpf'] :  new Exception('cpf não existe'));
+      $telpessoal = trim(isset($arr['telpessoal']) ? $arr['telpessoal'] :  new Exception('telpessoal não existe'));
+      $telempresarial = trim(isset($arr['telempresarial']) ? $arr['telempresarial'] :  new Exception('telempresarial não existe'));
+      $email = trim(isset($arr['email']) ? $arr['email'] :  new Exception('email não existe'));
+      $senha = trim(isset($arr['senha']) ? $arr['senha'] :  new Exception('senha não existe'));
       $idpcu = self::getFormateddValue($arr['idpcu']); 
 
 
@@ -74,7 +74,7 @@ class User{
       $text = 'Usuário Cadastrado!';
 
 
-      if(self::checkExistUser($cpf))  return throw new Exception('Usuário já existe');
+      if(self::checkExistUser($cpf))  return  new Exception('Usuário já existe');
    
       //  echo $query;
       Database::getResultFromQuery($query);
