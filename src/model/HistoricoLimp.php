@@ -15,6 +15,7 @@ class HistoricoLimp{
         foreach($arr as $value){
             $positionSeparator = strripos($value, '/');
             $dateLastClean = substr($value, 0 ,$positionSeparator);
+            
             // Se existir já existir uma data igual ele retorna ultima string do historico
             if($dateLastClean == $valuesDb['ultlimpeza']) return $valuesDb['historico'];
         }

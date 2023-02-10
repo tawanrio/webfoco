@@ -1,6 +1,6 @@
 <script>
 
-function msgStatus(classname, text){
+function msgStatus(text, classname = 'success'){
     setTimeout(() => {
        const msg = document.createElement('span')
        msg.className = classname;
@@ -28,9 +28,6 @@ class Computer{
 
    public static function editComputer($arr){
 
-
-      
-
       $historico = HistoricoLimp::checkExistDate($arr) ;
 
       $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca não existe'));
@@ -49,7 +46,6 @@ class Computer{
       
       $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`historico` = '$historico',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `id_pc` = $idpc";
       
-      $class = 'success';
       $text = 'Computador Editado!';
 
       
@@ -57,33 +53,15 @@ class Computer{
       Synchronize::synchronizeDB();
 
       ?><script>
-         msgStatus('<?=$class?>', '<?=$text?>');
+         msgStatus('<?=$text?>');
       </script><?php 
 
    }
 
    public static function newComputer($arr){
 
-      // $historico = '';
-
-      // $tipolimpeza = HistoricoLimp::formatTypeClean($arr);
-      
-      // $ultLimpeza = trim(isset($arr['ultlimpeza']) ? $arr['ultlimpeza'] : '');
-
-      
-      // print_r($historico);
-      echo '<br>';
-      
-      // if(HistoricoLimp::checkExistDate($arr['historico'], $ultLimpeza, $tipolimpeza)){
-         //    $historico = $ultLimpeza. '/' . $tipolimpeza;
-         
-         //    if($arr['historico'] != null){
-            //       $historico .= ','.$arr['historico'];
-            //    }
-            // }
-            
-            
       $historico = HistoricoLimp::checkExistDate($arr);
+
       $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca sem conteúdo'));
       $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] : throw new Exception('modelo sem conteúdo'));
       $processador = trim(isset($arr['processador']) ? $arr['processador'] : throw new Exception('processador sem conteúdo'));
@@ -96,32 +74,16 @@ class Computer{
 
 
       $query = "INSERT INTO computer (`marca`,`propriedade`,`historico`,`modelo`,`numserie`,`memoria`,`type`, `hd`,`processador`, `mac` ) VALUES ('$marca','$propriedade','$historico','$modelo','$numserie','$memoria', '$typepc', '$hd', '$processador', '$mac')";
-      $class = 'success';
 
       $text = 'Computador Cadastrado!';
 
-      if(self::checkExistComputer($numserie, $mac)){
-         $query = '';
-         $class = 'danger';
-         $text = 'Computador Já Existe!';
-
-         ?><script>
-            msgStatus('<?=$class?>', '<?=$text?>');
-         </script><?php 
-
-         return throw new Exception('Computador já existe');
-
-         // $query = "UPDATE `computer` SET `marca`='$marca',`propriedade`='$propriedade',`historico` = '$historico',`type`='$typepc',`numserie`='$numserie',`hd`='$hd',`processador`='$processador',`modelo`='$modelo',`mac`='$mac',`memoria`='$memoria' WHERE `id_pc` = $idpc";
-         // $class = 'danger';
-         // $text = 'Computador Editado!';
-      }
+      if(self::checkExistComputer($numserie, $mac))   return throw new Exception('Computador já existe');
       
-      // echo $query;
-      $qtdPc = Database::getResultFromQuery($query);
+      Database::getResultFromQuery($query);
       Synchronize::synchronizeDB();
 
       ?><script>
-         msgStatus('<?=$class?>', '<?=$text?>');
+         msgStatus('<?=$text?>');
       </script><?php 
 
    }
@@ -155,7 +117,7 @@ class Computer{
       $delete = Database::getResultFromQuery($query);
 
       ?><script>
-         msgStatus('danger', 'Computador Deletado!');
+         msgStatus('Computador Deletado!','danger');
       </script><?php       
    }
 

@@ -1,5 +1,5 @@
 <div class="header">
-   <i class="fa-solid fa-keyboard"></i>
+<i class="fa-solid fa-microchip"></i>
    <div>
       <div class="title">Componentes</div>
       <div class="subtitle">Consulte, adicione, altere ou exclua um componente</div>
@@ -7,30 +7,30 @@
 </div>
 <div class="content">
    <div class="status">
-      <div class="card blue">
-         <i class="fa-solid fa-chart-line"></i>
+      <div class="card orange">
+         <i class="fa-solid fa-tv"></i>
          <h3>Monitor</h3>
-         <h2><?= isset($arr['info']['qtdTotalPc']) ? $arr['info']['qtdTotalPc'] : 'Erro'; ?></h2>
+         <h2><?= isset($arr['info']['allCpnt']['monitor']) ? $arr['info']['allCpnt']['monitor'] : 'Erro'; ?></h2>
+      </div>
+      <div class="card green">
+         <i class="fa-solid fa-computer-mouse"></i>
+         <h3>Mouse</h3>
+         <h2><?= isset($arr['info']['allCpnt']['mouse']) ? $arr['info']['allCpnt']['mouse'] : 'Erro'; ?></h2>
+      </div>
+      <div class="card blue">
+         <i class="fa-solid fa-keyboard"></i>
+         <h3>Teclado</h3>
+         <h2><?= isset($arr['info']['allCpnt']['teclado']) ? $arr['info']['allCpnt']['teclado'] : 'Erro'; ?></h2>
       </div>
       <div class="card orange">
-         <i class="fa-solid fa-laptop-code"></i>
-         <h3>Mouse</h3>
-         <h2><?= isset($arr['info']['using']) ? $arr['info']['using'] : 'Erro'; ?></h2>
-      </div>
-      <div class="card green">
-         <i class="fa-solid fa-check"></i>
-         <h3>Teclado</h3>
-         <h2><?= isset($arr['info']['available']) ? $arr['info']['available'] : 'Erro'; ?></h2>
-      </div>
-      <div class="card blue">
          <i class="fa-solid fa-chart-line"></i>
          <h3>Suporte Notebook</h3>
-         <h2><?= isset($arr['info']['qtdTotalPc']) ? $arr['info']['qtdTotalPc'] : 'Erro'; ?></h2>
+         <h2><?= isset($arr['info']['allCpnt']['suportenot']) ? $arr['info']['allCpnt']['suportenot'] : 'Erro'; ?></h2>
       </div>
       <div class="card green">
-         <i class="fa-solid fa-check"></i>
+      <i class="fa-sharp fa-solid fa-infinity"></i>
          <h3>Outros</h3>
-         <h2><?= isset($arr['info']['available']) ? $arr['info']['available'] : 'Erro'; ?></h2>
+         <h2><?= isset($arr['info']['allCpnt']['outro']) ? $arr['info']['allCpnt']['outro'] : 'Erro'; ?></h2>
       </div>
 
       <!-- <div class="card maintenance">
@@ -42,13 +42,15 @@
 
    <br>
    <h2 for="filter">Filtrar Busca</h2>
-   <form action="index.php?page=manage&r=components" method="post">
+   <form method="get">
+   <input type="hidden" name="page" value="manage">
+      <input type="hidden" name="r" value="components">
       <select name="filter" id="filter">
-         <option value="name">Nome do Colaborador</option>
-         <option value="id_pc">Nº do Pc</option>
+         <option value="tipo">Tipo</option>
+         <option value="id_cpnt">Nº do Componente</option>
          <option value="numserie">Numero de Série</option>
          <option value="marca">Marca do Pc</option>
-         <option value="processador">Processador</option>
+         <option value="codigo">Codigo</option>
       </select>
       <input type="text" id="search" name="search" placeholder="Digite aqui...">
       <button class="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -137,19 +139,25 @@
    </div>
    <div id="pgn">
       <?php
+
+      if($arr['info']['search'] != 1 && $arr['info']['filter']){
+         $filter = '&filter=' . $arr['info']['filter'];
+         $filter .= '&search=' . $arr['info']['search'];
+      }
+
       $totpg = $arr['info']['totpg'];
       if ($totpg > 1) :
          $np = $arr['info']['np'];
          $proximo = $np + 1;
          $anterior = $np - 1;
       ?>
-         <a href="index.php?page=manage&r=computer&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">
+         <a href="index.php?page=manage&r=components<?=isset($filter) ? $filter : '';?>&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">
             < Anterior</a>
 
-               <a href="index.php?page=manage&r=computer&np=<?= $np - 1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np - 1 ?></a>
-               <a href="index.php?page=manage&r=computer&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
-               <a href="index.php?page=manage&r=computer&np=<?= $np + 1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np + 1 ?></a>
-               <a href="index.php?page=manage&r=computer&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
+               <a href="index.php?page=manage&r=components<?=isset($filter) ? $filter : '';?>&np=<?= $np - 1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np - 1 ?></a>
+               <a href="index.php?page=manage&r=components<?=isset($filter) ? $filter : '';?>&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
+               <a href="index.php?page=manage&r=components<?=isset($filter) ? $filter : '';?>&np=<?= $np + 1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np + 1 ?></a>
+               <a href="index.php?page=manage&r=components<?=isset($filter) ? $filter : '';?>&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
             <?php endif; ?>
    </div>
 </div>

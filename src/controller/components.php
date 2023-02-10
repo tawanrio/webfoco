@@ -3,23 +3,37 @@ loadModel('Components');
 loadModel('HistoricoLimp');
 
 // filtro de busca
-$search = isset($_POST['search']) ? $_POST['search'] : '1';
-$filter = isset($_POST['filter']) ? $_POST['filter'] : '1';
+$search = isset($_GET['search']) ? $_GET['search'] : '1';
+$filter = isset($_GET['filter']) ? $_GET['filter'] : '1';
 if($search == '1' || $search == ''){
    $search = '1';
    $filter = '1';
 }
 
-// Cria ou edita o computador
-if(isset($_POST) && count($_POST) > 1 && !isset($_POST['filter'])){
-   Components::newComponents($_POST);
+// Cria ou edita o Components
+if(isset($_POST) && count($_POST) > 1 && !isset($_POST['search'])){
+   try{
+      // Cria o Components
+      if($_POST['form'] == 'create'){
+         Components::newComponents($_POST);
+      }
+      // Edita o Components
+      elseif($_POST['form'] == 'edit'){
+         Components::editComponents($_POST);
+      }
+
+   }catch(Exception $error){
+      ?><script>
+      msgStatus('<?='Desculpe algo inesperado aconteceu! - Erro: ' . $error->getMessage() ?>','danger' );
+   </script><?php 
+   }
 }
 
+
 // deleta o computador
-$codigodelete = isset($_GET['codigo']) ? $_GET['codigo'] : false;
 $idcpntdelete = isset($_GET['id']) ? $_GET['id'] : false;
-if($codigodelete && $idcpntdelete ){
-   Components::deleteComponents($codigodelete, $idcpntdelete);
+if($idcpntdelete ){
+   Components::deleteComponents($idcpntdelete);
 }
 
 // paginação
@@ -28,19 +42,27 @@ $limit = 6;
 
 // captura a lista no banco de dados
 $Components = new Components($np, $limit);
-$qtdTotalPc = Components::getAllQtdCpnt();
+$allCpnt = [
+'monitor' => Components::getAllQtdCpnt('tipo', 'monitor'),
+'mouse' => Components::getAllQtdCpnt('tipo', 'mouse'),
+'teclado' => Components::getAllQtdCpnt('tipo', 'teclado'),
+'suportenot' => Components::getAllQtdCpnt('tipo', 'suportenot'),
+'outro' => Components::getAllQtdCpnt('tipo', 'outro')
+];
 $qtdPc = Components::getQtdCpnt($filter, $search);
 $totpg = ceil($qtdPc / $limit);
 $arr = $Components->getFilterCpnt($filter, $search);
 
 $arr['info'] = [
-   'qtdTotalPc' => $qtdTotalPc,
+   'allCpnt' => $allCpnt,
    'qtdPc' => $qtdPc,
    'using' => Components::checkInUse(),
    'available' => Components::checkAvailable(),
    'np' => $np,
    'totpg' => $totpg,
-   'limit' => $limit
+   'limit' => $limit,
+   'filter' => $filter,
+   'search' => $search
 ]; 
 
 loadTemplate('manage/manage', $arr);

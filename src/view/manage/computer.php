@@ -24,11 +24,6 @@
          <h2><?= isset($arr['info']['available']) ? $arr['info']['available'] : 'Erro'; ?></h2>
       </div>
 
-      <!-- <div class="card maintenance">
-            <i class="fa-solid fa-check"></i>
-            <h3>Em Manutenção</h3>
-            <h2><?= isset($arr['info']['available']) ? $arr['info']['available'] : 'Erro'; ?></h2>
-         </div> -->
    </div>
 
    <!-- <select name="propriedade" id="propriedade">
@@ -37,12 +32,14 @@
    </select> -->
    <br>
    <h2 for="filter">Filtrar Busca</h2>
-   <form action="index.php?page=manage&r=computer" method="post">
+   <form  method="get">
+      <input type="hidden" name="page" value="manage">
+      <input type="hidden" name="r" value="computer">
       <select name="filter" id="filter">
          <option value="name">Nome do Colaborador</option>
-         <option value="id_pc">Nº do Pc</option>
+         <option value="id_pc">Nº do Computador</option>
          <option value="numserie">Numero de Série</option>
-         <option value="marca">Marca do Pc</option>
+         <option value="marca">Marca do Computador</option>
          <option value="processador">Processador</option>
       </select>
       <input type="text" id="search" name="search" placeholder="Digite aqui...">
@@ -138,19 +135,25 @@
    </div>
    <div id="pgn">
       <?php
+
+      if($arr['info']['search'] != 1 && $arr['info']['filter']){
+         $filter = '&filter=' . $arr['info']['filter'];
+         $filter .= '&search=' . $arr['info']['search'];
+      }
+
       $totpg = $arr['info']['totpg'];
       if ($totpg > 1) :
          $np = $arr['info']['np'];
          $proximo = $np + 1;
          $anterior = $np - 1;
       ?>
-         <a href="index.php?page=manage&r=computer&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">
+         <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">
             < Anterior</a>
 
-               <a href="index.php?page=manage&r=computer&np=<?= $np - 1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np - 1 ?></a>
-               <a href="index.php?page=manage&r=computer&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
-               <a href="index.php?page=manage&r=computer&np=<?= $np + 1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np + 1 ?></a>
-               <a href="index.php?page=manage&r=computer&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
+               <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $np - 1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np - 1 ?></a>
+               <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
+               <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $np + 1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np + 1 ?></a>
+               <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
             <?php endif; ?>
    </div>
 </div>

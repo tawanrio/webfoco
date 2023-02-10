@@ -84,6 +84,7 @@ function insertCheckRadio(data){
         </div>
      </div>
      <form id="formnewcomponents" action="index.php?page=manage&r=components" method="post">
+     <input type="hidden" name="form" value="create">
         <div class="row radio">
           <div>
              <span>Tipo</span>
@@ -173,6 +174,7 @@ function insertCheckRadio(data){
         </div>
      </div>
      <form id="formeditcomponents" action="index.php?page=manage&r=components" method="post">
+     <input type="hidden" name="form" value="edit">
         <div class="row radio">
         <div>
            <span>Tipo</span>

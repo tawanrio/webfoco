@@ -27,6 +27,4 @@ loadModel('HistoricoLimp');
 loadModel('HistoricoMaq');
 
 
-// sincroniza db
-$synchronize = Synchronize::synchronizeDB();
 

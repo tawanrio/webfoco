@@ -7,10 +7,7 @@ class Database{
    public static function conn(){
 
       $envpath = dirname(__FILE__) . '/env.ini';
-
       $env = parse_ini_file($envpath);
-
-
 
       try {
 
@@ -31,7 +28,6 @@ class Database{
    public static function getResultFromQuery($query){
 
       try {
-
          $pdo = self::conn();
          $result = $pdo->query($query);
 

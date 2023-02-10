@@ -1,17 +1,15 @@
 <?php 
-// loadModel('Computer');
-// loadModel('HistoricoLimp');
 
 // filtro de busca
-$search = isset($_POST['search']) ? $_POST['search'] : '1';
-$filter = isset($_POST['filter']) ? $_POST['filter'] : '1';
+$search = isset($_GET['search']) ? $_GET['search'] : '1';
+$filter = isset($_GET['filter']) ? $_GET['filter'] : '1';
 if($search == '1' || $search == ''){
    $search = '1';
    $filter = '1';
 }
 
 // Cria ou edita o computador
-if(isset($_POST) && count($_POST) > 1 && !isset($_POST['filter'])){
+if(isset($_POST) && count($_POST) > 1 && !isset($_POST['search'])){
    try{
 
       // Cria o computador
@@ -55,7 +53,9 @@ $arr['info'] = [
    'available' => Computer::checkAvailable(),
    'np' => $np,
    'totpg' => $totpg,
-   'limit' => $limit
+   'limit' => $limit,
+   'filter' => $filter,
+   'search' => $search
 ]; 
 
 loadTemplate('manage/manage', $arr);

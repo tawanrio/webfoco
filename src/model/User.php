@@ -1,9 +1,7 @@
 <script>
 
-function msgStatus(classname, text){
-
+function msgStatus(text, classname = 'success'){
     setTimeout(() => {
-
        const msg = document.createElement('span')
        msg.className = classname;
        msg.textContent = text;
@@ -29,7 +27,6 @@ class User{
 
    public static function editUser($arr){
 
-
       $historicoMaq = HistoricoMaq::checkExistHistoric($arr);
 
       $time = trim(isset($arr['time']) ? $arr['time'] : throw new Exception('time não existe'));
@@ -46,7 +43,6 @@ class User{
 
       $query = "UPDATE `user` SET `time`='$time',`name`='$nome',`sobrenome`='$sobrenome',`cpf` = '$cpf',`password`='$senha',`historicoMaq` = '$historicoMaq',`id_pcu`= $idpcu,`email`='$email',`telPessoal`= '$telpessoal',`telEmpresarial`= $telempresarial WHERE `id_user` = '$iduser'";
          
-      $class = 'success';
       $text = 'Usuário Editado!';
 
       
@@ -54,64 +50,43 @@ class User{
       Synchronize::synchronizeDB();
 
       ?><script>
-         msgStatus('<?=$class?>', '<?=$text?>');
+         msgStatus('<?=$text?>');
       </script><?php 
 
    }
    public static function newUser($arr){
 
-      // $user = self::getIdUser($arr['id']);
-      // $historicoMaq = $user['historicoMaq'];
-
       $historicoMaq = HistoricoMaq::checkExistHistoric($arr);
 
-      if(!($arr['idpcu'] == 'null' || $arr['idpcu'] == '')){
-
-         // $computer = Computer::getOnePc('id_pc',$arr['idpcu']);
-         
-         // $dateNow = date('Y-m-d');
-         
-         // $historicoMaq = $dateNow .'/ID: ' . $computer['id_pc'] . '_' . $computer['marca'] . '_' . $computer['processador'] . '_' . $computer['memoria'];
-
-         // if($user['historicoMaq'] != ''){
-         //    $historicoMaq .= ',' . $user['historicoMaq'];
-         // }
-      }
-         
-      $time = $arr['time'];
-      $nome = $arr['nome'];
-      $sobrenome = $arr['sobrenome'];
-      $cpf = $arr['cpf'];
-      $telpessoal = $arr['telpessoal'];
-      $telempresarial =  self::getFormateddValue($arr['telempresarial']);
-      $email = $arr['email'];
-      $senha = $arr['senha'];
+      
+      $time = trim(isset($arr['time']) ? $arr['time'] : throw new Exception('time não existe'));
+      $nome = trim(isset($arr['nome']) ? $arr['nome'] : throw new Exception('nome não existe'));
+      $sobrenome = trim(isset($arr['sobrenome']) ? $arr['sobrenome'] : throw new Exception('sobrenome não existe'));
+      $cpf = trim(isset($arr['cpf']) ? $arr['cpf'] : throw new Exception('cpf não existe'));
+      $telpessoal = trim(isset($arr['telpessoal']) ? $arr['telpessoal'] : throw new Exception('telpessoal não existe'));
+      $telempresarial = trim(isset($arr['telempresarial']) ? $arr['telempresarial'] : throw new Exception('telempresarial não existe'));
+      $email = trim(isset($arr['email']) ? $arr['email'] : throw new Exception('email não existe'));
+      $senha = trim(isset($arr['senha']) ? $arr['senha'] : throw new Exception('senha não existe'));
       $idpcu = self::getFormateddValue($arr['idpcu']); 
 
+
       $query = "INSERT INTO `user`( `time`, `name`, `sobrenome`,`cpf`, `password`,`historicoMAq`, `id_pcu`, `email`, `telPessoal`, `telEmpresarial`) VALUES ('$time','$nome','$sobrenome','$cpf','$senha','$historicoMaq', $idpcu, '$email', '$telpessoal', $telempresarial)";
-      $class = 'success';
       $text = 'Usuário Cadastrado!';
 
 
-      if(self::checkExistUser($cpf)){
-         // $query = "UPDATE `user` SET `time`='$time',`name`='$nome',`sobrenome`='$sobrenome',`cpf` = '$cpf',`password`='$senha',`historicoMaq` = '$historicoMaq',`id_pcu`= $idpcu,`email`='$email',`telPessoal`= '$telpessoal',`telEmpresarial`= $telempresarial WHERE `id_user` = '$iduser'";
-         $class = 'danger';
-         $text = 'Usuário já Existe!';
-
-         return throw new Exception('Usuário já existe');
-       }
-
+      if(self::checkExistUser($cpf))  return throw new Exception('Usuário já existe');
+   
       //  echo $query;
       Database::getResultFromQuery($query);
-
       Synchronize::synchronizeDB();
 
       ?><script>
-         msgStatus('<?=$class?>', '<?=$text?>');
+         msgStatus('<?=$text?>');
       </script><?php 
 
       return;
    }
+
    public static function getFormateddValue($value){
       if($value == ' ') return 'null';
       if($value == 0) return 'null';
@@ -140,7 +115,7 @@ class User{
       Database::getResultFromQuery($query);
 
       ?><script>
-         msgStatus('danger', 'Usuário Deletado!');
+         msgStatus( 'Usuário Deletado!','danger');
       </script><?php       
    }
 
@@ -172,7 +147,6 @@ class User{
 
    public static function checkAvailable(){
       $query = 'SELECT COUNT(*) FROM `user`';
-      // $query .= ' WHERE vacation IS NULL';
       $Available = Database::getResultFromQuery($query);
       $Available = $Available->fetch(PDO::FETCH_ASSOC);
 

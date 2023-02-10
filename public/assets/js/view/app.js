@@ -45,3 +45,5 @@ function createContainer(contentForm, nameIdBackground = null, nameIdContainer =
     typeLastClean = typeLastClean.replaceAll('_', ',')
     return typeLastClean
  }
+
+ 

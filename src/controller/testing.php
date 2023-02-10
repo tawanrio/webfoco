@@ -8,157 +8,174 @@
 // Modelo array Computador
 
 
-// $computer = [
-//    'marca' => 'Generics',
-//    'modelo' => 'bonito',
-//    'processador' => 'AMD Testing',
-//    'propriedade' => 'proprio',
-//    'hd' => '0Bits',
-//    'mac' => '11-01-19-96',
-//    'numserie' => '459957',
-//    'memoria' => '20G-NVME',
-//    'idpc' => '99999',
-//    'typepc' => 'desktop',
-//    'ultlimpeza' => '2023-02-01',
-//    'pastater' => 'pastater',
-//    'culer' => 'culer',
-//    'memorialimp' => 'memorialimp' ,
-//    'carcaca' => 'carcaca',
-//    // 'historico' => '9999-12-12/0_0_0_0'
-// ];
+$computer = [
+   'marca' => 'Generics',
+   'modelo' => 'bonito',
+   'processador' => 'AMD Testing',
+   'propriedade' => 'proprio',
+   'hd' => '0Bits',
+   'mac' => '11-01-19-96',
+   'numserie' => '459957',
+   'memoria' => '20G-NVME',
+   'idpc' => '99999',
+   'typepc' => 'desktop',
+   'ultlimpeza' => '2023-02-01',
+   'pastater' => 'pastater',
+   'culer' => 'culer',
+   'memorialimp' => 'memorialimp' ,
+   'carcaca' => 'carcaca',
+   // 'historico' => '9999-12-12/0_0_0_0'
+];
 
 
-// // COMPUTER
-// // Teste 1 - Criando
+// COMPUTER
+// Teste 1 - Criando Computer
 
-// try {
-//    Computer::newComputer($computer);
+try {
+   Computer::newComputer($computer);
    
-//    $message['computer']['create'] = [ 
-//       "msg" => "Sucesso!",
-//       'idpc' => Computer::getTesting()['id_pc'],
-//       'marca' => Computer::getTesting()['marca'],
-//       "tipo" => Computer::getTesting()['type']
-//    ];
+   $message['computer']['create'] = [ 
+      "msg" => "Sucesso!",
+      'idpc' => Computer::getTesting()['id_pc'],
+      'marca' => Computer::getTesting()['marca'],
+      "tipo" => Computer::getTesting()['type']
+   ];
    
-// } catch (\Exception $erro) {
-//    $message['computer']['create']['msg'] = "Falha! : " . $erro->getMessage();
+} catch (\Exception $erro) {
+   $message['computer']['create']['msg'] = "Falha! : " . $erro->getMessage();
    
-// }
-
-// // Teste 2 - Editando
-
-// $computer['idpc'] = Computer::getTesting()['id_pc'];
-// $computer['historico'] = '9999-12-12/0_0_0_0';
-// $computer['typepc'] = 'notebook';
-// $computer['marca'] = 'Original';
-
-// try {
-//    Computer::editComputer($computer);
-
-//    $message['computer']['edit'] = [ 
-//       "msg" => "Sucesso!",
-//       'idpc' => Computer::getTesting()['id_pc'],
-//       'marca' => Computer::getTesting()['marca'],
-//       "tipo" => Computer::getTesting()['type']
-//    ];
+}
+// Criando Computer Duplicado
+try {
+   Computer::newComputer($computer);
+   $message['duplicateComputer']['create']['msg'] = "Falha! : " . $erro->getMessage();
    
-// } catch (\Exception $erro) {
-//    $message['computer']['edit']['msg'] = "Falha! : " . $erro->getMessage();
-// }
-
-// // Teste 3 - Deletando
-
-// try {
-//    $idpc = Computer::getTesting()['id_pc'];
-//    Computer::deleteComputer($idpc);
+} catch (\Exception $erro) {
+   $message['duplicateComputer']['create']['msg'] = "Sucesso! - Erro: " . $erro->getMessage();
    
-//    $message['computer']['delete'] = [ 
-//       "msg" => "Sucesso!",
-//       'idpc' => Computer::getTesting()['id_pc'],
-//       'marca' => Computer::getTesting()['marca'],
-//       "tipo" => Computer::getTesting()['type']
-//    ];
+}
+
+// Teste 2 - Editando Computer
+
+$computer['idpc'] = Computer::getTesting()['id_pc'];
+$computer['historico'] = '9999-12-12/0_0_0_0';
+$computer['typepc'] = 'notebook';
+$computer['marca'] = 'Original';
+
+try {
+   Computer::editComputer($computer);
+
+   $message['computer']['edit'] = [ 
+      "msg" => "Sucesso!",
+      'idpc' => Computer::getTesting()['id_pc'],
+      'marca' => Computer::getTesting()['marca'],
+      "tipo" => Computer::getTesting()['type']
+   ];
    
-// } catch (\Exception $erro) {
-//    $message['computer']['edit']['msg'] = "Falha! : " . $erro->getMessage();
-// }
+} catch (\Exception $erro) {
+   $message['computer']['edit']['msg'] = "Falha! : " . $erro->getMessage();
+}
 
-// // USER
+// Teste 3 - Deletando Computer
 
-// // Modelo array User
-// $user = [
-//    // 'iduser' => '9999',
-//    'time' => 'dev',
-//    'nome' => 'Juarez',
-//    'sobrenome' => 'Leite',
-//    'cpf' => '957838',
-//    'senha' => 'nopass',
-//    'idpcu' => '58',
-//    'email' => 'juarez@webfoco.com',
-//    'telpessoal' => '44445555',
-//    'telempresarial' => '22223333',
-//    'is_admin' => 1,
-//    'historicoMaq' => '',
-//    // 'historicoMaq' => '2023-02-08/ID: 11_HP_Intel i5_8gb'
-// ];
-
-// // Teste 1 - Criando
-
-// try {
-//    User::newUser($user);
-
-//    $message['user']['create'] = [ 
-//       "msg" => "Sucesso!",
-//       'name' => User::getTesting()['name'],
-//       'id_user' => User::getTesting()['id_user'],
-//       "sobrenome" => User::getTesting()['sobrenome']
-//    ];
+try {
+   $idpc = Computer::getTesting()['id_pc'];
+   Computer::deleteComputer($idpc);
    
-// } catch (\Exception $erro) {
-//    $message['user']['create']['msg'] = "Falha! : " . $erro->getMessage();
+   $message['computer']['delete'] = [ 
+      "msg" => "Sucesso!",
+      'idpc' => Computer::getTesting()['id_pc'],
+      'marca' => Computer::getTesting()['marca'],
+      "tipo" => Computer::getTesting()['type']
+   ];
    
-// }
+} catch (\Exception $erro) {
+   $message['computer']['edit']['msg'] = "Falha! : " . $erro->getMessage();
+}
 
-// // Teste 2 - Editando
+// USER
 
-// $user['id'] = User::getTesting()['id_user'];
-// $user['historicoMaq'] = '2023-02-08/ID: 11_HP_Intel i5_8gb';
-// $user['sobrenome'] = 'Viera';
-// $user['nome'] = 'Creuza';
+// Modelo array User
+$user = [
+   // 'iduser' => '9999',
+   'time' => 'dev',
+   'nome' => 'Juarez',
+   'sobrenome' => 'Leite',
+   'cpf' => '957838',
+   'senha' => 'nopass',
+   'idpcu' => '58',
+   'email' => 'juarez@webfoco.com',
+   'telpessoal' => '44445555',
+   'telempresarial' => '22223333',
+   'is_admin' => 1,
+   'historicoMaq' => '',
+   // 'historicoMaq' => '2023-02-08/ID: 11_HP_Intel i5_8gb'
+];
 
-// try {
-//    User::editUser($user);
+// Teste 1 - Criando User
 
-//    $message['user']['edit'] = [ 
-//       "msg" => "Sucesso!",
-//       'name' => User::getTesting()['name'],
-//       'id_user' => User::getTesting()['id_user'],
-//       "sobrenome" => User::getTesting()['sobrenome']
-//    ];
+try {
+   User::newUser($user);
+
+   $message['user']['create'] = [ 
+      "msg" => "Sucesso!",
+      'name' => User::getTesting()['name'],
+      'id_user' => User::getTesting()['id_user'],
+      "sobrenome" => User::getTesting()['sobrenome']
+   ];
    
-// } catch (\Exception $erro) {
-//    $message['user']['edit']['msg'] = "Falha! : " . $erro->getMessage();
-// }
-
-// // Teste 3 - Deletando
-
-// try {
-//    $iduser = User::getTesting()['id_user'];
-//    $cpfuser = User::getTesting()['cpf'];
-
-//    User::deleteUser($iduser, $cpfuser);
+} catch (\Exception $erro) {
+   $message['user']['create']['msg'] = "Falha! : " . $erro->getMessage();
    
-//    $message['user']['delete'] = [ 
-//       "msg" => "Sucesso!",
-//       'name' => User::getTesting()['name'],
-//       'id_user' => User::getTesting()['id_user'],
-//       "sobrenome" => User::getTesting()['sobrenome']
-//    ];
+   // Criando  User Duplicado
+}
+try {
+   User::newUser($user);
+
+} catch (\Exception $erro) {
+   $message['duplicateUser']['create']['msg'] = "Sucesso! - Erro: " . $erro->getMessage();
    
-// } catch (\Exception $erro) {
-//    $message['user']['delete']['msg'] = "Falha! : " . $erro->getMessage();
-// }
+}
+
+// Teste 2 - Editando User
+
+$user['id'] = User::getTesting()['id_user'];
+$user['historicoMaq'] = '2023-02-08/ID: 11_HP_Intel i5_8gb';
+$user['sobrenome'] = 'Viera';
+$user['nome'] = 'Creuza';
+
+try {
+   User::editUser($user);
+
+   $message['user']['edit'] = [ 
+      "msg" => "Sucesso!",
+      'name' => User::getTesting()['name'],
+      'id_user' => User::getTesting()['id_user'],
+      "sobrenome" => User::getTesting()['sobrenome']
+   ];
+   
+} catch (\Exception $erro) {
+   $message['user']['edit']['msg'] = "Falha! : " . $erro->getMessage();
+}
+
+// Teste 3 - Deletando User
+
+try {
+   $iduser = User::getTesting()['id_user'];
+   $cpfuser = User::getTesting()['cpf'];
+
+   User::deleteUser($iduser, $cpfuser);
+   
+   $message['user']['delete'] = [ 
+      "msg" => "Sucesso!",
+      'name' => User::getTesting()['name'],
+      'id_user' => User::getTesting()['id_user'],
+      "sobrenome" => User::getTesting()['sobrenome']
+   ];
+   
+} catch (\Exception $erro) {
+   $message['user']['delete']['msg'] = "Falha! : " . $erro->getMessage();
+}
 
 
 // COMPONENT
@@ -177,7 +194,7 @@ $component = [
    'id_userp' => '4',
 ];
 
-// Teste 1 - Criando
+// Teste 1 - Criando component
 
 try {
    Components::newComponents($component);
@@ -187,7 +204,8 @@ try {
       "msg" => "Sucesso!",
       'marca' => Components::getTesting()['marca'],
       'id_cpnt' => Components::getTesting()['id_cpnt'],
-      "modelo" => Components::getTesting()['modelo']
+      "modelo" => Components::getTesting()['modelo'],
+      "codigo" => Components::getTesting()['codigo']
    ];
    
 } catch (\Exception $erro) {
@@ -195,7 +213,7 @@ try {
    
 }
 
-// // Teste 2 - Editando
+// // Teste 2 - Editando component
 
 $component['idcpnt'] = Components::getTesting()['id_cpnt'];
 $component['historicoMaq'] = '2023-02-08/ID: 11_HP_Intel i5_8gb';
@@ -209,33 +227,32 @@ try {
       "msg" => "Sucesso!",
       'marca' => Components::getTesting()['marca'],
       'id_cpnt' => Components::getTesting()['id_cpnt'],
-      "modelo" => Components::getTesting()['modelo']
+      "modelo" => Components::getTesting()['modelo'],
+      "codigo" => Components::getTesting()['codigo']
    ];
    
 } catch (\Exception $erro) {
    $message['components']['edit']['msg'] = "Falha! : " . $erro->getMessage();
 }
 
-// Teste 3 - Deletando
+// Teste 3 - Deletando component
 
 try {
    $idcpnt = Components::getTesting()['id_cpnt'];
-   $cpfuser = Components::getTesting()['cpf'];
 
-   Components::deleteComponents($iduser, $cpfuser);
+   Components::deleteComponents($idcpnt);
    
-   $message['component']['delete'] = [ 
+   $message['components']['delete'] = [ 
       "msg" => "Sucesso!",
       'marca' => Components::getTesting()['marca'],
       'id_cpnt' => Components::getTesting()['id_cpnt'],
-      "modelo" => Components::getTesting()['modelo']
+      "modelo" => Components::getTesting()['modelo'],
+      "codigo" => Components::getTesting()['codigo']
    ];
    
 } catch (\Exception $erro) {
    $message['component']['delete']['msg'] = "Falha! : " . $erro->getMessage();
 }
-
-
 
 
 ?>
@@ -249,14 +266,15 @@ try {
          display: flex;
          background-color: #eee;
          justify-content: center;
+         align-items: center;
+         flex-direction: row;
       }
       body > div{
          text-align: center;
          margin: 10px;
          border: solid black 1px;
-         padding: 20px 30px;
+         padding: 20px 50px;
          height: 500px;
-         /* width: 300px; */
       }
       body > div > div{
          text-align: left;
@@ -264,15 +282,17 @@ try {
    </style>
 </head>
 <body>
-   <table>
-      <!-- <div>
+      <div>
          <span>Computer</span>
          <div>
             <span>Teste 1 - Criando Computador</span>
             <div><?= $message['computer']['create']['msg'] ?></div>
             <div><?= 'ID: ' . $message['computer']['create']['idpc'] ?></div>
             <div><?= 'Marca: ' . $message['computer']['create']['marca'] ?></div>
-            <div><?= 'Tipo: ' . $message['computer']['create']['tipo'] ?></div>
+            <div><?= 'Tipo: ' . $message['computer']['create']['tipo'] ?></div>          
+            <br>
+            <span>Criando Computador Duplicado</span>
+            <div><?= $message['duplicateComputer']['create']['msg'] ?></div>
             <br>
          </div>
          <div>
@@ -302,6 +322,9 @@ try {
             <div><?= 'Nome: ' . $message['user']['create']['name'] ?></div>
             <div><?= 'Sobrenome: ' . $message['user']['create']['sobrenome'] ?></div>
             <br>
+            <span>Criando Usuário Duplicado</span>
+            <div><?= $message['duplicateUser']['create']['msg'] ?></div>
+            <br>
          </div>
          <div>
             <span>Teste 2 - Editando Usuário</span>
@@ -321,7 +344,7 @@ try {
          </div>
       </div>
       <br>
-      <div> -->
+      <div>
          <span>Components</span>
          <div>
             <span>Teste 1 - Criando Componente</span>
@@ -329,7 +352,9 @@ try {
             <div><?= 'ID: ' . $message['components']['create']['id_cpnt'] ?></div>
             <div><?= 'Marca: ' . $message['components']['create']['marca'] ?></div>
             <div><?= 'Modelo: ' . $message['components']['create']['modelo'] ?></div>
+            <div><?= 'Codigo: ' . $message['components']['create']['codigo'] ?></div>
             <br>
+            
          </div>
          <div>
             <span>Teste 2 - Editando Componente</span>
@@ -337,20 +362,21 @@ try {
             <div><?= 'ID: ' . $message['components']['edit']['id_cpnt'] ?></div>
             <div><?= 'Marca: ' . $message['components']['edit']['marca'] ?></div>
             <div><?= 'Modelo: ' . $message['components']['edit']['modelo'] ?></div>
+            <div><?= 'Codigo: ' . $message['components']['edit']['codigo'] ?></div>
             <br>
          </div>
-         <!-- <div>
+         <div>
             <span>Teste 3 - Deletando Componente</span>
             <div><?= $message['components']['delete']['msg'] ?></div>
             <div><?= 'ID: ' . $message['components']['delete']['id_cpnt'] ?></div>
-            <div><?= 'Marca: ' . $message['components']['delete']['name'] ?></div>
+            <div><?= 'Marca: ' . $message['components']['delete']['marca'] ?></div>
             <div><?= 'Modelo: ' . $message['components']['delete']['modelo'] ?></div>
+            <div><?= 'Codigo: ' . $message['components']['delete']['codigo'] ?></div>
             <br>
-         </div> -->
+         </div>
       </div>
       <br>
      
       
-   </table>
 </body>
 </html>

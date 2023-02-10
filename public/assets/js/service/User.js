@@ -61,116 +61,119 @@ function addNewUser(pcAvailable){
    }
 
    const contentCreateUser = `
-
-<div class="header">
-<i class="fa-solid fa-user"></i>  <div>
-     <div class="title">Cadastrar Colaborador</div>
-     <div class="subtitle">Adicione os dados dos novos Colaboradores</div>
-  </div>
-</div>
-  <form id="formnewuser" action="index.php?page=manage&r=user" method="post">
-    <input type="hidden" name="form" value="create">
-       <input type="hidden" name="id" value="">
-       <div class="row">
-           <div class="time">
-            <label for="time">Time</label>
-            <select name="time" id="time">
-               <option value="bi">B.I</option>
-               <option value="comercial">Comercial</option>
-               <option value="criacao">Criação</option>
-               <option value="cs">CS</option>
-               <option value="dev">Desenvolvimento</option>
-               <option value="financeiro">Financeiro</option>
-               <option value="inboud">Inbound</option>
-               <option value="marketing">Marketing</option>
-               <option value="midia">Mídia</option>
-               <option value="redacao">Redação</option>
-               <option value="rh">RH</option>
-               <option value="SEO">SEO</option>
-               <option value="social">Social</option>
-            </select>
-           </div>
-       </div>
-       <div class="row">
-       <div >
-         <label for="nome">Nome</label>
-         <input required type="text" id="nome" name="nome"  maxlength="15"
-         placeholder="Nome do colaborador">
-         </div>
-         <div>
-            <label for="sobrenome">Sobrenome</label>
-            <input required type="text" id="sobrenome" name="sobrenome" value=""  maxlength="25"
-            placeholder="Sobrenome do colaborador">
-         </div>
-       </div>
-
-       <div class="row">
-         <div>
-            <label for="cpf">CPF</label>
-            <input required type="tel" id="cpf"   maxlength="11"  minlength="11" name="cpf" placeholder="Numero CPF">
-         </div>
-           <div>
-               <label for="email">Email</label>
-               <input required type="text" id="email" name="email" value=""  maxlength="30"
-               placeholder="fulano@webfoco.com">
-           </div>
-       </div>
-       <div class="row">
-           <div>
-               <label for="senha">Senha</label>
-               <input  type="password" id="senha" name="senha" placeholder="Senha" minlength="3"  maxlength="25">
-           </div>
-           <div>
-               <label for="confirmsenha">Confirmar Senha</label>
-               <input  type="password" id="confirmsenha" name="confirmsenha" placeholder="Confirme sua Senha"  maxlength="25">
-           </div>
-       </div>
-       <div class="row">
-           <div>
-           <span id="msgerrorpass" class="hiden pass-error">* As senhas não coincidem, tente novamente</span>
-           </div>
-       </div>
-
-       <div class="row">
-       
-         <div>
-            <label for="telpessoal">Telefone Pessoal</label>
-            <input required type="tel" id="telpessoal"   maxlength="9"  minlength="8" name="telpessoal" placeholder="Numero do telefone pessoal">
-        </div>
-           <div>
-               <label for="telempresarial">Telefone empresarial</label>
-               <input type="text" id="telempresarial" name="telempresarial" maxlength="9"  minlength="8" placeholder="Numero do telefone empresarial">
-           </div>
-
-       </div>
-       <div class="row">
-       <div>
-            <label for="idpcu">Computador</label>
-            <select name="idpcu" id="idpcu">
-               <option value="name">Atribua um Computador a este Colaborador</option>
-                <option value="null">Sem Computador</option>
-               ${setTimeout(() => {
-                  list.forEach(computador => {
-                  let select = document.querySelector('#idpcu')
-                  select.innerHTML += computador
-               })
-               }, 10)
-            }
-            </select>
-         </div>
-        <div id="radio">
-                <div>
-                <label for="isadmin">Administrador</label>
-                    <input type="checkbox" name="isadmin" id="isadmin" value="1">
-                </div>
+   <div class="header">
+   <i class="fa-solid fa-user"></i>  <div>
+        <div class="title">Cadastrar Colaborador</div>
+        <div class="subtitle">Adicione os dados dos novos Colaboradores</div>
+     </div>
+   </div>
+     <form id="formnewuser" action="index.php?page=manage&r=user" method="post">
+      <input type="hidden" name="form" value="edit">
+          <input type="hidden" name="id">
+          <div class="row">
+              
+          </div>
+          <div class="row">
+          <div >
+            <label for="nome">Nome</label>
+            <input required type="text" id="nome" name="nome"  maxlength="15"
+            placeholder="Nome do colaborador">
             </div>
+            <div>
+               <label for="sobrenome">Sobrenome</label>
+               <input required type="text" id="sobrenome" name="sobrenome"  maxlength="15"
+               placeholder="Sobrenome do colaborador">
+            </div>
+          </div>
+          <div class="row">
+          <div>
+          <label for="cpf">CPF</label>
+          <input required type="tel" id="cpf"  maxlength="11"  minlength="11" name="cpf" placeholder="Numero CPF">
+       </div>
+              <div>
+                  <label for="email">Email</label>
+                  <input required type="text" id="email" name="email"  maxlength="30"
+                  placeholder="fulano@webfoco.com" >
+              </div>
+          </div>
+          <div class="row">
+              <div>
+                  <label for="senha">Senha</label>
+                  <input  id="senha" type="password" id="senha" name="senha
+                   placeholder="Senha"  maxlength="25">
+              </div>
+              <div>
+                  <label for="confirmsenha">Confirmar Senha</label>
+                  <input  id="confirmsenha" type="password" id="confirmsenha"
+                   name="confirmsenha" placeholder="Confirme sua Senha"  maxlength="25">
+              </div>
+          </div>
+          <div class="row">
+           <div>
+            <span id="msgerrorpass" class="hiden pass-error">* As senhas não coincidem, tente novamente</span>
+           </div>
         </div>
+          <div class="row">
+          <div>
+          <label for="telpessoal">Telefone Pessoal</label>
+          <input required type="tel" id="telpessoal"  maxlength="9"  minlength="8" name="telpessoal" placeholder="Numero do telefone pessoal" >
+          </div>
+          <div>
+          <label for="telempresarial">Telefone Corporativo</label>
+          <input type="tel" id="telempresarial" minlength="8" maxlength="9" name="telempresarial" placeholder="Numero do telefone corporativo">
+          </div>
+          </div>
+        <div class="row">
+        <div class="time">
+        <label for="time">Time</label>
+        <select name="time" id="time">
+           <option value="bi">B.I</option>
+           <option value="comercial">Comercial</option>
+           <option value="criacao">Criação</option>
+           <option value="cs">CS</option>
+           <option value="dev">Desenvolvimento</option>
+           <option value="financeiro">Financeiro</option>
+           <option value="inboud">Inbound</option>
+           <option value="marketing">Marketing</option>
+           <option value="midia">Mídia</option>
+           <option value="redacao">Redação</option>
+           <option value="rh">RH</option>
+           <option value="SEO">SEO</option>
+           <option value="social">Social</option>
+        </select>
+       </div>
+        <div>
+         <label for="idpcu">Computador</label>
+         <select name="idpcu" id="idpcu">
+            <option value="">Atribua um Computador a este Colaborador</option>
+            <option value="null">Sem Computador</option>
+            ${setTimeout(() => {
+               list.forEach(computador => {
+               let select = document.querySelector('#idpcu')
+               select.innerHTML += computador
+            }) 
+            }, 10)
+         }
+         </select>
       </div>
-       <div class="row row-button">
-          <button class="btn btn-primary">Salvar</button>
-          <a class="btn btn-secondary" id="formCancel">Cancelar</a>
-        </div>
-   </form>
+      
+    </div>
+    
+    <div class="row">
+      <div id="radio">
+          <label for="isadmin">Administrador</label>
+          <input type="checkbox" name="isadmin" id="isadmin" value="1">
+      </div>
+      <div>
+      </div>
+      </div>
+
+      <div class="row row-button">
+      <button class="btn btn-primary">Salvar</button>
+      <a class="btn btn-secondary" id="formCancel">Cancelar</a>
+    </div>
+      </form>
+
    `;
    createContainer(contentCreateUser);
 
@@ -390,6 +393,7 @@ function editUser(iduser, listAllComputer){
   `;
     createContainer(historicoMaq,'historicoMaqBack', 'historicoMaqContainer');
     getAllHistoricMaq(data.historicoMaq);
+    console.log('oi');
   });
   
    const editBtn = document.querySelector('#editBtn')

@@ -21,7 +21,9 @@
       </div>
       <br>
       <h2 for="filter">Filtrar Busca</h2>         
-   <form action="index.php?page=manage&r=user" method="post">
+   <form method="get">
+   <input type="hidden" name="page" value="manage">
+      <input type="hidden" name="r" value="user">
       <select name="filter" id="filter">
          <option value="name">Nome do Colaborador</option>
       </select>
@@ -133,20 +135,26 @@
    </div>
    <div id="pgn">
       <?php 
+
+      if($arr['info']['search'] != 1 && $arr['info']['filter']){
+         $filter = '&filter=' . $arr['info']['filter'];
+         $filter .= '&search=' . $arr['info']['search'];
+      }
+
         $totpg = $arr['info']['totpg'];
         if($totpg > 1):
            $np = $arr['info']['np'];
            $proximo = $np + 1;
            $anterior = $np - 1;
             ?>
-            <a href="index.php?p=manage&r=user&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">< Anterior</a>
+            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">< Anterior</a>
 
-            <a href="index.php?p=manage&r=user&np=<?= $np -1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np -1 ?></a>
-            <a href="index.php?p=manage&r=user&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
-            <a href="index.php?p=manage&r=user&np=<?= $np +1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np +1 ?></a>
+            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np -1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np -1 ?></a>
+            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
+            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np +1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np +1 ?></a>
     
 
-            <a href="index.php?p=manage&r=user&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
+            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
          <?php endif; ?>
    </div>
 </div>

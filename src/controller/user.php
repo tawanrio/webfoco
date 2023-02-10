@@ -5,8 +5,8 @@
 // loadModel('Computer');
 
 // filtro
-$search = isset($_POST['search']) ? $_POST['search'] : '1';
-$filter = isset($_POST['filter']) ? $_POST['filter'] : '1';
+$search = isset($_GET['search']) ? $_GET['search'] : '1';
+$filter = isset($_GET['filter']) ? $_GET['filter'] : '1';
 if($search == '1' || $search == ''){
    $search = '1';
    $filter = '1';
@@ -20,7 +20,7 @@ $User = new User($np, $limit);
 $Computer = new Computer();
 
 // Cria ou edita o colaborador
-if(isset($_POST) && count($_POST) > 1 && !isset($_POST['filter'])){
+if(isset($_POST) && count($_POST) > 1 && !isset($_POST['search'])){
    try{
       
       // Cria o Colaborador
@@ -29,7 +29,7 @@ if(isset($_POST) && count($_POST) > 1 && !isset($_POST['filter'])){
       }
       // Edita o Colaborador
       elseif($_POST['form'] == 'edit'){
-         $User->newUser($_POST);
+         User::editUser($_POST);
       }
 
    }catch(Exception $error){
@@ -63,7 +63,9 @@ $arr['info'] = [
    'allComputer' => User::getAllPc(),
    'np' => $np,
    'totpg' => $totpg,
-   'limit' => $limit
+   'limit' => $limit,
+   'filter' => $filter,
+   'search' => $search
 ]; 
 
 loadTemplate('manage/manage', $arr);

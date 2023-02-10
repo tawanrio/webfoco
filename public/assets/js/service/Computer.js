@@ -190,7 +190,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     function editPc(idpc){
     idpc = idpc.replaceAll(`'`, `"`)
     const data = JSON.parse(idpc);
-    console.log(data);
+   //  console.log(data);
     getLastDateClean(data.historico);
       
     const contentEditForm = `
