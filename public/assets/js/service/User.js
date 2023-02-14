@@ -197,7 +197,7 @@ function editUser(iduser, listAllComputer){
   // console.log(data.CPF);
 
    let list = []
-   for (let i = 1; i < iteration.length; i++) {
+   for (let i = 0; i < iteration.length; i++) {
     if(iteration[i]['name'] == '' || data['id_pc'] == iteration[i]['id_pc']){
         let texto = "<option value='" + iteration[i]['id_pc'] + "' "
         if(data['id_pc'] == iteration[i]['id_pc']){

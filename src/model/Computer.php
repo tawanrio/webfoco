@@ -62,22 +62,22 @@ class Computer{
 
       $historico = HistoricoLimp::checkExistDate($arr);
 
-      $marca = trim(isset($arr['marca']) ? $arr['marca'] : throw new Exception('marca sem conteúdo'));
-      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] : throw new Exception('modelo sem conteúdo'));
-      $processador = trim(isset($arr['processador']) ? $arr['processador'] : throw new Exception('processador sem conteúdo'));
-      $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] : throw new Exception('propriedade sem conteúdo'));
-      $hd = trim(isset($arr['hd']) ? $arr['hd'] : throw new Exception('hd sem conteúdo'));
-      $mac = trim(isset($arr['mac']) ? $arr['mac'] : throw new Exception('mac sem conteúdo'));
-      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] : throw new Exception('numserie sem conteúdo'));
-      $memoria = trim(isset($arr['memoria']) ? $arr['memoria'] : throw new Exception('memoria sem conteúdo'));
-      $typepc = trim(isset($arr['typepc']) ? $arr['typepc'] : throw new Exception('typepc sem conteúdo'));
+      $marca = trim(isset($arr['marca']) ? $arr['marca'] :  new Exception('marca sem conteúdo'));
+      $modelo = trim(isset($arr['modelo']) ? $arr['modelo'] :  new Exception('modelo sem conteúdo'));
+      $processador = trim(isset($arr['processador']) ? $arr['processador'] :  new Exception('processador sem conteúdo'));
+      $propriedade = trim(isset($arr['propriedade']) ? $arr['propriedade'] :  new Exception('propriedade sem conteúdo'));
+      $hd = trim(isset($arr['hd']) ? $arr['hd'] :  new Exception('hd sem conteúdo'));
+      $mac = trim(isset($arr['mac']) ? $arr['mac'] :  new Exception('mac sem conteúdo'));
+      $numserie = trim(isset($arr['numserie']) ? $arr['numserie'] :  new Exception('numserie sem conteúdo'));
+      $memoria = trim(isset($arr['memoria']) ? $arr['memoria'] :  new Exception('memoria sem conteúdo'));
+      $typepc = trim(isset($arr['typepc']) ? $arr['typepc'] :  new Exception('typepc sem conteúdo'));
 
 
       $query = "INSERT INTO computer (`marca`,`propriedade`,`historico`,`modelo`,`numserie`,`memoria`,`type`, `hd`,`processador`, `mac` ) VALUES ('$marca','$propriedade','$historico','$modelo','$numserie','$memoria', '$typepc', '$hd', '$processador', '$mac')";
 
       $text = 'Computador Cadastrado!';
 
-      if(self::checkExistComputer($numserie, $mac))   return throw new Exception('Computador já existe');
+      if(self::checkExistComputer($numserie, $mac))   return  new Exception('Computador já existe');
       
       Database::getResultFromQuery($query);
       Synchronize::synchronizeDB();
@@ -153,6 +153,15 @@ class Computer{
       $Available = $Available->fetch(PDO::FETCH_ASSOC);
 
       return $Available['COUNT(*)'];
+   }
+
+   public static function computerAvailable(){
+      $query = 'SELECT id_pc, marca, processador, memoria FROM `computer` WHERE id_userP IS NULL';
+      $Available = Database::getResultFromQuery($query);
+      $Available = $Available->fetchAll(PDO::FETCH_ASSOC);
+
+      // print_r($Available);
+      return $Available;
    }
 
    public function getFilterPc($filter = 1, $search = 1){

@@ -37,6 +37,7 @@
             <div class="subtitle">Lista dos colaboradores da empresa</div>
          </div>
          <?php
+         
             $count = 0;
             $listPcAvailable = '{';
                foreach($arr['info']['pcAvailable'] as $pcavailable => $data){
@@ -50,7 +51,6 @@
                }
                $listPcAvailable = rtrim($listPcAvailable, ',');
                $listPcAvailable .= '}';
-
 
                $listAllComputer = '{';
                   foreach($arr['info']['allComputer'] as $allComputer => $data){

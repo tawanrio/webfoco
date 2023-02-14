@@ -56,7 +56,7 @@ class Components{
 
       // print_r($arr);
 
-      $codigo = Components::createStringCode($arr);
+      $codigo = GenerateCode::createStringCode($arr);
 
       // echo $codigo ;
       
@@ -88,46 +88,7 @@ class Components{
       return;
    }
 
-   public static function createStringCode($valueDb){
-      $qntCpnt = Components::getQtdCpnt('tipo',$valueDb['tipo']) +1;
-         $CpntLength = ceil(log10($qntCpnt));
-         
-         switch ($CpntLength) {
-            case $CpntLength == 1:
-               $codeMaq = '.000';
-               break;
-            case $CpntLength == 2:
-               $codeMaq = '.00';
-               break;
-            case $CpntLength == 3:
-               $codeMaq = '.0';
-               break;
-            case $CpntLength == 4:
-               $codeMaq = '.';
-               break;
-         }
-
-      switch ($valueDb['tipo']) {
-         case 'monitor':
-            $codigo = '01.02' . $codeMaq . $qntCpnt;
-            break;
-         case 'mouse':
-            $codigo = '01.03' . $codeMaq . $qntCpnt;
-            break;
-         case 'teclado':
-            $codigo = '01.04' . $codeMaq . $qntCpnt;
-            break;
-         case 'suportenot':
-            $codigo = '01.05' . $codeMaq . $qntCpnt;
-            break;
-         case 'outro':
-            $codigo = '01.06' . $codeMaq . $qntCpnt;
-            break;
-
-      }
-
-      return $codigo;
-   }
+ 
 
    public static function checkExistComponents($numserie, $idcpnt = null){
       $query = "SELECT count(*) FROM `components` WHERE `id_cpnt` = '$idcpnt'";
@@ -153,13 +114,22 @@ class Components{
       </script><?php       
    }
 
+   public static function getCpnt($filter, $search){
+      $query = 'SELECT codigo FROM `components` ';
+      $query .= "WHERE $filter LIKE '$search%' ";
+
+      $getCpnt = Database::getResultFromQuery($query);
+      $getCpnt = $getCpnt->fetchAll(PDO::FETCH_ASSOC);
+      
+      return $getCpnt;
+   }
    public static function getQtdCpnt($filter, $search){
       $query = 'SELECT COUNT(*) FROM `components` LEFT OUTER JOIN `user` ON user.id_user = components.id_userp ';
       $query .= "WHERE $filter LIKE '$search%' ";
-      $qtdPc = Database::getResultFromQuery($query);
-      $qtdPc = $qtdPc->fetch(PDO::FETCH_ASSOC);
+      $qtdCpnt = Database::getResultFromQuery($query);
+      $qtdCpnt = $qtdCpnt->fetch(PDO::FETCH_ASSOC);
       
-      return $qtdPc['COUNT(*)'];
+      return $qtdCpnt['COUNT(*)'];
    }
 
    public static function getAllQtdCpnt($filter = 1, $search = 1){

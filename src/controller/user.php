@@ -57,7 +57,7 @@ $arr = $User->getFilterUser($filter, $search);
 
 $arr['info'] = [
    'qtdTotalUser' => $qtdTotalUser,
-   'pcAvailable' => User::computerAvailable(),
+   'pcAvailable' => Computer::computerAvailable(),
    // 'using' => User::checkInUse(),
    'available' => User::checkAvailable(),
    'allComputer' => User::getAllPc(),

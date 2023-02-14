@@ -23,6 +23,7 @@ loadModel('Computer');
 loadModel('User');
 loadModel('Login');
 loadModel('Components');
+loadModel('GenerateCode');
 loadModel('HistoricoLimp');
 loadModel('HistoricoMaq');
 
