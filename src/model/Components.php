@@ -114,15 +114,7 @@ class Components{
       </script><?php       
    }
 
-   public static function getCpnt($filter, $search){
-      $query = 'SELECT codigo FROM `components` ';
-      $query .= "WHERE $filter LIKE '$search%' ";
-
-      $getCpnt = Database::getResultFromQuery($query);
-      $getCpnt = $getCpnt->fetchAll(PDO::FETCH_ASSOC);
-      
-      return $getCpnt;
-   }
+   
    public static function getQtdCpnt($filter, $search){
       $query = 'SELECT COUNT(*) FROM `components` LEFT OUTER JOIN `user` ON user.id_user = components.id_userp ';
       $query .= "WHERE $filter LIKE '$search%' ";

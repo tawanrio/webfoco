@@ -90,9 +90,9 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
          <div>
             <span>Tipo</span>
             <div>
-               <input type="radio" id="notebook" name="typepc" value="notebook" checked>
+               <input type="radio" id="notebook" name="tipo" value="notebook" checked>
                <label for="notebook">Notebook</label>
-               <input type="radio" id="desktop" name="typepc" value="desktop">
+               <input type="radio" id="desktop" name="tipo" value="desktop">
                <label for="desktop">Desktop</label>
             </div>
          </div>
@@ -141,8 +141,8 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
        </div>
        <div class="row">
           <div>
-             <label for="numserie">N/S</label>
-             <input required type="text" id="numserie" name="numserie" placeholder="Numero de série do computador">
+             <label for="ipv6">IPV6</label>
+             <input required type="text" id="ipv6" name="ipv6" placeholder="Numero do IPV6">
           </div>
           <div>
              <label for="mac">Mac</label>
@@ -190,7 +190,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     function editPc(idpc){
     idpc = idpc.replaceAll(`'`, `"`)
     const data = JSON.parse(idpc);
-   //  console.log(data);
+    console.log(data);
     getLastDateClean(data.historico);
       
     const contentEditForm = `
@@ -208,9 +208,9 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
          <div>
             <span>Tipo</span>
             <div>
-               <input type="radio" id="notebook" name="typepc" value="notebook" disabled>
+               <input type="radio" id="notebook" name="tipo" value="notebook" disabled>
                <label for="notebook">Notebook</label>
-               <input type="radio" id="desktop" name="typepc" value="desktop" disabled>
+               <input type="radio" id="desktop" name="tipo" value="desktop" disabled>
                <label for="desktop">Desktop</label>
             </div>
          </div>
@@ -259,8 +259,8 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
        </div>
        <div class="row">
           <div>
-             <label for="numserie">N/S</label>
-             <input required type="text" id="numserie" name="numserie" placeholder="Numero de série do computador" value="${data.numserie}" readonly class="input-disable" >
+             <label for="ipv6">IPV6</label>
+             <input required type="text" id="ipv6" name="ipv6" placeholder="Numero do IPV6" value="${data.ipv6}" readonly class="input-disable" >
           </div>
           <div>
              <label for="mac">Mac</label>
@@ -273,6 +273,13 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
              <label for="ultlimpeza">Última Limpeza</label>
              <input type="date" id="ultlimpeza" name="ultlimpeza" value="${getLastDateClean(data.historico)}" disabled class="input-disable">
          </div>
+         <div>
+            <label for="codigo">Código</label>
+               <input required type="text" id="codigo" name="codigo" placeholder="Código do computador" value="${data.codigo}" readonly class="input-disable" >
+         </div>
+       </div>
+       <div class="row">
+         
          <div id="tipolimpeza">
                <label for="tipolimpeza">Tipo de Limpeza</label>
                   <div>
@@ -294,11 +301,11 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
                      </div>
                   </div>
           </div>
-       </div>
-       <div class="row">
+         <div id="divHistoricoLimp">
             <label>
                <a href="#" id="historicoLimp" style="text-decoration-line: underline;">Histórico de Limpeza</a>
             </label>
+         </div>
        </div>
        <div class="row row-button">
           <a class="btn btn-green" id="editBtn">Editar</a>
@@ -343,12 +350,12 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     });
 
     insertCheckRadio(data.propriedade)
-    insertCheckRadio(data.type)
+    insertCheckRadio(data.tipo)
 
    getLastTypeClean(data.historico);
 
-    const editBtn = document.querySelector('#editBtn')
-      editBtn.addEventListener('click', () =>{
+   const editBtn = document.querySelector('#editBtn')
+   editBtn.addEventListener('click', () =>{
       const rowBtn = document.querySelector('.row-button')
       rowBtn.removeChild(editBtn)
       
@@ -363,12 +370,11 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
       const elementsDisabled = document.querySelectorAll('[disabled]')
 
       elementsDisabled.forEach(element =>{
-         
          element.removeAttribute('disabled')
          element.classList.toggle('input-disable')
       })
       elementsReadonly.forEach(element =>{
-         if(element.name != 'mac' && element.name != 'numserie' && element.name != 'idpc'){
+         if(element.name != 'mac' && element.name != 'numserie' && element.name != 'idpc' && element.name != 'codigo'){
             element.removeAttribute('readonly')
             element.classList.toggle('input-disable')
          }

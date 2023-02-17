@@ -68,11 +68,12 @@
          <thead>
             <tr>
                <th>Nº</th>
-               <th>ID</th>
+               <th>Codigo</th>
+               <!-- <th>ID</th> -->
                <th>Tipo</th>
                <th>Marca</th>
+               <th>Modelo</th>
                <th>N/S</th>
-               <th>Codigo</th>
                <th id="edit">Ver</th>
                <th id="delet">Deletar</th>
                <!-- <th>Nome</th> -->
@@ -116,11 +117,12 @@
                   <!-- <tr <?php if($dateInterval > 180){echo "style='background-color:pink'";} ?>> -->
                   <tr >
                      <th><?= $list ?></th>
-                     <td><?php echo $value['id_cpnt'] ? $value['id_cpnt'] : '0' ?></td>
+                     <!-- <td><?php echo $value['id_cpnt'] ? $value['id_cpnt'] : '0' ?></td> -->
+                     <td><?php echo $value['codigo'] ? $value['codigo'] : 'Sem Dados' ?></td>
                      <td><?php echo ucfirst($value['tipo'] ? $value['tipo'] : 'Sem Dados') ?></td>
                      <td><?php echo ucfirst($value['marca'] ? $value['marca'] : 'Sem Dados') ?></td>
+                     <td><?php echo ucfirst($value['modelo'] ? $value['modelo'] : 'Sem Dados') ?></td>
                      <td><?php echo $value['numserie'] ? $value['numserie'] : 'Sem Dados' ?></td>
-                     <td><?php echo $value['codigo'] ? $value['codigo'] : 'Sem Dados' ?></td>
                      <td id="edit">
                         <a href="#" onclick="editCpnt(`<?php echo $info ?>`)" class="attention btnEdit circle" title="Ver">
                            <i class="fa-solid fa-eye"></i>

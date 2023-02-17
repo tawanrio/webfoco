@@ -58,7 +58,8 @@
          <thead>
             <tr>
                <th>Nº</th>
-               <th>ID</th>
+               <!-- <th>ID</th> -->
+               <th>Codigo</th>
                <!-- <th>Tipo</th> -->
                <th>Marca</th>
                <th>Modelo</th>
@@ -105,7 +106,8 @@
             ?>
                   <tr <?php if($dateInterval > 180){echo "style='background-color:pink'";} ?>>
                      <th><?= $list ?></th>
-                     <td><?php echo $value['id_pc'] ? $value['id_pc'] : '0' ?></td>
+                     <td><?php echo $value['codigo'] ? $value['codigo'] : 'Sem Codigo' ?></td>
+                     <!-- <td><?php echo $value['id_pc'] ? $value['id_pc'] : '0' ?></td> -->
                      <!--<td><?= $value['type'] ?></td> -->
                      <td><?php echo ucfirst($value['marca'] ? $value['marca'] : 'Sem Dados') ?></td>
                      <td><?php echo $value['modelo'] ? $value['modelo'] : 'Sem Dados' ?></td>

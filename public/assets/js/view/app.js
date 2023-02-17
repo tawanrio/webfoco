@@ -46,4 +46,4 @@ function createContainer(contentForm, nameIdBackground = null, nameIdContainer =
     return typeLastClean
  }
 
- 
+

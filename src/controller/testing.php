@@ -18,7 +18,7 @@ $computer = [
    'numserie' => '459957',
    'memoria' => '20G-NVME',
    'idpc' => '99999',
-   'typepc' => 'desktop',
+   'tipo' => 'desktop',
    'ultlimpeza' => '2023-02-01',
    'pastater' => 'pastater',
    'culer' => 'culer',
@@ -59,7 +59,7 @@ try {
 
 $computer['idpc'] = Computer::getTesting()['id_pc'];
 $computer['historico'] = '9999-12-12/0_0_0_0';
-$computer['typepc'] = 'notebook';
+$computer['tipo'] = 'notebook';
 $computer['marca'] = 'Original';
 
 try {

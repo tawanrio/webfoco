@@ -1,11 +1,14 @@
 <?php 
 class GenerateCode{
     public static function createStringCode($valueDb){
-        // $qntCpnt = Components::getQtdCpnt('tipo',$valueDb['tipo']) +1;
-        // $qntCpnt = Components::getQtdCpnt('tipo',$valueDb['tipo']);
-           // $CpntLength = ceil(log10($qntCpnt));
         
            switch ($valueDb['tipo']) {
+              case 'notebook':
+                 $codeStart = '01.01';
+              break;
+              case 'desktop':
+                 $codeStart = '01.01';
+              break;
               case 'monitor':
                  $codeStart = '01.02';
               break;
@@ -22,8 +25,12 @@ class GenerateCode{
                  $codeStart = '01.06';
               break;
               }
-                          
-              $codigoArr = Components::getCpnt('codigo', $codeStart);
+
+              if($codeStart == '01.01') {
+                 $codigoArr = GenerateCode::getCode('computer','codigo', $codeStart);
+               }else{
+                  $codigoArr = GenerateCode::getCode('components','codigo', $codeStart);
+               }
   
               $codeArr = [];
               $codeEnd = null;
@@ -50,9 +57,18 @@ class GenerateCode{
                     break;
               }
            $codigo = $codeStart . $codeMaq . $codeEnd;
-  
         return $codigo;
      }
+
+     public static function getCode($table, $filter, $search){
+      $query = "SELECT codigo FROM $table ";
+      $query .= "WHERE $filter LIKE '$search%' ";
+
+      $getCode = Database::getResultFromQuery($query);
+      $getCode = $getCode->fetchAll(PDO::FETCH_ASSOC);
+      
+      return $getCode;
+   }
   
      public static function retunrNumberAvailable($arrNumber){
         for ($i=0; $i < 9999; $i++) { 

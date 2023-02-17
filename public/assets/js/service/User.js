@@ -393,7 +393,6 @@ function editUser(iduser, listAllComputer){
   `;
     createContainer(historicoMaq,'historicoMaqBack', 'historicoMaqContainer');
     getAllHistoricMaq(data.historicoMaq);
-    console.log('oi');
   });
   
    const editBtn = document.querySelector('#editBtn')

@@ -15,6 +15,7 @@ require_once(dirname(__FILE__) . '/loader.php');
 require_once(dirname(__FILE__) . '/Database.php');
 require_once(dirname(__FILE__).'/session.php');
 require_once(EXCEPTION_PATH .'/ValidationException.php');
+// require_once(dirname(__FILE__) . '/dados-user.php');
 
 
 // Carrega os Model
@@ -26,6 +27,7 @@ loadModel('Components');
 loadModel('GenerateCode');
 loadModel('HistoricoLimp');
 loadModel('HistoricoMaq');
+
 
 
 
