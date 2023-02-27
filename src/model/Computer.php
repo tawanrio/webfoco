@@ -50,8 +50,8 @@ class Computer{
       $text = 'Computador Editado!';
 
       
-      // Database::getResultFromQuery($query);
-      // Synchronize::synchronizeDB();
+      Database::getResultFromQuery($query);
+      Synchronize::synchronizeDB();
 
       ?><script>
          msgStatus('<?=$text?>');
@@ -79,7 +79,13 @@ class Computer{
 
       $text = 'Computador Cadastrado!';
 
-      if(self::checkExistComputer($ipv6, $mac))   return  new Exception('Computador já existe');
+      if(self::checkExistComputer($ipv6, $mac)){
+         ?><script>
+         msgStatus('Computador Já Existe!','danger');
+      </script><?php  
+         throw new Exception();
+      }  
+      
       
       Database::getResultFromQuery($query);
       Synchronize::synchronizeDB();
@@ -150,7 +156,7 @@ class Computer{
    }
 
    public static function checkAvailable(){
-      $query = "SELECT COUNT(*) FROM `computer` WHERE id_userp IS NULL";
+      $query = "SELECT COUNT(*) FROM `computer` WHERE id_userp IS NULL AND propriedade = 'webfoco'";
       $Available = Database::getResultFromQuery($query);
       $Available = $Available->fetch(PDO::FETCH_ASSOC);
 
@@ -158,7 +164,7 @@ class Computer{
    }
 
    public static function computerAvailable(){
-      $query = 'SELECT id_pc, marca, processador, memoria FROM `computer` WHERE id_userP IS NULL';
+      $query = 'SELECT id_pc, marca, processador, memoria, codigo FROM `computer` WHERE id_userP IS NULL';
       $Available = Database::getResultFromQuery($query);
       $Available = $Available->fetchAll(PDO::FETCH_ASSOC);
 

@@ -372,6 +372,65 @@ main .container .content .table .header {
   justify-content: space-between;
   padding: 10px 20px;
 }
+main .container .content .table .header #divSearch {
+  display: flex;
+  width: 70%;
+  justify-content: flex-end;
+}
+main .container .content .table .header #divSearch #magnifying, main .container .content .table .header #divSearch #btnClose {
+  background-color: rgba(170, 159, 66, 0.9725490196);
+  border-radius: 20px !important;
+  cursor: pointer;
+  border: none;
+  height: 40px;
+  width: 40px;
+  padding: 4px 0px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  transition: 0.4s;
+}
+main .container .content .table .header #divSearch #magnifying i, main .container .content .table .header #divSearch #btnClose i {
+  color: white;
+  font-size: 1.4rem;
+}
+main .container .content .table .header #divSearch #magnifying:hover, main .container .content .table .header #divSearch #btnClose:hover {
+  transform: scale(1.05);
+}
+main .container .content .table .header #divSearch #btnClose {
+  padding: 0 2px;
+  background-color: rgba(182, 33, 53, 0.6156862745);
+  border-radius: 20px !important;
+  width: 42px;
+}
+main .container .content .table .header #divSearch #btnClose i {
+  color: white;
+  font-size: 1.5rem;
+}
+main .container .content .table .header #divSearch form {
+  justify-content: flex-end;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+main .container .content .table .header #divSearch form #search {
+  width: 100%;
+}
+main .container .content .table .header #divSearch form #btnSearch {
+  background-color: rgba(8, 90, 255, 0.8156862745);
+  border: solid #aaa 1px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.4s;
+}
+main .container .content .table .header #divSearch form #btnSearch:hover {
+  transform: scale(1.05);
+}
+main .container .content .table .header #divSearch .invisible {
+  display: none !important;
+}
 main .container .content .table .header .desc .title {
   font-size: 1.4rem;
   font-weight: 500;
@@ -384,8 +443,14 @@ main .container .content .table .btnaddnew {
   background-color: rgba(8, 90, 255, 0.8156862745);
   padding: 7px 13px;
   border-radius: 10px;
+  text-align: center;
   color: white;
+  width: 12%;
   cursor: pointer;
+  transition: 0.4s;
+}
+main .container .content .table .btnaddnew:hover {
+  transform: scale(1.035);
 }
 main .container .content .table table {
   margin: 15px 20px;
@@ -471,17 +536,6 @@ main .container .content #pgn a.disabled {
   border-bottom: solid #999 1px;
   padding: 5px 10px;
   width: 40%;
-}
-.manage .content form .btnSearch {
-  background-color: rgba(8, 90, 255, 0.8156862745);
-  border: solid #aaa 1px;
-  padding: 7px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.manage .content form .btnSearch i {
-  color: white;
-  font-size: 1rem;
 }
 .manage .content .containerBackground {
   width: 100vw;

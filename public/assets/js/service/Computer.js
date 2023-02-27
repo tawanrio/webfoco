@@ -113,39 +113,39 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
           </div>
           <div >
              <label for="marca">Marca</label>
-             <input required type="text" id="marca" name="marca"
+             <input type="text" id="marca" name="marca"
                 placeholder="Marca do computador">
           </div>
        </div>
        <div class="row">
           <div>
              <label for="modelo">Modelo</label>
-             <input required type="text" id="modelo" name="modelo" value=""
+             <input type="text" id="modelo" name="modelo" value=""
                 placeholder="Modelo do computador">
           </div>
           <div>
              <label for="processador">Processador</label>
-             <input required type="text" id="processador" name="processador" value=""
+             <input type="text" id="processador" name="processador" value=""
                 placeholder="Intel i5 / AMD Ryzen 5 ">
           </div>
        </div>
        <div class="row">
           <div>
              <label for="hd">HD</label>
-             <input required type="text" id="hd" name="hd" placeholder="240Gb SSD">
+             <input type="text" id="hd" name="hd" placeholder="240Gb SSD">
           </div>
           <div>
              <label for="memoria">Memória</label>
-             <input required type="text" id="memoria" name="memoria" placeholder="8Gb DDR3">
+             <input type="text" id="memoria" name="memoria" placeholder="8Gb DDR3">
           </div>
        </div>
        <div class="row">
           <div>
              <label for="ipv6">IPV6</label>
-             <input required type="text" id="ipv6" name="ipv6" placeholder="Numero do IPV6">
+             <input  type="text" id="ipv6" name="ipv6" placeholder="Numero do IPV6">
           </div>
           <div>
-             <label for="mac">Mac</label>
+             <label for="mac">Mac ID</label>
              <input required type="text" id="mac" name="mac" placeholder="Código MAC do computador">
           </div>
        </div>
@@ -190,7 +190,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
     function editPc(idpc){
     idpc = idpc.replaceAll(`'`, `"`)
     const data = JSON.parse(idpc);
-    console.log(data);
+   //  console.log(data);
     getLastDateClean(data.historico);
       
     const contentEditForm = `
@@ -231,40 +231,40 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
           </div>
           <div >
              <label for="marca">Marca</label>
-             <input required type="text" id="marca" name="marca"
+             <input  type="text" id="marca" name="marca"
                 placeholder="Marca do computador" value="${data.marca}"  readonly class="input-disable">
           </div>
        </div>
        <div class="row">
           <div>
              <label for="modelo">Modelo</label>
-             <input required type="text" id="modelo" name="modelo" value="${data.modelo}" readonly class="input-disable"
+             <input  type="text" id="modelo" name="modelo" value="${data.modelo}" readonly class="input-disable"
                 placeholder="Modelo do computador" >
           </div>
           <div>
              <label for="processador">Processador</label>
-             <input required type="text" id="processador" name="processador" value="${data.processador}" readonly class="input-disable"
+             <input  type="text" id="processador" name="processador" value="${data.processador}" readonly class="input-disable"
                 placeholder="Intel i5 / AMD Ryzen 5 ">
           </div>
        </div>
        <div class="row">
           <div>
              <label for="hd">HD</label>
-             <input required type="text" id="hd" name="hd" placeholder="240Gb SSD" value="${data.hd}" readonly class="input-disable">
+             <input  type="text" id="hd" name="hd" placeholder="240Gb SSD" value="${data.hd}" readonly class="input-disable">
           </div>
           <div>
              <label for="memoria">Memória</label>
-             <input required type="text" id="memoria" name="memoria" placeholder="8Gb DDR3" value="${data.memoria}" readonly class="input-disable">
+             <input  type="text" id="memoria" name="memoria" placeholder="8Gb DDR3" value="${data.memoria}" readonly class="input-disable">
           </div>
        </div>
        <div class="row">
           <div>
              <label for="ipv6">IPV6</label>
-             <input required type="text" id="ipv6" name="ipv6" placeholder="Numero do IPV6" value="${data.ipv6}" readonly class="input-disable" >
+             <input  type="text" id="ipv6" name="ipv6" placeholder="Numero do IPV6" value="${data.ipv6}" readonly class="input-disable" >
           </div>
           <div>
-             <label for="mac">Mac</label>
-             <input required type="text" id="mac" name="mac" placeholder="Código MAC do computador" value="${data.mac}" readonly class="input-disable" >
+             <label for="mac">Mac ID</label>
+             <input  type="text" id="mac" name="mac" placeholder="Código MAC do computador" value="${data.mac}" readonly class="input-disable" >
           </div>
        </div>
        <div class="row checkbox">
@@ -439,11 +439,11 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
        </div>
        <div class="row">
           <div>
-             <label for="numserie">N/S</label> 
-             <input required type="text" id="numserie" name="numserie" placeholder="Numero de série do computador" value="${data.numserie}" readonly class="input-disable" >
+             <label for="ipv6">IPV6</label> 
+             <input required type="text" id="ipv6" name="ipv6" placeholder="Numero de série do computador" value="${data.ipv6}" readonly class="input-disable" >
           </div>
           <div>
-             <label for="mac">Mac</label>
+             <label for="mac">Mac ID</label>
              <input required type="text" id="mac" name="mac" placeholder="Código MAC do computador" value="${data.mac}" readonly class="input-disable" >
           </div>
        </div>

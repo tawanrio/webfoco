@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Webfoco</Author>
+  <LastAuthor>Webfoco</LastAuthor>
+  <Created>2023-02-16T19:14:09Z</Created>
+  <LastSaved>2023-02-16T19:14:09Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11040</WindowHeight>
+  <WindowWidth>20730</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s57">
+   <Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="dados-user2">
+  <Table ss:ExpandedColumnCount="2" ss:ExpandedRowCount="76" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultRowHeight="15">
+   <Column ss:AutoFitWidth="0" ss:Width="187.5"/>
+   <Row>
+    <Cell><Data ss:Type="String">ALEX PINHOL DA SILVA</Data></Cell>
+    <Cell><Data ss:Type="String">alex.pinhol@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LEONARDO RIBEIRO MUNHOZ</Data></Cell>
+    <Cell><Data ss:Type="String">leonardo.munhoz@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">BEATRICE TELES DE CASTRO</Data></Cell>
+    <Cell><Data ss:Type="String">beatrice.castro@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">WALLACE RIO DE SOUZA</Data></Cell>
+    <Cell><Data ss:Type="String">wallace@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">TALITA SALES CASTANHARO</Data></Cell>
+    <Cell><Data ss:Type="String">talita.sales@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">AGNES LOURENZO HEHN</Data></Cell>
+    <Cell><Data ss:Type="String">agnes.lourenzo@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">CARLA SUZANO AFONSO</Data></Cell>
+    <Cell><Data ss:Type="String">carla@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">WESLEY FERREIRA COELHO</Data></Cell>
+    <Cell><Data ss:Type="String">wesley.ferreira@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">MOISÉS GIMENEZ PRETTI</Data></Cell>
+    <Cell><Data ss:Type="String">moises@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ISABELA PINHOL DA SILVA</Data></Cell>
+    <Cell><Data ss:Type="String">isabela@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">BARBARA BIANCA MATHIAS</Data></Cell>
+    <Cell><Data ss:Type="String">barbara.mathias@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PALOMA MORENO MONTENEGRO</Data></Cell>
+    <Cell><Data ss:Type="String">paloma.montenegro@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">GUILHERME CASTILHO PINTO</Data></Cell>
+    <Cell><Data ss:Type="String">guilherme.castilho@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">BRUNA YUKARI AIABE</Data></Cell>
+    <Cell><Data ss:Type="String">bruna.aiabe@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ALEXANDRE SANTOS SILVA</Data></Cell>
+    <Cell><Data ss:Type="String">alexandre.santos@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LUANE GABRIELA ROCHA REIS</Data></Cell>
+    <Cell><Data ss:Type="String">luane.reis@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">INGRID SILVA OSTI</Data></Cell>
+    <Cell><Data ss:Type="String">ingrid.osti@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PRISCILLA DE SOUZA LIMA OLIVEIRA</Data></Cell>
+    <Cell><Data ss:Type="String">priscilla.lima@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VICTORIA CAROLLINY MARTINS TENORIO</Data></Cell>
+    <Cell><Data ss:Type="String">victoria.tenorio@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">GABRIELLY DE SOUZA</Data></Cell>
+    <Cell><Data ss:Type="String">gabrielly.souza@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">KARINA GOMES DA SILVA</Data></Cell>
+    <Cell><Data ss:Type="String">karina.gomes@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">MATHEUS CHAUBET CORDEIRO</Data></Cell>
+    <Cell><Data ss:Type="String">matheus.chaubet@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">RITA DE CASSIA PASSOS FERREIRA</Data></Cell>
+    <Cell><Data ss:Type="String">rita.passos@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">DANIEL VALENCIANO GIMENES</Data></Cell>
+    <Cell><Data ss:Type="String">daniel.gimenes@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LETÍCIA DIAS COSTA</Data></Cell>
+    <Cell><Data ss:Type="String">leticia.costa@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">CAIO MORADEI FRADE</Data></Cell>
+    <Cell><Data ss:Type="String">caio.frade@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">RODRIGO OLIVEIRA ARAUJO</Data></Cell>
+    <Cell><Data ss:Type="String">rodrigo.araujo@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LUCAS VERONEZE TOLA</Data></Cell>
+    <Cell><Data ss:Type="String">lucas.veroneze@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">RENATA FIDELIS DE CARVALHO RISSARDI</Data></Cell>
+    <Cell><Data ss:Type="String">renata.fidelis@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">GIOVANNA ZAGHIS MATTOS</Data></Cell>
+    <Cell><Data ss:Type="String">giovanna.mattos@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">KARINA GOMES DE OLIVEIRA</Data></Cell>
+    <Cell><Data ss:Type="String">karina.oliveira@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">BEATRIZ STROZZI LOPES</Data></Cell>
+    <Cell><Data ss:Type="String">beatriz.strozzi@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">GABRIEL D'AVOLA BRITES</Data></Cell>
+    <Cell><Data ss:Type="String">gabriel.brites@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">NICOLE MARTINS SILVA SOARES MAIA</Data></Cell>
+    <Cell><Data ss:Type="String">nicole.martins@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">SUZANA RODRIGUES DEZENA</Data></Cell>
+    <Cell><Data ss:Type="String">suzana.rodrigues@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">BEATRIZ NOTABILE NUNES</Data></Cell>
+    <Cell><Data ss:Type="String">beatriz.nunes@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">IGOR MARCELO ZACARIAS OLIVEIRA</Data></Cell>
+    <Cell><Data ss:Type="String">igor.oliveira@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">WILLIAN GOUVEIA FERREIRA</Data></Cell>
+    <Cell><Data ss:Type="String">willian.gouveia@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LEONARDO ROCHA DE CASTRO</Data></Cell>
+    <Cell><Data ss:Type="String">leonardo.rocha@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">EVELEN GIOVANA SILVA DE JESUS</Data></Cell>
+    <Cell><Data ss:Type="String">evelen.giovana@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">CESAR AUGUSTO SCHIAVETTI DE TOLEDO PIZA</Data></Cell>
+    <Cell><Data ss:Type="String">cesar.piza@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ANA CAROLINA DOS SANTOS BATISTA</Data></Cell>
+    <Cell><Data ss:Type="String">ana.carolina@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">BRUNO MARQUESINI SILVA</Data></Cell>
+    <Cell><Data ss:Type="String">bruno.marquesini@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ISABELY AQUINO TEIXEIRA</Data></Cell>
+    <Cell><Data ss:Type="String">isabely.aquino@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PAULO LUCAS LIMA DE OLIVEIRA</Data></Cell>
+    <Cell><Data ss:Type="String">paulo.oliveira@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LEONARDO DE SOUZA</Data></Cell>
+    <Cell><Data ss:Type="String">leonardo.souza@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LEONARDO SANTANA NOGUEIRA</Data></Cell>
+    <Cell><Data ss:Type="String">leonardo.santana@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">DANIELA SALVIANO</Data></Cell>
+    <Cell><Data ss:Type="String">daniela.salviano@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">DIEGO SILVA CARDOSO</Data></Cell>
+    <Cell><Data ss:Type="String">diego.cardoso@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">RITA DE CÁSSIA RIBEIRO LEANDRO</Data></Cell>
+    <Cell><Data ss:Type="String">rita.ribeiro@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">BEATRIZ MITTERMAYER</Data></Cell>
+    <Cell><Data ss:Type="String">beatriz.mittermayer@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ANDRÉ D'AVOLA BRITES</Data></Cell>
+    <Cell><Data ss:Type="String">andre.brites@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">MARIA LUIZA GRADIN</Data></Cell>
+    <Cell><Data ss:Type="String">luiza.gradin@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LEONARDO RODRIGUES</Data></Cell>
+    <Cell><Data ss:Type="String">leonardo.rodrigues@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">DAYRA DANIELLI DA SILVA</Data></Cell>
+    <Cell><Data ss:Type="String">dayra.silva@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VITÓRIA LINO DO NASCIMENTO LOPES</Data></Cell>
+    <Cell><Data ss:Type="String">vitoria.nascimento@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ALANA OLIVEIRA VERAS</Data></Cell>
+    <Cell><Data ss:Type="String">alana.oliveira@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ISANI CRISTINA NICÁCIO SILVA</Data></Cell>
+    <Cell><Data ss:Type="String">cristina.silva@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ANA FLÁVIA MARTINS SENA</Data></Cell>
+    <Cell><Data ss:Type="String">ana.flavia@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">RAFAEL ALMEIDA DOS REIS</Data></Cell>
+    <Cell><Data ss:Type="String">rafael.reis@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">DANILO KAUAN DA SILVA</Data></Cell>
+    <Cell><Data ss:Type="String">danilo.kauan@webfoco.com</Data></Cell>
+   </Row>
+   <Row ss:Height="75">
+    <Cell><Data ss:Type="String">DAYSE FERREIRA DE OLIVEIRA</Data></Cell>
+    <Cell ss:StyleID="s57"><Data ss:Type="String">dayse.ferreira@webfoco.com&#10;</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">TAWAN RIO DE SOUZA</Data></Cell>
+    <Cell><Data ss:Type="String">tawan.rio@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LUANA FERREIRA DE PAULA</Data></Cell>
+    <Cell><Data ss:Type="String">luana.ferreira@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">STEPHANIE VICTORINO SERAFINI</Data></Cell>
+    <Cell><Data ss:Type="String">stephanie.victorino@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">RODRIGO LUIZ SZILAGY PENTEADO</Data></Cell>
+    <Cell><Data ss:Type="String">rodrigo.szilagy@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">JULIA GANDIN FERREIRA</Data></Cell>
+    <Cell><Data ss:Type="String">julia.gandin@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">DAYANI ROSA DOS SANTOS</Data></Cell>
+    <Cell><Data ss:Type="String">dayani.rosa@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">DEBORA VICENTE SANTOS</Data></Cell>
+    <Cell><Data ss:Type="String">debora.vicente@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">EDUARDO GOMES DOS SANTOS</Data></Cell>
+    <Cell><Data ss:Type="String">eduardo.gomes@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">CAROLINE DE OLIVEIRA LABIS BARROS</Data></Cell>
+    <Cell><Data ss:Type="String">caroline.labis@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LUANA DARDES PAULIN</Data></Cell>
+    <Cell><Data ss:Type="String">luana.paulin@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VANESSA GERALDA DA SILVA</Data></Cell>
+    <Cell><Data ss:Type="String">vanessa.geralda@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ULISSES MARINI DE OLIVEIRA</Data></Cell>
+    <Cell><Data ss:Type="String">ulisses.marini@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">LUCAS MARTINS NUNES</Data></Cell>
+    <Cell><Data ss:Type="String">lucas.nunes@webfoco.com</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">BARBARA ZAMPOLI DE OLIVEIRA</Data></Cell>
+    <Cell><Data ss:Type="String">barbara.zampoli@webfoco.com</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.31496062000000002"/>
+    <Footer x:Margin="0.31496062000000002"/>
+    <PageMargins x:Bottom="0.78740157499999996" x:Left="0.511811024"
+     x:Right="0.511811024" x:Top="0.78740157499999996"/>
+   </PageSetup>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>8</ActiveRow>
+     <ActiveCol>7</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

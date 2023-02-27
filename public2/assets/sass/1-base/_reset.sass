@@ -1,0 +1,120 @@
+@use 'variables'
+
+*
+   padding: 0
+   margin: 0
+   box-sizing: border-box
+   font-family: 'Montserrat', sans-serif
+   font-family: 'Oswald', sans-serif
+
+i
+   color: variables.$primary-color
+
+a
+   text-decoration: none
+   transition: .4s
+   color: variables.$link-color
+
+   &:hover
+      color: variables.$text-hover
+p
+   text-indent: 1em
+
+input
+   border: none
+   outline: none
+
+ul
+   list-style: none
+
+   
+// button
+
+.btn
+   background-color: #1a8918
+   color:#F6FCFF
+   cursor: pointer
+   border-radius: 8px
+   text-align: center
+   width: 120px
+   font-weight: bold
+   border: none
+   padding: 10px 15px
+   font-size: 1em
+
+   &:hover
+      background-color: #0f730c
+      color: #fff
+   
+   &.btn-primary
+      background-color: #085affd0
+      
+   &.btn-green
+      background-color: #1a8918
+
+   &.btn-secondary
+      background-color: #4e5768d0
+
+   &.btn-danger
+      background-color: #b621359d
+
+
+ 
+ 
+.danger
+   background: #b621359d !important
+   text-align: center
+   color: white
+   width: 50%
+   font-size: 1.3rem
+   margin: 10px auto
+   padding: 7px 30px
+   border-radius: 10px
+   margin-bottom: 20px
+
+.success
+   color: white
+   background: #1a8918 !important
+   font-size: 1.3rem
+   text-align: center
+   width: 50%
+   margin: 10px auto
+   padding: 7px 30px
+   border-radius: 10px
+   margin-bottom: 20px
+
+
+.attention
+   color: white
+   background: #aa9f42f8 !important
+   font-size: 1.3rem
+   text-align: center
+   width: 50%
+   margin: 10px auto
+   padding: 7px 30px
+   border-radius: 10px
+   margin-bottom: 20px
+
+
+.btnEdit
+   border-radius: 100px
+   font-size: .8rem
+   width: 30px
+   padding: 6px 0 0px 0
+   margin: 0 10px 0 0
+   
+   i
+      color: white
+   &:hover
+      transition: .4s
+      transform: scale(1.2)
+      i
+         transition: .8s
+         color: black
+   
+.input-disable
+   color: #5e5d5d
+   background: #e4e4e4
+
+.disabled
+   pointer-events: none

@@ -66,6 +66,8 @@
                   $listAllComputer .= '}';
 
 
+                  // print_r($listPcAvailable);
+                  // print_r($arr['info']['pcAvailable']);
           ?>
          <a href="#" onclick="addNewUser(`<?= $listPcAvailable ?>`)" class="btnaddnew" id="addnewuser">Novo Colaborador</a>
       </div>
@@ -73,17 +75,17 @@
          <thead>
             <tr>
                <th>Nº</th>
-               <th>ID</th>
+               <!-- <th>ID</th> -->
                <th>Time</th>
                <th>Nome</th>
                <!-- <th>Sobrenome</th> -->
-               <!-- <th>ID do PC</th> -->
+               <th>Codigo</th>
                <th>Marca</th>
                <th>Processador</th>
-               <th>Memória</th>
+               <!-- <th>Memória</th> -->
                <th id="email">Email</th>
-               <th>Tel. Pessoal</th>
-               <!-- <th>Tel. Empresarial</th> -->
+               <!-- <th>Tel. Pessoal</th> -->
+               <th>Tel. Corporativo</th>
                <th id="edit">Ver</th>
                <th id="delet">Deletar</th>
             </tr>
@@ -105,14 +107,14 @@
                ?>
                   <tr>
                      <th><?= $list ?></th>
-                     <td><?php echo 'IDColab' . $value['id_user'] ? $value['id_user'] : 'Sem Dados' ?></td>
-                     <td><?php echo strtoupper($value['time'] ? $value['time'] : 'Sem Dados') ?></td>
+                     <!-- <td><?php echo 'IDColab' . $value['id_user'] ? $value['id_user'] : 'Sem Dados' ?></td> -->
+                     <td><?php echo ucfirst(strtolower($value['time'] ? $value['time'] : 'Sem Dados')) ?></td>
                      <td><?php echo ucfirst($value['name'] ? $value['name'] : 'Sem Dados') ?></td>
                      <!-- <td><?php echo $value['sobrenome'] ? $value['sobrenome'] : 'Sem Dados' ?></td> -->
-                     <!-- <td><?php echo $value['id_pc'] ? $value['id_pc'] : 'Sem Dados' ?></td> -->
+                     <td><?php echo $value['codigo'] ? $value['codigo'] : 'Sem Dados' ?></td>
                      <td><?php echo ucfirst($value['marca'] ? $value['marca'] : 'Sem Dados') ?></td>
                      <td><?php echo $value['processador'] ? $value['processador'] : 'Sem Dados' ?></td>
-                     <td><?php echo $value['memoria'] ? $value['memoria'] : 'Sem Dados' ?></td>
+                     <!-- <td><?php echo $value['memoria'] ? $value['memoria'] : 'Sem Dados' ?></td> -->
                      <td id="email"><?php echo $value['email'] ? $value['email'] : 'Sem Dados' ?></td>
                      <td><?php echo $value['telPessoal'] ? $value['telPessoal'] : 'Sem Dados' ?></td>
                      <!-- <td><?php echo $value['telEmpresarial'] ? $value['telEmpresarial'] : 'Sem Dados' ?></td> -->
@@ -147,14 +149,14 @@
            $proximo = $np + 1;
            $anterior = $np - 1;
             ?>
-            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">< Anterior</a>
+            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">< Anterior</a>
 
-            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np -1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np -1 ?></a>
-            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
-            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np +1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np +1 ?></a>
+            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np -1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np -1 ?></a>
+            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
+            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np +1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np +1 ?></a>
     
 
-            <a href="index.php?p=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
+            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
          <?php endif; ?>
    </div>
 </div>
