@@ -129,13 +129,47 @@ main
                   justify-content: space-between
                   padding: 10px 20px 
 
+                  #filtrosCheckBox
+                     flex-grow: 1
+                     display: flex
+                     justify-content: center
+                     align-items: center
+
+                     div
+                        padding: 0 5px
+                        margin: 0 15px
+                        display: flex
+                        text-align: center
+
+                        input
+                           margin-right: 5px
+                        
+                        
+
+                     span#limparFiltro
+                        cursor: pointer
+
+                  #magnifying
+                     background-color: green
+                     border-radius: 20px !important
+                     cursor: pointer
+                     border: none
+                     height: 40px
+                     width: 40px
+                     padding: 4px 0px
+                     display: flex
+                     align-items: center
+                     margin: 0 10px
+                     transition: .8s
+                     i
+                        color: white
+                        font-size: 1.4rem
+
                   #divSearch
                      display: flex
-                     width: 70%
                      justify-content: flex-end
 
-
-                     #magnifying,#btnClose
+                     #plus,#btnClose
                         background-color: #aa9f42f8
                         border-radius: 20px !important
                         cursor: pointer
@@ -145,14 +179,14 @@ main
                         padding: 4px 0px
                         display: flex
                         align-items: center
-                        margin-left: 10px
-                        transition: .4s
+                        margin: 0 10px
+                        transition: .8s
 
                         i
                            color: white
                            font-size: 1.4rem
                         &:hover
-                           transform: scale(1.05)
+                           // transform: scale(1.05)
 
                      #btnClose
                         padding: 0 2px
@@ -183,11 +217,15 @@ main
                            transition: .4s
 
                            &:hover
-                              transform: scale(1.05)
+                              // transform: scale(1.05)
                            
 
                      .invisible
                         display: none !important
+
+                     .active
+                        transform: rotate(45deg)
+                        background-color: #b621359d !important
 
                   .desc
                      .title
@@ -208,7 +246,7 @@ main
                   transition: .4s
 
                   &:hover
-                     transform: scale(1.035)
+                     // transform: scale(1.035)
 
                table
                   margin: 15px 20px

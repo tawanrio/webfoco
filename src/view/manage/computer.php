@@ -70,13 +70,44 @@
             <div class="subtitle">Lista dos computadores da empresa</div>
          </div>
          
+         <div id="filtrosCheckBox">
+
+            <div>
+               <input id="filtroTotal" type="radio" name="filtroTotal" checked>
+               <label for="filtroTotal">Total</label>
+            </div>
+            <div>
+               <div>
+                  <input type="radio" name="status" id="disponivel">
+                  <label for="disponivel">Disponível</label>
+               </div>
+               
+               <div>
+                  <input type="radio" name="status" id="usando">
+                  <label for="usando">Em uso</label>
+               </div>
+            </div>
+
+            <div>
+               <div>
+                  <input type="radio" name="propriedade" id="webfoco">
+                  <label for="webfoco">Webfoco</label>
+               </div>
+               
+               <div>
+                  <input type="radio" name="propriedade" id="proprio">
+                  <label for="proprio">Próprio</label>
+               </div>
+            </div>
+
+                  
+
+                  
+
+               </div>
 
             <div id="divSearch">
 
-
-               <div id="filtros">
-                  
-               </div>
 
                <form  method="get" class="invisible">
                   <input type="hidden" name="page" value="manage">
@@ -93,8 +124,7 @@
                   <button class="btnSearch" id="btnSearch"><span>Buscar</span></button>
                </form>
                
-               <div id="magnifying"><i class="fa-solid fa-magnifying-glass"></i></div>
-               <div id="btnClose" class="invisible"><i class="fa-solid fa-xmark"></i></div>
+               <div id="plus"><i class="fa-solid fa-plus"></i></div>
 
             </div>
       <a href="#" class="btnaddnew" id="addnewcomputer">Novo Computador</a>

@@ -8,6 +8,8 @@ $search = isset($_GET['search']) ? $_GET['search'] : '1';
 
 $filter = isset($_GET['filter']) ? $_GET['filter'] : '1';
 
+
+
 if($search == '1' || $search == ''){
 
    $search = '1';
@@ -16,22 +18,25 @@ if($search == '1' || $search == ''){
 
 }
 
+$arrfilter = explode('-', $filter);
+$arrsearch = explode('-', $search);
 
+
+
+// print_r(count($teste));
+// echo '<br>';
+// print_r($teste3);
 
 // Cria ou edita o computador
 
 if(isset($_POST) && count($_POST) > 1 && !isset($_POST['search'])){
 
    try{
-
-
-
       // Cria o computador
 
       if($_POST['form'] == 'create'){
 
          Computer::newComputer($_POST);
-
       }
 
       // Edita o computador
@@ -41,7 +46,6 @@ if(isset($_POST) && count($_POST) > 1 && !isset($_POST['search'])){
             Computer::editComputer($_POST);
 
          }
-
 
 
    }catch(Exception $error){
@@ -88,6 +92,8 @@ $qtdTotalPc = Computer::getAllQtdPc();
 
 $qtdPc = Computer::getQtdPc($filter, $search);
 
+$getTest = Computer::getTest($arrfilter, $arrsearch);
+
 $qtdPcWebfoco = Computer::getQtdPc('propriedade', 'webfoco');
 $qtdPcProprio = Computer::getQtdPc('propriedade', 'proprio');
 
@@ -117,7 +123,7 @@ $arr['info'] = [
 
    'filter' => $filter,
 
-   'search' => $search
+   'search' => $search,
 
 ]; 
 
