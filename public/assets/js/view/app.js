@@ -73,15 +73,8 @@ function createContainer(contentForm, nameIdBackground = null, nameIdContainer =
     const divSearch = btnPlus.parentElement
     divSearch.querySelector('form').classList.toggle('invisible');
     divSearch.querySelector('div#plus').classList.toggle('active');
-    // divSearch.querySelector('div#magnifying').classList.toggle('invisible');
-    // divSearch.querySelector('div#btnClose').classList.toggle('invisible');
+    filtrosCheckBox.classList.toggle('invisible');
 });
-    // btnClose.addEventListener('click',(e)=>{
-    // const divSearch = btnClose.parentElement
-    // divSearch.querySelector('form').classList.toggle('invisible');
-    // // divSearch.querySelector('div#plus').classList.toggle('invisible');
-    // divSearch.querySelector('div#btnClose').classList.toggle('invisible');
-// });
 
 
 const inputFiltros = filtrosCheckBox.querySelectorAll('input')

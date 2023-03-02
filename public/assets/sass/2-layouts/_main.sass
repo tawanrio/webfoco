@@ -134,6 +134,7 @@ main
                      display: flex
                      justify-content: center
                      align-items: center
+                     transition: 1s
 
                      div
                         padding: 0 5px
@@ -168,6 +169,7 @@ main
                   #divSearch
                      display: flex
                      justify-content: flex-end
+                     flex-grow: 1
 
                      #plus,#btnClose
                         background-color: #aa9f42f8
@@ -201,7 +203,11 @@ main
                         justify-content: flex-end
                         // border-bottom: solid #999 1px
                         border-radius: 20px
-                        transition: .4s
+                        transition: 1s
+                        animation: fadeInAnimation ease 3s 
+                        animation-iteration-count: 1
+                        animation-fill-mode: forwards
+                        opacity: 1
 
                         #search
                            width: 100%
@@ -220,12 +226,17 @@ main
                               // transform: scale(1.05)
                            
 
-                     .invisible
-                        display: none !important
+                  .invisible
+                     // display: none !important
+                     position: absolute
+                     left: 9999px
+                     transform: scale(.95) !important
+                     opacity: 0 !important
+                     transition: 1s
 
-                     .active
-                        transform: rotate(45deg)
-                        background-color: #b621359d !important
+                  .active
+                     transform: rotate(45deg)
+                     background-color: #b621359d !important
 
                   .desc
                      .title
