@@ -90,17 +90,20 @@ $Computer = new Computer($np, $limit);
 
 $qtdTotalPc = Computer::getAllQtdPc();
 
-$qtdPc = Computer::getQtdPc($filter, $search);
+$qtdPc = Computer::getQtdPc($arrfilter, $arrsearch);
+// $qtdPc = Computer::getQtdPc($filter, $search);
+
+// print_r($qtdPc);
 
 $getTest = Computer::getTest($arrfilter, $arrsearch);
 
-$qtdPcWebfoco = Computer::getQtdPc('propriedade', 'webfoco');
-$qtdPcProprio = Computer::getQtdPc('propriedade', 'proprio');
+$qtdPcWebfoco = Computer::getQtdPc(['propriedade'], ['webfoco']);
+$qtdPcProprio = Computer::getQtdPc(['propriedade'], ['proprio']);
 
 $totpg = ceil($qtdPc / $limit);
 
-$arr = $Computer->getFilterPc($filter, $search);
-
+// $arr = $Computer->getFilterPc($filter, $search);
+$arr = $Computer->getFilterPc($arrfilter, $arrsearch);
 
 
 $arr['info'] = [

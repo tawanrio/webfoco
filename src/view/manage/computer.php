@@ -73,7 +73,7 @@
          <div id="filtrosCheckBox">
 
             <div>
-               <input id="filtroTotal" type="radio" name="filtroTotal" checked>
+               <input id="filtroTotal" type="radio" name="filtroTotal">
                <label for="filtroTotal">Total</label>
             </div>
             <div>

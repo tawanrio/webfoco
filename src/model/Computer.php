@@ -96,7 +96,7 @@ class Computer{
 
    }
 
-   public static function getOnePc($filter = 1, $search = 1){
+   public static function getOnePc($filter, $search){
       $query = 'SELECT * FROM `computer`  ';
       $query .= "WHERE $filter LIKE '$search%'";
 
@@ -137,19 +137,19 @@ class Computer{
       
        for ($i=0; $i < count($filter); $i++) { 
             $query .= $filter[$i] . " LIKE '" . $search[$i]."%' AND ";
-            // echo $query;
          }
       $query = substr($query, 0, -4);
-      echo $query;
+      
+      // echo $query;
+
       $result = Database::getResultFromQuery($query);
       $result = $result->fetch(PDO::FETCH_ASSOC);
 
-      print_r($result['count(*)']);
 
-      echo '<br>';
-      print_r($filter);
-      echo '<br>';
-      print_r($search);
+      // echo '<br>';
+      // print_r($filter);
+      // echo '<br>';
+      // print_r($search);
    }
    public static function getQtdPc($filter, $search){
       $query = 'SELECT COUNT(*) FROM `computer` LEFT OUTER JOIN `user` ON user.id_user = computer.id_userp WHERE ';
@@ -157,8 +157,12 @@ class Computer{
       // print_r($filter);
 
       // print_r($search);
+      for ($i=0; $i < count($filter); $i++) { 
+         $query .= $filter[$i] . " LIKE '" . $search[$i]."%' AND ";
+      }
+      $query = substr($query, 0, -4);
 
-      $query .= $filter . " LIKE '". $search ."%'"  ;
+      // $query .= $filter . " LIKE '". $search ."%'"  ;
 
       // echo '<br>';
       // echo $query;
@@ -226,16 +230,19 @@ class Computer{
       $offset = $this->offset;
       $offset = ($offset * $this->limit) - $this->limit;
       $query = 'SELECT *, user.name FROM `computer` LEFT OUTER JOIN `user` ON user.id_user = computer.id_userp WHERE ';
-      $query .= $filter . " LIKE '". $search ."%'"  ;
+      // $query .= $filter . " LIKE '". $search ."%'"  ;
       // print_r(count($filter));
-      // for ($i=0; $i < count($filter); $i++) { 
-      //    $query .= $filter[$i] . " LIKE '" . $search[$i]."%' AND ";
-      // }
+      for ($i=0; $i < count($filter); $i++) { 
+         $query .= $filter[$i] . " LIKE '" . $search[$i]."%' AND ";
+      }
+      $query = substr($query, 0, -4);
+
       // echo $query;
       $query .= "ORDER BY id_pc DESC ";
       $query .= "LIMIT " . $this->limit;
       $query .= " OFFSET " . $offset;
       
+      // echo $query;
       $result = Database::getResultFromQuery($query);
       
       $result = $result->fetchAll(PDO::FETCH_ASSOC);

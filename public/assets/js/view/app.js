@@ -90,8 +90,11 @@ const filtros = {status: null, propriedade: null}
 
 inputFiltros.forEach( element =>{
     element.addEventListener('change', ()=>{
+        if(element.id == 'filtroTotal') return
         let filter = '';
         let search = '';
+        let novoUrl
+        let novoSearch = []
 
         if(element.checked){
             filtros[element.name] = element.id;
@@ -109,77 +112,66 @@ inputFiltros.forEach( element =>{
                 filter += key + '-'
                 search += filtros[key] + '-'
             }
-            
         }
-
-        let url_atual = window.location.search  ;
-        if(url_atual.indexOf('filter') > 0){
-
         filter = filter.substring(0,filter.length -1)
         search = search.substring(0,search.length -1)
 
+
+        let url_atual = window.location.search  ;
+
+        if(url_atual.indexOf('filter') > 0){
+
         const beginFilter = url_atual.indexOf('filter') 
         let filters = url_atual.slice(beginFilter + 7)
-        const beforeFilter = url_atual.slice(0, beginFilter-1)
-        let afterSearch = ''
-        const endFilter = filters.indexOf('&')
-        if(endFilter > 0) filters = filters.slice(0, endFilter);
 
+        const beforeFilter = url_atual.slice(0, beginFilter-1)
+        const endFilter = filters.indexOf('&')
+        
+        if(endFilter > 0) filters = filters.slice(0, endFilter);
+        
         const beginSearch = url_atual.indexOf('search') 
         let searchs = url_atual.slice(beginSearch + 7)
-
+        
         const endSearch = searchs.indexOf('&')
-        // console.log(endSearch);
         if(endSearch > 0) {
             searchs = searchs.slice(0, endSearch);
-            // console.log(searchs);
         }
         positionEndSearch = url_atual.indexOf(searchs)
+
+        let afterSearch = ''
         afterSearch = url_atual.slice(positionEndSearch + searchs.length)
 
-        // console.log(filters);
-        // console.log(searchs);
 
-        // console.log(filter);
-        // console.log(search);
+        filters += '-' + filter
+        searchs += '-' + search
 
-        // console.log(beforeFilter);
-        console.log(afterSearch);
+        filters = filters.split('-');
+        searchs = searchs.split('-');
 
-        // console.log(url_atual);
-        let newFilter = filters + '-' + filter
-        let newSearch = searchs + '-' + search
-
-        // console.log(newFilter);
-        // console.log(newSearch);
-        const novoUrl = `index.php${beforeFilter}&filter=${newFilter}&search=${newSearch}${afterSearch}`
-
-        console.log(novoUrl);
-        window.location.href = novoUrl
-
-        // url_atual = url_atual.replace('filter=', 'filter='+filter+'-') 
-        // url_atual = url_atual.replace('search=', 'search='+search+'-') 
-
-            // console.log(url_atual);
-        }
-
-
-            // if(url_atual.indexOf('propriedade') < 0){
-
-            // }else{
-            //     url_atual = url_atual.replace('filter=', 'filter='+filter+'-') 
-            //     url_atual = url_atual.replace('search=', 'filter='+search+'-') 
-
-            // }
-            
-
-
-        // }else{
-        //    url_atual = url_atual + '&filter=' +filter
-        //    url_atual = url_atual + '&search=' +search
-        // }
-
+        novoFiltro = filters.filter((valorAtual, indice, varArray) => {
+            if(filters.lastIndexOf(valorAtual) === indice){
+                searchs.filter((este,i) =>{
+                    if(indice === i){
+                        console.log(este);
+                        novoSearch.push(este)
+                    }
+                })
+            }
+            return filters.lastIndexOf(valorAtual) === indice;
+        })
         
+        let newFilter = novoFiltro.join('-')
+        let newSearch = novoSearch.join('-')
+
+        novoUrl = `index.php${beforeFilter}&filter=${newFilter}&search=${newSearch}${afterSearch}#pgn`
+
+    }else{
+        novoUrl = `index.php${url_atual}&filter=${filter}&search=${search}#pgn`;
+        
+    }
+
+
+    window.location.href = novoUrl
     })
 })
 
@@ -188,5 +180,5 @@ filtroTotal.addEventListener('click', ()=>{
         input.checked = false
     })
     filtroTotal.checked = true
-    window.location.href = "index.php?page=manage&r=computer";
+    window.location.href = "index.php?page=manage&r=computer#pgn";
 })
