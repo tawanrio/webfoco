@@ -74,7 +74,7 @@
 
             <div>
                <input id="filtroTotal" type="radio" name="filtroTotal">
-               <label for="filtroTotal">Total</label>
+               <label for="filtroTotal">Todos</label>
             </div>
             <div>
                <div>
