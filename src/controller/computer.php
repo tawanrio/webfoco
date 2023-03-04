@@ -22,11 +22,6 @@ $arrfilter = explode('-', $filter);
 $arrsearch = explode('-', $search);
 
 
-
-// print_r(count($teste));
-// echo '<br>';
-// print_r($teste3);
-
 // Cria ou edita o computador
 
 if(isset($_POST) && count($_POST) > 1 && !isset($_POST['search'])){
@@ -125,8 +120,9 @@ $arr['info'] = [
    'qtdPcProprio' => $qtdPcProprio,
 
    'filter' => $filter,
-
    'search' => $search,
+   'arrfilter' => $arrfilter,
+   'arrsearch' => $arrsearch,
 
 ]; 
 

@@ -81,89 +81,97 @@ const inputFiltros = filtrosCheckBox.querySelectorAll('input')
 
 const filtros = {status: null, propriedade: null}
 
+function getNameValueRadioFilter(element){
+    let filter = '';
+    let search = '';
+    if(element.checked){
+        filtros[element.name] = element.id;
+
+        if(element.id != 'filtroTotal'){
+            filtroTotal.checked = false
+        }
+    }else{
+        filtros[element.name] = null
+    }
+    for (const key in filtros) {
+        if(filtros[key] && key != 'filtroTotal'){
+            filter += key + '-'
+            search += filtros[key] + '-'
+        }
+    }
+    filter = filter.substring(0,filter.length -1)
+    search = search.substring(0,search.length -1)
+
+    return [filter, search]
+}
+function separateElementUrl(url_atual){
+    
+    const beginFilter = url_atual.indexOf('filter') 
+    let filters = url_atual.slice(beginFilter + 7)
+
+    const beforeFilter = url_atual.slice(0, beginFilter-1)
+    const endFilter = filters.indexOf('&')
+    
+    if(endFilter > 0) filters = filters.slice(0, endFilter);
+    
+    const beginSearch = url_atual.indexOf('search') 
+    let searchs = url_atual.slice(beginSearch + 7)
+    
+    const endSearch = searchs.indexOf('&')
+    if(endSearch > 0) {
+        searchs = searchs.slice(0, endSearch);
+    }
+    let positionEndSearch = url_atual.indexOf(searchs)
+
+    let afterSearch = ''
+    afterSearch = url_atual.slice(positionEndSearch + searchs.length)
+
+    return [beforeFilter, afterSearch ,filters, searchs]
+}
+function createSearchFilterArray(filters,searchs){
+    
+    let searchArray = []
+    filters = filters.split('-');
+    searchs = searchs.split('-');
+
+    let filterArray = filters.filter((valorAtual, indice, varArray) => {
+        if(filters.lastIndexOf(valorAtual) === indice){
+            searchs.filter((este,i) =>{
+                if(indice === i){
+                    searchArray.push(este)
+                }
+            })
+        }
+        return filters.lastIndexOf(valorAtual) === indice;
+    })
+
+    return [filterArray, searchArray]
+}
 inputFiltros.forEach( element =>{
     element.addEventListener('change', ()=>{
         if(element.id == 'filtroTotal') return
-        let filter = '';
-        let search = '';
-        let novoUrl
-        let novoSearch = []
-
-        if(element.checked){
-            filtros[element.name] = element.id;
-
-            if(element.id != 'filtroTotal'){
-                filtroTotal.checked = false
-            }
-
-        }else{
-            filtros[element.name] = null
-        }
-
-        for (const key in filtros) {
-            if(filtros[key] && key != 'filtroTotal'){
-                filter += key + '-'
-                search += filtros[key] + '-'
-            }
-        }
-        filter = filter.substring(0,filter.length -1)
-        search = search.substring(0,search.length -1)
-
+        
+        let [radioName,radioValue] = getNameValueRadioFilter(element);
 
         let url_atual = window.location.search  ;
-
         if(url_atual.indexOf('filter') > 0){
+        let [beforeFilter, afterSearch ,filters, searchs] = separateElementUrl(url_atual);
 
-        const beginFilter = url_atual.indexOf('filter') 
-        let filters = url_atual.slice(beginFilter + 7)
+        filters += '-' + radioName
+        searchs += '-' + radioValue
 
-        const beforeFilter = url_atual.slice(0, beginFilter-1)
-        const endFilter = filters.indexOf('&')
+        let [filterString, searchString] = createSearchFilterArray(filters, searchs)
+
         
-        if(endFilter > 0) filters = filters.slice(0, endFilter);
+        searchString = searchString.join('-')
+        filterString = filterString.join('-')
         
-        const beginSearch = url_atual.indexOf('search') 
-        let searchs = url_atual.slice(beginSearch + 7)
-        
-        const endSearch = searchs.indexOf('&')
-        if(endSearch > 0) {
-            searchs = searchs.slice(0, endSearch);
-        }
-        positionEndSearch = url_atual.indexOf(searchs)
-
-        let afterSearch = ''
-        afterSearch = url_atual.slice(positionEndSearch + searchs.length)
-
-
-        filters += '-' + filter
-        searchs += '-' + search
-
-        filters = filters.split('-');
-        searchs = searchs.split('-');
-
-        novoFiltro = filters.filter((valorAtual, indice, varArray) => {
-            if(filters.lastIndexOf(valorAtual) === indice){
-                searchs.filter((este,i) =>{
-                    if(indice === i){
-                        console.log(este);
-                        novoSearch.push(este)
-                    }
-                })
-            }
-            return filters.lastIndexOf(valorAtual) === indice;
-        })
-        
-        let newFilter = novoFiltro.join('-')
-        let newSearch = novoSearch.join('-')
-
-        novoUrl = `index.php${beforeFilter}&filter=${newFilter}&search=${newSearch}${afterSearch}#pgn`
+        var novoUrl = `index.php${beforeFilter}&filter=${filterString}&search=${searchString}${afterSearch}#pgn`
 
     }else{
-        novoUrl = `index.php${url_atual}&filter=${filter}&search=${search}#pgn`;
-        
+        var novoUrl = `index.php${url_atual}&filter=${radioName}&search=${radioValue}#pgn`;
     }
-
-
+    
     window.location.href = novoUrl
     })
 })

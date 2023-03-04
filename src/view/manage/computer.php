@@ -57,11 +57,7 @@
 
    <!-- <h2 for="filter">Filtrar Busca</h2> -->
 
-   
-
    <div class="table" id="tablePc">
-
-
 
       <div class="header">
 
@@ -69,33 +65,31 @@
             <div class="title">Lista de computadores</div>
             <div class="subtitle">Lista dos computadores da empresa</div>
          </div>
-         
          <div id="filtrosCheckBox">
-
             <div>
-               <input id="filtroTotal" type="radio" name="filtroTotal">
+               <input id="filtroTotal" type="radio" name="filtroTotal" <?php echo $arr['info']['arrfilter'][0] == 1 ? 'checked' : ''; ?>>
                <label for="filtroTotal">Todos</label>
             </div>
             <div>
                <div>
-                  <input type="radio" name="status" id="disponivel">
+                  <input type="radio" name="status" id="disponivel" <?php echo strpos($arr['info']['search'], 'disponivel') > -1 ? 'checked' : ''; ?>>
                   <label for="disponivel">Disponível</label>
                </div>
                
                <div>
-                  <input type="radio" name="status" id="usando">
+                  <input type="radio" name="status" id="usando"<?php echo strpos($arr['info']['search'], 'usando') > -1 ? 'checked' : ''; ?>>
                   <label for="usando">Em uso</label>
                </div>
             </div>
 
             <div>
                <div>
-                  <input type="radio" name="propriedade" id="webfoco">
+                  <input type="radio" name="propriedade" id="webfoco"<?php echo strpos($arr['info']['search'], 'webfoco') > -1 ? 'checked' : ''; ?>>
                   <label for="webfoco">Webfoco</label>
                </div>
                
                <div>
-                  <input type="radio" name="propriedade" id="proprio">
+                  <input type="radio" name="propriedade" id="proprio"<?php echo strpos($arr['info']['search'], 'proprio') > -1 ? 'checked' : ''; ?>>
                   <label for="proprio">Próprio</label>
                </div>
             </div>

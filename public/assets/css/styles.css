@@ -6,6 +6,10 @@
   font-family: "Oswald", sans-serif;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 i {
   color: #4a4e69;
 }
