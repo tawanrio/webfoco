@@ -12,6 +12,8 @@ if($search == '1' || $search == ''){
    $filter = '1';
 }
 
+$arrfilter = explode('-', $filter);
+$arrsearch = explode('-', $search);
 
 
 // paginação
@@ -65,7 +67,8 @@ if($iddelete && $cpfdelete){
 $qtdTotalUser = User::getAllQtdUser();
 $qtdUser = User::getQtdUser($filter, $search);
 $totpg = ceil($qtdUser / $limit);
-$arr = $User->getFilterUser($filter, $search);
+
+$arr = $User->getFilterUser($arrfilter, $arrsearch);
 
 $arr['info'] = [
 
@@ -87,7 +90,9 @@ $arr['info'] = [
 
    'filter' => $filter,
 
-   'search' => $search
+   'search' => $search,
+   'arrfilter' => $arrfilter,
+   'arrsearch' => $arrsearch
 
 ]; 
 

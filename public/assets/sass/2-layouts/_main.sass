@@ -123,6 +123,11 @@ main
                border: solid #ccc 2px
                display: flex
                flex-direction: column
+
+               .resultSearch
+                  text-align: center
+                  font-size: 1.1rem
+                  // font-weight: bold
                
                .header
                   display: flex
@@ -141,9 +146,19 @@ main
                         margin: 0 15px
                         display: flex
                         text-align: center
+                        justify-content: center
 
                         input
                            margin-right: 5px
+
+                        select
+                           margin-left: 10px
+                           font-size: 1rem
+                        label
+                           display: flex
+                           align-items: center
+                        
+                           
                         
                         
 
@@ -311,6 +326,10 @@ main
                a
                   cursor: pointer
                   margin: 0 70px
+
+                  &:hover
+                     background-color: #bbb
+                     color: Black
 
                   &.disabled
                      pointer-events: none

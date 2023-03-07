@@ -20,7 +20,8 @@
          </div> -->
       </div>
       <br>
-      <h2 for="filter">Filtrar Busca</h2>         
+      
+      <!-- <h2 for="filter">Filtrar Busca</h2>         
    <form method="get">
    <input type="hidden" name="page" value="manage">
       <input type="hidden" name="r" value="user">
@@ -29,8 +30,11 @@
       </select>
       <input type="text" id="search" name="search" placeholder="Digite aqui...">
       <button class="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
-   </form>
+   </form> -->
+
    <div class="table" id="tablePc">
+
+
       <div class="header">
          <div class="desc">
             <div class="title">Lista de Colaboradores</div>
@@ -68,11 +72,83 @@
 
                   // print_r($listPcAvailable);
                   // print_r($arr['info']['pcAvailable']);
-          ?>
+                  // print_r($arr['info']['search']);
+          ?>   
+
+
+           <div id="filtrosCheckBox">
+            <div>
+               <input class="filtroChange" id="filtroTotal" type="radio" name="filtroTotal" <?php echo $arr['info']['arrfilter'][0] == 1 ? 'checked' : ''; ?>>
+               <label for="filtroTotal">Todos</label>
+            </div>
+            <div>
+               <div>
+                  <input class="filtroChange" type="radio" name="statusUser" id="disponivel" <?php echo strpos($arr['info']['search'], 'disponivel') > -1 ? 'checked' : ''; ?>>
+                  <label for="disponivel">Sem computador</label>
+               </div>
+               
+               <div>
+                  <input class="filtroChange" type="radio" name="statusUser" id="usando"<?php echo strpos($arr['info']['search'], 'usando') > -1 ? 'checked' : ''; ?>>
+                  <label for="usando">Com Computador</label>
+               </div>
+            </div>
+            <div>
+               <Label>Time</Label>
+            <select class="filtroChange" name="time" id="time">
+
+               <option value="bi" <?php echo strpos($arr['info']['search'], 'bi') > -1 ? 'selected' : ''; ?>>B.I</option>
+               <option value="comercial" <?php echo strpos($arr['info']['search'], 'comercial') > -1 ? 'selected' : ''; ?>>Comercial</option>
+               <option value="criacao" <?php echo strpos($arr['info']['search'], 'criacao') > -1 ? 'selected' : ''; ?>>Criação</option>
+               <option value="cs" <?php echo strpos($arr['info']['search'], 'cs') > -1 ? 'selected' : ''; ?>>CS</option>
+               <option value="dev" <?php echo strpos($arr['info']['search'], 'dev') > -1 ? 'selected' : ''; ?>>Desenvolvimento</option>
+               <option value="dir" <?php echo strpos($arr['info']['search'], 'dir') > -1 ? 'selected' : ''; ?>>Diretor(a)</option>
+               <option value="inboud" <?php echo strpos($arr['info']['search'], 'inboud') > -1 ? 'selected' : ''; ?>>Inbound</option>
+               <option value="marketing" <?php echo strpos($arr['info']['search'], 'marketing') > -1 ? 'selected' : ''; ?>>Marketing</option>
+               <option value="midia" <?php echo strpos($arr['info']['search'], 'midia') > -1 ? 'selected' : ''; ?>>Mídia</option>
+               <option value="redacao" <?php echo strpos($arr['info']['search'], 'redacao') > -1 ? 'selected' : ''; ?>>Redação</option>
+               <option value="rh" <?php echo strpos($arr['info']['search'], 'rh') > -1 ? 'selected' : ''; ?>>RH</option> 
+               <option value="SEO" <?php echo strpos($arr['info']['search'], 'SEO') > -1 ? 'selected' : ''; ?>>SEO</option>
+               <option value="st" <?php echo strpos($arr['info']['search'], 'st') > -1 ? 'selected' : ''; ?>>Secretaria</option>
+               <option value="social" <?php echo strpos($arr['info']['search'], 'social') > -1 ? 'selected' : ''; ?>>Social</option>
+
+               </select>
+            </div>
+
+                  
+
+               </div>
+
+            <div id="divSearch">
+
+
+               <form  method="get" class="invisible">
+                  <input type="hidden" name="page" value="manage">
+                  <input type="hidden" name="route" value="user">
+                  <select name="filter" id="filter">
+                     <option value="name">Nome</option>
+                     <option value="time">Email</option>
+                     <option value="telEmpresarial">Tel Corporativo</option>
+                     <option value="telPessoal">Tel Pessoal</option>
+                  </select>
+                  <input type="text" id="search"   name="search" placeholder="Digite aqui...">
+                  <button class="btnSearch" id="btnSearch"><span>Buscar</span></button>
+               </form>
+               
+               <div id="plus"><i class="fa-solid fa-plus"></i></div>
+
+            </div>
          <a href="#" onclick="addNewUser(`<?= $listPcAvailable ?>`)" class="btnaddnew" id="addnewuser">Novo Colaborador</a>
       </div>
+      <?php 
+      if($arr[0] != 'vazio'): ?>
       <table>
          <thead>
+         <tr> <?php 
+            if(!($arr['info']['arrfilter'][0] == 1)): ?>
+               <?php $arr['info']['search'] = str_replace('disponivel','Sem Computador', $arr['info']['search']) ?>
+               <?php $arr['info']['search'] = str_replace('usando','Com Computador', $arr['info']['search']) ?>
+               <span class="resultSearch">Resultados de pesquisa para: <?php print_r(str_replace('-', ', ', ($arr['info']['search'])));  ?> </span>
+               <?php endif ?></tr>
             <tr>
                <th>Nº</th>
                <!-- <th>ID</th> -->
@@ -103,12 +179,20 @@
                   }
                   $info = rtrim($info, ', ');
                   $info .= '}';
-
+                  
+                  $value['time'] = str_replace('cao', 'ção', $value['time']);
+                  $value['time'] = str_replace('midia', 'mídia', $value['time']);
+                  $value['time'] = str_replace('st', 'Secretaria', $value['time']);
+                  // $value['time'] = str_replace('dev', 'de', $value['time']);
+                  $value['time'] = str_replace('dir', 'Diretor(a)', $value['time']);
+                  $value['time'] = str_replace('bi', 'B . I', $value['time']);
+                  $value['time'] = str_replace('social', 'Social Mídia', $value['time']);
+                  $value['time'] = str_replace('rh', 'Recursos H.', $value['time']);
                ?>
                   <tr>
                      <th><?= $list ?></th>
                      <!-- <td><?php echo 'IDColab' . $value['id_user'] ? $value['id_user'] : 'Sem Dados' ?></td> -->
-                     <td><?php echo ucfirst(strtolower($value['time'] ? $value['time'] : 'Sem Dados')) ?></td>
+                     <td><?php echo ucwords(strtolower($value['time'] ? $value['time'] : 'Sem Dados')) ?></td>
                      <td><?php echo ucfirst($value['name'] ? $value['name'] : 'Sem Dados') ?></td>
                      <!-- <td><?php echo $value['sobrenome'] ? $value['sobrenome'] : 'Sem Dados' ?></td> -->
                      <td><?php echo $value['codigo'] ? $value['codigo'] : 'Sem Dados' ?></td>
@@ -116,8 +200,8 @@
                      <td><?php echo $value['processador'] ? $value['processador'] : 'Sem Dados' ?></td>
                      <!-- <td><?php echo $value['memoria'] ? $value['memoria'] : 'Sem Dados' ?></td> -->
                      <td id="email"><?php echo $value['email'] ? $value['email'] : 'Sem Dados' ?></td>
-                     <td><?php echo $value['telPessoal'] ? $value['telPessoal'] : 'Sem Dados' ?></td>
-                     <!-- <td><?php echo $value['telEmpresarial'] ? $value['telEmpresarial'] : 'Sem Dados' ?></td> -->
+                     <!-- <td><?php echo $value['telPessoal'] ? $value['telPessoal'] : 'Sem Dados' ?></td> -->
+                     <td><?php echo $value['telEmpresarial'] ? $value['telEmpresarial'] : 'Sem Dados' ?></td>
                      <td id="edit">
                         <a href="#" onclick="editUser(`<?= $info ?>`,`<?= $listAllComputer ?> `)" class="attention btnEdit circle" title="Ver">
                            <i class="fa-solid fa-eye"></i>
@@ -133,6 +217,14 @@
                   <?php endif; ?>
                <?php endforeach; ?>
          </tbody>
+         <?php else:; ?>
+   
+         <?php $arr['info']['search'] = str_replace('disponivel','Sem Computador', $arr['info']['search']) ?>
+               <?php $arr['info']['search'] = str_replace('usando','Com Computador', $arr['info']['search']) ?>
+   <span class="resultSearch">Nenhum Resultado Encontrado para:  <?php print_r(str_replace('-', ', ', ($arr['info']['search'])));  ?></span>
+   <Br>
+
+ <?php endif; ?>
       </table>
    </div>
    <div id="pgn">
@@ -149,14 +241,14 @@
            $proximo = $np + 1;
            $anterior = $np - 1;
             ?>
-            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">< Anterior</a>
+            <a href="index.php?page=manage&route=user<?=isset($filter) ? $filter : '';?>&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">< Anterior</a>
 
-            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np -1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np -1 ?></a>
-            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
-            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $np +1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np +1 ?></a>
+            <a href="index.php?page=manage&route=user<?=isset($filter) ? $filter : '';?>&np=<?= $np -1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np -1 ?></a>
+            <a href="index.php?page=manage&route=user<?=isset($filter) ? $filter : '';?>&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
+            <a href="index.php?page=manage&route=user<?=isset($filter) ? $filter : '';?>&np=<?= $np +1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np +1 ?></a>
     
 
-            <a href="index.php?page=manage&r=user<?=isset($filter) ? $filter : '';?>&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
+            <a href="index.php?page=manage&route=user<?=isset($filter) ? $filter : '';?>&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
          <?php endif; ?>
    </div>
 </div>

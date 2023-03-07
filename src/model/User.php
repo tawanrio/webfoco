@@ -77,8 +77,6 @@ class User{
 
    public static function newUser($arr){
 
-
-
       // $historicoMaq = HistoricoMaq::checkExistHistoric($arr);
 
       $time = trim(isset($arr['time']) ? $arr['time'] :  '');
@@ -111,13 +109,9 @@ class User{
 
       </script><?php 
 
-
-
       return;
 
    }
-
-
 
    public static function getFormateddValue($value){
 
@@ -248,28 +242,32 @@ class User{
 
 
 
-   public function getFilterUser($filter = 1, $search = 1){
+   public function getFilterUser($filter, $search){
 
       $offset = $this->offset;
 
 
-
       $offset = ($offset * $this->limit) - $this->limit;
 
-      $query = 'SELECT * FROM `user` LEFT OUTER JOIN `computer` ON computer.id_pc = user.id_pcu ';
+      $query = 'SELECT * FROM `user` LEFT OUTER JOIN `computer` ON computer.id_pc = user.id_pcu WHERE ';
 
-      $query .= "WHERE $filter LIKE '$search%' ";
+      for ($i=0; $i < count($filter); $i++) { 
+         $query .= $filter[$i] . " LIKE '" . $search[$i]."%' AND ";
+      }
+      $query = substr($query, 0, -4);
+      // $query .= "WHERE $filter LIKE '$search%' ";
 
       $query .= "LIMIT " . $this->limit;
 
       $query .= " OFFSET " . $offset;
 
-
-
       $result = Database::getResultFromQuery($query);
 
       $result = $result->fetchAll(PDO::FETCH_ASSOC);
-
+      
+      if(count($result) < 1){
+         $result[0] = 'vazio';
+      }
 
 
       return $result;

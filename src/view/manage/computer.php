@@ -1,5 +1,5 @@
 <div class="header">
-
+<!-- <?php print_r($arr); ?> -->
    <i class="fa-solid fa-computer"></i>
 
    <div>
@@ -67,29 +67,29 @@
          </div>
          <div id="filtrosCheckBox">
             <div>
-               <input id="filtroTotal" type="radio" name="filtroTotal" <?php echo $arr['info']['arrfilter'][0] == 1 ? 'checked' : ''; ?>>
+               <input class="filtroChange" id="filtroTotal" type="radio" name="filtroTotal" <?php echo $arr['info']['arrfilter'][0] == 1 ? 'checked' : ''; ?>>
                <label for="filtroTotal">Todos</label>
             </div>
             <div>
                <div>
-                  <input type="radio" name="status" id="disponivel" <?php echo strpos($arr['info']['search'], 'disponivel') > -1 ? 'checked' : ''; ?>>
+                  <input class="filtroChange" type="radio" name="status" id="disponivel" <?php echo strpos($arr['info']['search'], 'disponivel') > -1 ? 'checked' : ''; ?>>
                   <label for="disponivel">Disponível</label>
                </div>
                
                <div>
-                  <input type="radio" name="status" id="usando"<?php echo strpos($arr['info']['search'], 'usando') > -1 ? 'checked' : ''; ?>>
+                  <input class="filtroChange" type="radio" name="status" id="usando"<?php echo strpos($arr['info']['search'], 'usando') > -1 ? 'checked' : ''; ?>>
                   <label for="usando">Em uso</label>
                </div>
             </div>
 
             <div>
                <div>
-                  <input type="radio" name="propriedade" id="webfoco"<?php echo strpos($arr['info']['search'], 'webfoco') > -1 ? 'checked' : ''; ?>>
+                  <input class="filtroChange" type="radio" name="propriedade" id="webfoco"<?php echo strpos($arr['info']['search'], 'webfoco') > -1 ? 'checked' : ''; ?>>
                   <label for="webfoco">Webfoco</label>
                </div>
                
                <div>
-                  <input type="radio" name="propriedade" id="proprio"<?php echo strpos($arr['info']['search'], 'proprio') > -1 ? 'checked' : ''; ?>>
+                  <input class="filtroChange" type="radio" name="propriedade" id="proprio"<?php echo strpos($arr['info']['search'], 'proprio') > -1 ? 'checked' : ''; ?>>
                   <label for="proprio">Próprio</label>
                </div>
             </div>
@@ -105,14 +105,13 @@
 
                <form  method="get" class="invisible">
                   <input type="hidden" name="page" value="manage">
-                  <input type="hidden" name="r" value="computer">
+                  <input type="hidden" name="route" value="computer">
                   <select name="filter" id="filter">
                      <option value="name">Nome do Colaborador</option>
-                     <option value="id_pc">Nº do Computador</option>
-                     <option value="numserie">Numero de Série</option>
+                     <option value="codigo">Codigo do Computador</option>
+                     <option value="modelo">Modelo do Computador</option>
                      <option value="marca">Marca do Computador</option>
-                     <option value="processador">Processador</option>
-                     <option value="propriedade">Propriedade</option>
+                     <option value="processador">Processador do Computador</option>
                   </select>
                   <input type="text" id="search"   name="search" placeholder="Digite aqui...">
                   <button class="btnSearch" id="btnSearch"><span>Buscar</span></button>
@@ -125,10 +124,16 @@
 
 
       </div>
-
+      <?php if($arr[0] != 'vazio'): ?>
+       
       <table>
 
          <thead>
+            <tr> <?php 
+            if(!($arr['info']['arrfilter'][0] == 1)): ?>
+            
+               <span class="resultSearch">Resultados de pesquisa para: <?php print_r(str_replace('-', ', ', ($arr['info']['search'])));  ?> </span>
+               <?php endif ?></tr>
 
             <tr>
 
@@ -214,12 +219,6 @@
 
 
 
-
-
-               
-
-
-
                   // Formata a Data
 
                   $dateFormated = empty(!$lastDateClean) ?  date_format(date_create($lastDateClean), 'd/m/y') : 'Sem Dados';
@@ -279,12 +278,18 @@
                   </tr>
 
                <?php endif; ?>
-
-            <?php endforeach; ?>
-
-         </tbody>
-
-      </table>
+               
+               <?php endforeach; ?>
+               
+            </tbody>
+            
+            <?php else:; ?>
+   
+           <span class="resultSearch">Nenhum Resultado Encontrado para:  <?php print_r(str_replace('-', ', ', ($arr['info']['search'])));  ?></span>
+           <Br>
+   
+         <?php endif; ?>
+         </table>
 
    </div>
 
@@ -316,19 +321,19 @@
 
       ?>
 
-         <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">
+         <a href="index.php?page=manage&route=computer<?=isset($filter) ? $filter : '';?>&np=<?= $anterior ?>#pgn" id="left" class="<?= $np > 1 ? '' : 'disabled' ?>">
 
             < Anterior</a>
 
 
 
-               <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $np - 1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np - 1 ?></a>
+               <a href="index.php?page=manage&route=computer<?=isset($filter) ? $filter : '';?>&np=<?= $np - 1 ?>#pgn" class="pgnum <?php echo ($np == 1) ? 'invisible' : '' ?>"><?= $np - 1 ?></a>
 
-               <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
+               <a href="index.php?page=manage&route=computer<?=isset($filter) ? $filter : '';?>&np=<?= $np ?>#pgn" class="pgnum active"><?= $np ?></a>
 
-               <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $np + 1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np + 1 ?></a>
+               <a href="index.php?page=manage&route=computer<?=isset($filter) ? $filter : '';?>&np=<?= $np + 1 ?>#pgn" class="pgnum <?php echo ($np + 1 > $totpg) ? 'invisible' : '' ?>"><?= $np + 1 ?></a>
 
-               <a href="index.php?page=manage&r=computer<?=isset($filter) ? $filter : '';?>&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
+               <a href="index.php?page=manage&route=computer<?=isset($filter) ? $filter : '';?>&np=<?= $proximo ?>#pgn" id="right" class="<?= ($totpg == $np) ? 'disabled' : '' ?>"> Próximo ></a>
 
             <?php endif; ?>
 

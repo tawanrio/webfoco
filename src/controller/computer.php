@@ -22,6 +22,8 @@ $arrfilter = explode('-', $filter);
 $arrsearch = explode('-', $search);
 
 
+
+
 // Cria ou edita o computador
 
 if(isset($_POST) && count($_POST) > 1 && !isset($_POST['search'])){
@@ -90,7 +92,7 @@ $qtdPc = Computer::getQtdPc($arrfilter, $arrsearch);
 
 // print_r($qtdPc);
 
-$getTest = Computer::getTest($arrfilter, $arrsearch);
+// $getTest = Computer::getFilterPc($arrfilter, $arrsearch);
 
 $qtdPcWebfoco = Computer::getQtdPc(['propriedade'], ['webfoco']);
 $qtdPcProprio = Computer::getQtdPc(['propriedade'], ['proprio']);
@@ -122,10 +124,8 @@ $arr['info'] = [
    'filter' => $filter,
    'search' => $search,
    'arrfilter' => $arrfilter,
-   'arrsearch' => $arrsearch,
-
+   'arrsearch' => $arrsearch
 ]; 
-
 
 
 loadTemplate('manage/manage', $arr);

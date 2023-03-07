@@ -14,26 +14,8 @@ if(!isset($_SESSION)){
 
 
 
-
-
-
-
-
-$route = (isset($_GET['r']) ? $_GET['r'] : 'user');
-
-
-
-
-
-
-
-
-
+$route = (isset($_GET['route']) ? $_GET['route'] : 'user');
 
 
 loadController($route);
-
-
-
-
 

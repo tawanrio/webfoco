@@ -371,6 +371,10 @@ main .container .content .table {
   display: flex;
   flex-direction: column;
 }
+main .container .content .table .resultSearch {
+  text-align: center;
+  font-size: 1.1rem;
+}
 main .container .content .table .header {
   display: flex;
   justify-content: space-between;
@@ -388,9 +392,18 @@ main .container .content .table .header #filtrosCheckBox div {
   margin: 0 15px;
   display: flex;
   text-align: center;
+  justify-content: center;
 }
 main .container .content .table .header #filtrosCheckBox div input {
   margin-right: 5px;
+}
+main .container .content .table .header #filtrosCheckBox div select {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+main .container .content .table .header #filtrosCheckBox div label {
+  display: flex;
+  align-items: center;
 }
 main .container .content .table .header #filtrosCheckBox span#limparFiltro {
   cursor: pointer;
@@ -550,6 +563,10 @@ main .container .content #pgn a.pgnum.invisible {
 main .container .content #pgn a {
   cursor: pointer;
   margin: 0 70px;
+}
+main .container .content #pgn a:hover {
+  background-color: #bbb;
+  color: Black;
 }
 main .container .content #pgn a.disabled {
   pointer-events: none;

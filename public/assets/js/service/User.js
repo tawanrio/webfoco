@@ -608,14 +608,12 @@ function editUser(iduser, listAllComputer){
 
                 <label for="time">Time</label>
 
-                <select name="time" id="time" disabled class="input-disable">
+                <select name="time" id="timeArea" disabled class="input-disable">
 
                         ${
 
                           setTimeout(() => {
-
-
-
+                           console.log(time);
                             time.forEach(area => {
 
                                 let texto = "<option value='" + area + "'" 
@@ -645,7 +643,9 @@ function editUser(iduser, listAllComputer){
 
                                 texto += '</option>'
 
-                                document.querySelector('select#time').innerHTML += texto
+                                document.querySelector('select#timeArea').innerHTML += texto
+
+                                console.log( document.querySelector('select#timeArea'));
 
                             });
 

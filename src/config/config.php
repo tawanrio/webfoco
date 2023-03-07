@@ -56,6 +56,6 @@ loadModel('HistoricoMaq');
 
 
 
-
+// Synchronize::synchronizeDB();
 
 

@@ -126,58 +126,21 @@ class Computer{
 
       ?><script>
          msgStatus('Computador Deletado!','danger');
-      </script><?php       
+      </script><?php      
    }
 
 
-   public static function getTest($filter, $search){
-
-      $query = "SELECT count(*) FROM `computer` WHERE ";
-      // .$filter[0] ." LIKE '" .  $search[0] . "%'";
-      
-       for ($i=0; $i < count($filter); $i++) { 
-            $query .= $filter[$i] . " LIKE '" . $search[$i]."%' AND ";
-         }
-      $query = substr($query, 0, -4);
-      
-      // echo $query;
-
-      $result = Database::getResultFromQuery($query);
-      $result = $result->fetch(PDO::FETCH_ASSOC);
 
 
-      // echo '<br>';
-      // print_r($filter);
-      // echo '<br>';
-      // print_r($search);
-   }
    public static function getQtdPc($filter, $search){
       $query = 'SELECT COUNT(*) FROM `computer` LEFT OUTER JOIN `user` ON user.id_user = computer.id_userp WHERE ';
 
-      // print_r($filter);
-
-      // print_r($search);
       for ($i=0; $i < count($filter); $i++) { 
          $query .= $filter[$i] . " LIKE '" . $search[$i]."%' AND ";
       }
       $query = substr($query, 0, -4);
 
       // $query .= $filter . " LIKE '". $search ."%'"  ;
-
-      // echo '<br>';
-      // echo $query;
-      // print_r($filter);
-      // echo '<br>';
-      // print_r($search);
-      
-      // echo '<br>';
-      // echo '<br>';
-      // echo '<br>';
-      // echo  count($filter);
-      // echo '<br>';
-      // echo '<br>';
-      // echo '<br>';
-      
       // for ($i=0; $i < count($filter); $i++) { 
       //    $query .= $filter[$i] . " LIKE '" . $search[$i]."%' AND ";
       //    // echo $query;
@@ -237,7 +200,6 @@ class Computer{
       }
       $query = substr($query, 0, -4);
 
-      // echo $query;
       $query .= "ORDER BY id_pc DESC ";
       $query .= "LIMIT " . $this->limit;
       $query .= " OFFSET " . $offset;
@@ -245,7 +207,12 @@ class Computer{
       // echo $query;
       $result = Database::getResultFromQuery($query);
       
-      $result = $result->fetchAll(PDO::FETCH_ASSOC);
+      $result =$result->fetchAll(PDO::FETCH_ASSOC);
+      
+      if(count($result) < 1){
+         $result[0] = 'vazio';
+      }
+      // print_r($result);
       
       return $result;
    }

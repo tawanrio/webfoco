@@ -1,7 +1,6 @@
 const content = document.querySelector('.content')
 
 const btnPlus = document.querySelector('div#plus')
-// const btnClose = document.querySelector('div#btnClose')
 const filtrosCheckBox = document.querySelector('div#filtrosCheckBox')
 const filtroTotal = document.querySelector('#filtroTotal')
 
@@ -77,21 +76,24 @@ function createContainer(contentForm, nameIdBackground = null, nameIdContainer =
 });
 
 
-const inputFiltros = filtrosCheckBox.querySelectorAll('input')
+const inputFiltros = filtrosCheckBox.querySelectorAll('.filtroChange')
+// const selectFiltro = filtrosCheckBox.querySelectorAll('select')
+
 
 const filtros = {status: null, propriedade: null}
 
 function getNameValueRadioFilter(element){
+    
     let filter = '';
     let search = '';
     if(element.checked){
         filtros[element.name] = element.id;
-
+        
         if(element.id != 'filtroTotal'){
             filtroTotal.checked = false
         }
     }else{
-        filtros[element.name] = null
+        filtros[element.name] = element.value
     }
     for (const key in filtros) {
         if(filtros[key] && key != 'filtroTotal'){
@@ -99,6 +101,7 @@ function getNameValueRadioFilter(element){
             search += filtros[key] + '-'
         }
     }
+
     filter = filter.substring(0,filter.length -1)
     search = search.substring(0,search.length -1)
 
@@ -126,10 +129,12 @@ function separateElementUrl(url_atual){
     let afterSearch = ''
     afterSearch = url_atual.slice(positionEndSearch + searchs.length)
 
+
     return [beforeFilter, afterSearch ,filters, searchs]
 }
 function createSearchFilterArray(filters,searchs){
     
+    // console.log(filters);
     let searchArray = []
     filters = filters.split('-');
     searchs = searchs.split('-');
@@ -147,6 +152,7 @@ function createSearchFilterArray(filters,searchs){
 
     return [filterArray, searchArray]
 }
+
 inputFiltros.forEach( element =>{
     element.addEventListener('change', ()=>{
         if(element.id == 'filtroTotal') return
@@ -165,9 +171,12 @@ inputFiltros.forEach( element =>{
         
         searchString = searchString.join('-')
         filterString = filterString.join('-')
-        
-        var novoUrl = `index.php${beforeFilter}&filter=${filterString}&search=${searchString}${afterSearch}#pgn`
 
+        console.log(afterSearch);
+        
+        var novoUrl = `index.php${beforeFilter}&filter=${filterString}&search=${searchString}#pgn`
+
+        
     }else{
         var novoUrl = `index.php${url_atual}&filter=${radioName}&search=${radioValue}#pgn`;
     }
@@ -181,5 +190,11 @@ filtroTotal.addEventListener('click', ()=>{
         input.checked = false
     })
     filtroTotal.checked = true
-    window.location.href = "index.php?page=manage&r=computer#pgn";
+    let outra_url = window.location.search  ;
+    const beginPage = outra_url.indexOf('route') 
+    let route = outra_url.slice(beginPage + 6)
+    const endPage = route.indexOf('&')
+    if(endPage > 0) route = route.slice(0, endPage);
+
+    window.location.href = `index.php?page=manage&route=${route}#pgn`;
 })
