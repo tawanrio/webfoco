@@ -60,14 +60,9 @@ class Database{
 
          $pdo = self::conn();
 
-         // echo $query;
          $result = $pdo->query($query);
 
-
-
          return $result;
-
-
 
       } catch (\Exception $e) {
 

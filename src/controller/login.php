@@ -1,13 +1,5 @@
 <?php 
 
-if(!isset($_SESSION)){
-
-   session_start();
-}
-
-// loadModel('Login');
-
-
 if($_SESSION){
 
 

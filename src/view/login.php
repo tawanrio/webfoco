@@ -42,8 +42,7 @@
 
             <label for="pass">Senha:</label>
 
-
-            <input type="text" name="pass" id="pass" placeholder="Insira sua senha" >
+            <input type="password" name="pass" id="pass" placeholder="Insira sua senha" >
 
 
          </div>

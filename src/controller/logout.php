@@ -1,10 +1,8 @@
-<?php 
-if(!isset($_SESSION)){
-   session_start();
-}
-requireValidSession();
-session_destroy();
-$_SESSION = [];
-header('Location: index.php');
-// loadTemplate('login');
-
+<?php 
+
+session_destroy();
+?>
+<script>
+   window.location.href = `index.php`;
+
+</script>

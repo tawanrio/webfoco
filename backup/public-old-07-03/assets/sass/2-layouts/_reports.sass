@@ -1,0 +1,82 @@
+.reports            
+   .status
+      display: flex
+      flex-wrap: wrap
+      width: 100%
+
+      .card
+         text-align: center
+         color: white
+         padding: 25px 50px
+         flex-grow: 1
+         font-size: 1.3rem
+         margin: 10px
+         border-radius: 10px
+
+         i
+            font-size: 2rem
+            color: white
+      .qtd
+         background-color: #085affd0
+      .using
+         background-color: #db7023d0
+      .available
+         background-color: #18a352d0
+      .maintenance
+         background-color: #ff0000d0
+
+   .table
+      width: 100%
+      margin: 15px
+      // border: solid #ccc 2px
+      display: flex
+      flex-direction: column
+      .desc
+         margin: 10px 20px
+         .title
+            font-size: 1.4rem
+            font-weight: 500
+         .subtitle
+            color: #333
+
+      table
+         margin: 15px 20px
+         padding: 5px
+         border-collapse: collapse
+         border: solid #dddddd93 1px
+         flex-grow: 1
+         font-weight: 300
+
+         tr
+            border: solid #dddddd93 1px
+            display: flex
+            padding: 5px 20px 5px 50px
+
+         th,td
+            display: flex
+            width: 100%
+
+         tr:nth-child(even) 
+            background-color: #eee
+      
+   #pgn
+      display: flex
+      
+      a.pgnum
+         padding: 0 10px
+         margin: 0 10px
+
+         &.active
+            background-color: black
+            color: white
+         &.invisible
+            visibility: hidden
+      
+      a
+         cursor: pointer
+         margin: 0 70px
+
+         &.disabled
+            pointer-events: none
+            color: #999
+

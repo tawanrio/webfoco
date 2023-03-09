@@ -107,13 +107,25 @@ function getNameValueRadioFilter(element){
 
     return [filter, search]
 }
+function removePagination(url){
+    const beginPgn = url.indexOf('&np=')
+    if(beginPgn > 0){
+        let numberPgn = url.slice(beginPgn+4)
+        let pagination = url.slice(beginPgn)
+        numberPgn = numberPgn.indexOf('&')
+        if(numberPgn > 0) {pagination = url.slice(beginPgn, beginPgn+4+numberPgn)}
+
+        url = url.replaceAll(pagination, '')
+    }
+    return url
+}
 function separateElementUrl(url_atual){
-    
     const beginFilter = url_atual.indexOf('filter') 
     let filters = url_atual.slice(beginFilter + 7)
 
-    const beforeFilter = url_atual.slice(0, beginFilter-1)
+    let beforeFilter = url_atual.slice(0, beginFilter-1)
     const endFilter = filters.indexOf('&')
+    
     
     if(endFilter > 0) filters = filters.slice(0, endFilter);
     
@@ -129,12 +141,10 @@ function separateElementUrl(url_atual){
     let afterSearch = ''
     afterSearch = url_atual.slice(positionEndSearch + searchs.length)
 
-
     return [beforeFilter, afterSearch ,filters, searchs]
 }
 function createSearchFilterArray(filters,searchs){
     
-    // console.log(filters);
     let searchArray = []
     filters = filters.split('-');
     searchs = searchs.split('-');
@@ -160,6 +170,7 @@ inputFiltros.forEach( element =>{
         let [radioName,radioValue] = getNameValueRadioFilter(element);
 
         let url_atual = window.location.search  ;
+        url_atual = removePagination(url_atual)
         if(url_atual.indexOf('filter') > 0){
         let [beforeFilter, afterSearch ,filters, searchs] = separateElementUrl(url_atual);
 
@@ -172,9 +183,7 @@ inputFiltros.forEach( element =>{
         searchString = searchString.join('-')
         filterString = filterString.join('-')
 
-        console.log(afterSearch);
-        
-        var novoUrl = `index.php${beforeFilter}&filter=${filterString}&search=${searchString}#pgn`
+        var novoUrl = `index.php${beforeFilter}&filter=${filterString}&search=${searchString}${afterSearch}#pgn`
 
         
     }else{

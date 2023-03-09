@@ -1,0 +1,208 @@
+main
+   grid-area: main
+   background-color: #cacaca79
+   
+   .submenu
+      grid-area: up
+      display: flex
+      justify-content: center
+      align-items: center
+      box-shadow: 0px 0px 10px -1px #000000
+      background-color: #085affd0
+      flex-wrap: wrap
+      padding: 10px 0
+
+      div.title
+         display: flex
+         align-items: center
+         i
+            color: white
+            font-size: 2.2rem
+            margin: 0 5px
+
+         span
+            color: white
+            font-size: 1.8rem
+            text-transform: uppercase
+            font-weight: 600
+
+      nav
+         width: 80%
+         text-align: center
+         font-size: 1rem
+         display: flex
+         ul
+            display: flex
+            align-items: center
+            justify-content: space-evenly
+            background-color: white
+            margin: 0px 3%
+            padding: 7px 40px
+            border-radius: 20px
+            box-shadow: 0px 0px 5px -2px #00000059
+            li
+               padding: 0 35px
+               a
+                  font-weight: 500
+                  padding: 0 3px
+
+                  &:hover
+                     color: red
+
+                  &.active
+                     color: black
+                     border-bottom: solid #3bb45f 3px
+                  
+                  &.disabled
+                     color: silver
+                     pointer-events: none
+
+   .container
+         box-shadow: 0px 0px 10px -1px #0000004d
+         margin: 15px
+         padding: 10px
+         border-radius: 5px
+         background-color: white
+         margin-bottom: 20px            
+
+         .header
+            display: flex
+            align-items: center
+            padding-bottom: 10px
+            margin-bottom: 10px
+            border-bottom: solid #aaa 1px
+               
+            i
+               font-size: 2.5rem
+               color: #333
+               margin: 5px 10px
+            
+            .title
+               font-size: 1.7rem
+               margin-bottom: -10px
+
+            .subtitle
+               color: #999
+               font-weight: 300
+
+         .content
+            display: flex
+            flex-direction: column
+            align-items: center
+
+            .status
+               display: flex
+               flex-wrap: wrap
+               width: 100%
+
+               .card
+                  text-align: center
+                  color: white
+                  padding: 25px 50px
+                  flex-grow: 1
+                  font-size: 1.3rem
+                  margin: 10px
+                  border-radius: 10px
+
+                  i
+                     font-size: 2rem
+                     color: white
+               .blue
+                  background-color: #085affd0
+               .orange
+                  background-color: #db7023d0
+               .green
+                  background-color: #3bb45f
+               .red
+                  background-color: #ff0000d0
+
+
+            .table
+               width: 100%
+               margin: 15px 0px
+               border: solid #ccc 2px
+               display: flex
+               flex-direction: column
+               
+               .header
+                  display: flex
+                  justify-content: space-between
+                  padding: 10px 20px 
+                  .desc
+                     .title
+                        font-size: 1.4rem
+                        font-weight: 500
+                     .subtitle
+                        color: #333
+                        margin: 0 2px
+               
+               .btnaddnew
+                  background-color: #085affd0
+                  padding: 7px 13px
+                  border-radius: 10px
+                  color: white
+                  cursor: pointer
+
+               table
+                  margin: 15px 20px
+                  padding: 5px
+                  border-collapse: collapse
+                  // border: solid #dddddd93 1px
+                  flex-grow: 1
+                  font-weight: 300
+                  
+                  tr
+                     border: solid #dddddd93 1px
+                     display: flex
+                     padding: 5px 30px 5px 30px
+
+                  tbody tr
+                        &:hover
+                           background: silver
+
+                  th,td
+                     display: flex
+                     justify-content: center
+                     width: 100%
+
+                  tr:nth-child(even) 
+                     background-color: #eee
+
+                  th#edit, td#edit
+                     width: 35%
+                  th#delet, td#delet
+                     width: 25%
+                  th#email, td#email
+                     width: 220%
+                  th:nth-child(1),td:nth-child(1)
+                     width: 30%
+                  th:nth-child(2),td:nth-child(2)
+                     width: 50%
+               
+            #pgn
+               display: flex
+               
+               a.pgnum
+                  padding: 0 10px
+                  margin: 0 10px
+
+                  &.active
+                     background-color: black
+                     color: white
+                  &.invisible
+                     visibility: hidden
+               
+               a
+                  cursor: pointer
+                  margin: 0 70px
+
+                  &.disabled
+                     pointer-events: none
+                     color: #999
+
+
+         
+
+
+         
+         

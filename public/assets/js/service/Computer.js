@@ -84,7 +84,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
           <div class="subtitle">Cadastre seus computadores</div>
        </div>
     </div>
-    <form id="formnewcomputer" action="index.php?page=manage&r=computer" method="post">
+    <form id="formnewcomputer" action="index.php${window.location.search}" method="post">
        <input type="hidden" name="form" value="create">
        <div class="row radio">
          <div>
@@ -201,7 +201,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
           <div class="subtitle">Visualize as informações dos computadores</div>
        </div>
     </div>
-    <form id="formeditcomputer" action="index.php?page=manage&r=computer" method="post">
+    <form id="formeditcomputer" action="index.php${window.location.search}" method="post">
        <input type="hidden" name="historico" value="${data.historico}">
        <input type="hidden" name="form" value="edit">
        <div class="row radio">
@@ -325,7 +325,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
           <div class="subtitle">Visualize o histórico de limpeza dos computadores</div>
        </div>
     </div>
-    <form id="formeditcomputer" action="index.php?page=manage&r=computer" method="post">
+    <form id="formeditcomputer" action="index.php?page=manage&route=computer" method="post">
        <input type="hidden" name="id" value="">
         <div class="row">
             <table>
@@ -448,7 +448,7 @@ document.querySelector('#addnewcomputer').addEventListener('click', () =>{
           </div>
        </div>
        <div class="row row-button">
-          <a href="index.php?page=manage&r=computer&id=${data.id_pc}"  class="btn btn-danger"> Apagar </a>
+          <a href="index.php?page=manage&route=computer&id=${data.id_pc}"  class="btn btn-danger"> Apagar </a>
           <a class="btn btn-secondary" id="formCancel">Cancelar</a>
        </div>
     </form>

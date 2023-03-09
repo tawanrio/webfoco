@@ -89,13 +89,14 @@
                
                <div>
                   <input class="filtroChange" type="radio" name="statusUser" id="usando"<?php echo strpos($arr['info']['search'], 'usando') > -1 ? 'checked' : ''; ?>>
-                  <label for="usando">Com Computador</label>
+                  <label for="usando">Com computador</label>
                </div>
             </div>
             <div>
                <Label>Time</Label>
             <select class="filtroChange" name="time" id="time">
 
+               <option value="1" >Selecione</option>
                <option value="bi" <?php echo strpos($arr['info']['search'], 'bi') > -1 ? 'selected' : ''; ?>>B.I</option>
                <option value="comercial" <?php echo strpos($arr['info']['search'], 'comercial') > -1 ? 'selected' : ''; ?>>Comercial</option>
                <option value="criacao" <?php echo strpos($arr['info']['search'], 'criacao') > -1 ? 'selected' : ''; ?>>Criação</option>
@@ -126,7 +127,7 @@
                   <input type="hidden" name="route" value="user">
                   <select name="filter" id="filter">
                      <option value="name">Nome</option>
-                     <option value="time">Email</option>
+                     <option value="email">Email</option>
                      <option value="telEmpresarial">Tel Corporativo</option>
                      <option value="telPessoal">Tel Pessoal</option>
                   </select>
@@ -143,23 +144,33 @@
       if($arr[0] != 'vazio'): ?>
       <table>
          <thead>
-         <tr> <?php 
+            <tr> <?php 
             if(!($arr['info']['arrfilter'][0] == 1)): ?>
-               <?php $arr['info']['search'] = str_replace('disponivel','Sem Computador', $arr['info']['search']) ?>
-               <?php $arr['info']['search'] = str_replace('usando','Com Computador', $arr['info']['search']) ?>
-               <span class="resultSearch">Resultados de pesquisa para: <?php print_r(str_replace('-', ', ', ($arr['info']['search'])));  ?> </span>
+
+         <?php 
+         $infoSearch = $arr['info']['search'];
+         $infoSearch = str_replace('usando','Com Computador', $infoSearch);
+         $infoSearch = str_replace('disponivel','Sem Computador', $infoSearch);
+         $infoSearch = str_replace('-', ', ', ($infoSearch));
+         $infoSearch = ucwords($infoSearch);
+
+         ?>
+
+               <span class="resultSearch">Resultados de pesquisa para: <?= $infoSearch; ?> </span>
                <?php endif ?></tr>
             <tr>
                <th>Nº</th>
                <!-- <th>ID</th> -->
                <th>Time</th>
                <th>Nome</th>
+               <th>Sobrenome</th>
                <!-- <th>Sobrenome</th> -->
                <th>Codigo</th>
                <th>Marca</th>
                <th>Processador</th>
+               <th>Propriedade</th>
                <!-- <th>Memória</th> -->
-               <th id="email">Email</th>
+               <!-- <th id="email">Email</th> -->
                <!-- <th>Tel. Pessoal</th> -->
                <th>Tel. Corporativo</th>
                <th id="edit">Ver</th>
@@ -192,14 +203,16 @@
                   <tr>
                      <th><?= $list ?></th>
                      <!-- <td><?php echo 'IDColab' . $value['id_user'] ? $value['id_user'] : 'Sem Dados' ?></td> -->
-                     <td><?php echo ucwords(strtolower($value['time'] ? $value['time'] : 'Sem Dados')) ?></td>
+                     <td><?php echo ucwords(($value['time'] ? $value['time'] : 'Sem Dados')) ?></td>
                      <td><?php echo ucfirst($value['name'] ? $value['name'] : 'Sem Dados') ?></td>
+                     <td><?php echo ucfirst($value['sobrenome'] ? $value['sobrenome'] : 'Sem Dados') ?></td>
                      <!-- <td><?php echo $value['sobrenome'] ? $value['sobrenome'] : 'Sem Dados' ?></td> -->
                      <td><?php echo $value['codigo'] ? $value['codigo'] : 'Sem Dados' ?></td>
                      <td><?php echo ucfirst($value['marca'] ? $value['marca'] : 'Sem Dados') ?></td>
                      <td><?php echo $value['processador'] ? $value['processador'] : 'Sem Dados' ?></td>
+                     <td><?php echo $value['propriedade'] ? $value['propriedade'] : '-' ?></td>
                      <!-- <td><?php echo $value['memoria'] ? $value['memoria'] : 'Sem Dados' ?></td> -->
-                     <td id="email"><?php echo $value['email'] ? $value['email'] : 'Sem Dados' ?></td>
+                     <!-- <td id="email"><?php echo $value['email'] ? $value['email'] : 'Sem Dados' ?></td> -->
                      <!-- <td><?php echo $value['telPessoal'] ? $value['telPessoal'] : 'Sem Dados' ?></td> -->
                      <td><?php echo $value['telEmpresarial'] ? $value['telEmpresarial'] : 'Sem Dados' ?></td>
                      <td id="edit">
@@ -219,9 +232,9 @@
          </tbody>
          <?php else:; ?>
    
-         <?php $arr['info']['search'] = str_replace('disponivel','Sem Computador', $arr['info']['search']) ?>
-               <?php $arr['info']['search'] = str_replace('usando','Com Computador', $arr['info']['search']) ?>
-   <span class="resultSearch">Nenhum Resultado Encontrado para:  <?php print_r(str_replace('-', ', ', ($arr['info']['search'])));  ?></span>
+         <?php $infoSearch = str_replace('disponivel','Sem Computador', $arr['info']['search']) ?>
+               <?php $infoSearch = str_replace('usando','Com Computador', $arr['info']['search']) ?>
+   <span class="resultSearch">Nenhum Resultado Encontrado para:  <?php print_r(str_replace('-', ', ', ($infoSearch)));  ?></span>
    <Br>
 
  <?php endif; ?>

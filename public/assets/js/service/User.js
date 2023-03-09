@@ -136,7 +136,7 @@ console.log(available);
 
    </div>
 
-     <form id="formnewuser" action="index.php?page=manage&r=user" method="post">
+     <form id="formnewuser" action="index.php${window.location.search}" method="post">
 
       <input type="hidden" name="form" value="create">
 
@@ -164,7 +164,7 @@ console.log(available);
 
                <label for="sobrenome">Sobrenome</label>
 
-               <input required type="text" id="sobrenome" name="sobrenome"  maxlength="15"
+               <input required type="text" id="sobrenome" name="sobrenome"   maxlength="20"
 
                placeholder="Sobrenome do colaborador">
 
@@ -475,7 +475,6 @@ function editUser(iduser, listAllComputer){
   ]
 
 
-
    const contentEditForm = `
 
    <div class="header">
@@ -490,7 +489,7 @@ function editUser(iduser, listAllComputer){
 
    </div>
 
-     <form id="formnewuser" action="index.php?page=manage&r=user" method="post">
+     <form id="formnewuser" action="index.php${window.location.search}" method="post">
 
       <input type="hidden" name="form" value="edit">
 
@@ -518,7 +517,7 @@ function editUser(iduser, listAllComputer){
 
                <label for="sobrenome">Sobrenome</label>
 
-               <input  type="text" id="sobrenome" name="sobrenome" value="${data.sobrenome}"  maxlength="15" disabled class="input-disable"
+               <input  type="text" id="sobrenome" name="sobrenome" value="${data.sobrenome}"  maxlength="20" disabled class="input-disable"
 
                placeholder="Sobrenome do colaborador">
 
@@ -645,7 +644,7 @@ function editUser(iduser, listAllComputer){
 
                                 document.querySelector('select#timeArea').innerHTML += texto
 
-                                console.log( document.querySelector('select#timeArea'));
+                              //   console.log( document.querySelector('select#timeArea'));
 
                             });
 
@@ -757,7 +756,7 @@ function editUser(iduser, listAllComputer){
 
   </div>
 
-  <form id="formeditcomputer" action="index.php?page=manage&r=computer" method="post">
+  <form id="formeditcomputer" action="index.php?page=manage&route=user" method="post">
 
      <input type="hidden" name="id" value="">
 
@@ -987,7 +986,7 @@ function deleteUser(iduser, listAllComputer){
 
    </div>
 
-     <form id="formnewuser" action="index.php?page=manage&r=user" method="post">
+     <form id="formnewuser" action="index.php${window.location.search}" method="post">
 
           <input type="hidden" name="id" value="${data.id_user}">
 
@@ -1023,7 +1022,7 @@ function deleteUser(iduser, listAllComputer){
 
                <label for="sobrenome">Sobrenome</label>
 
-               <input required type="text" id="sobrenome" name="sobrenome" value="${data.sobrenome}"  maxlength="15"  readonly class="input-disable" 
+               <input required type="text" id="sobrenome" name="sobrenome" value="${data.sobrenome}"   maxlength="20"  readonly class="input-disable" 
 
                placeholder="Sobrenome do colaborador">
 
@@ -1211,7 +1210,7 @@ function deleteUser(iduser, listAllComputer){
 
           <div class="row row-button">
 
-             <a href="index.php?page=manage&r=user&id=${data.id_user}&cpf=${data.CPF}"  class="btn btn-danger"> Apagar </a>
+             <a href="index.php?page=manage&route=user&idDelete=${data.id_user}"  class="btn btn-danger"> Apagar </a>
 
              <a class="btn btn-secondary" id="formCancel">Cancelar</a>
 

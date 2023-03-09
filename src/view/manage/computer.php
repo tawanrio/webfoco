@@ -18,7 +18,7 @@
    
    <div class="card green">
       <!-- <i class="fa-solid fa-check"></i> -->
-      <h3>Webfoco</h3>
+      <h3>Empresa</h3>
       <h2><?= isset($arr['info']['qtdPcWebfoco']) ? $arr['info']['qtdPcWebfoco'] : 'Erro'; ?></h2>
    </div>
    <div class="card orange">
@@ -85,7 +85,7 @@
             <div>
                <div>
                   <input class="filtroChange" type="radio" name="propriedade" id="webfoco"<?php echo strpos($arr['info']['search'], 'webfoco') > -1 ? 'checked' : ''; ?>>
-                  <label for="webfoco">Webfoco</label>
+                  <label for="webfoco">Empresa</label>
                </div>
                
                <div>
@@ -131,8 +131,15 @@
          <thead>
             <tr> <?php 
             if(!($arr['info']['arrfilter'][0] == 1)): ?>
+
+            <?php 
+               $infoSearch = $arr['info']['search'];
+               $infoSearch = str_replace('usando','Em uso', $infoSearch);
+               $infoSearch = str_replace('-', ', ', ($infoSearch));
+               $infoSearch = ucwords($infoSearch);
+            ?>
             
-               <span class="resultSearch">Resultados de pesquisa para: <?php print_r(str_replace('-', ', ', ($arr['info']['search'])));  ?> </span>
+               <span class="resultSearch">Resultados de pesquisa para: <?php print_r(str_replace('-', ', ', ($infoSearch)));  ?> </span>
                <?php endif ?></tr>
 
             <tr>

@@ -1,8 +1,6 @@
-<!-- <?php if(!isset($_SESSION)){
-
+ <?php 
    session_start();
-
-}; ?> -->
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -36,13 +34,12 @@
       </div>
 
      
+      <?php 
+      if(count($_SESSION) > 0) :; ?>
 
             <div class="right">
-
             <nav>
                <ul>
-
-
                   <li><a href="index.php?page=manage" class="<?php echo (isset($_GET['page']) && ($_GET['page'] === 'manage' || $_GET['page'] === 'logout' )) || !isset($_GET['p']) ? 'active ' : ''; ?>">Gerenciar</a></li>
 
 
@@ -53,15 +50,11 @@
 
 
                   <li><a href="index.php?page=logout">Sair</a></li>
-
                </ul>
-
-
             </nav>
-
-
             </div>
 
+            <?php endif; ?>
 
 
 

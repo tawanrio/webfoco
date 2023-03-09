@@ -4,15 +4,11 @@
 
 function loadTemplate($page, $arr = [], $erro = []){
 
-
-
    require_once(VIEW_PATH . '/template/header.php');
 
    require_once(VIEW_PATH . "/$page.php");
 
    require_once(VIEW_PATH . '/template/footer.php');
-
-
 
 }
 
